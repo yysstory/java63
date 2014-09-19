@@ -13,9 +13,18 @@
 /* == 연산자 */
 // 암시적 형변환(implicit type conversion)
 // => 연산을 위해 두 개의 값을 같은 타입으로 자동으로 형 변환하는 것.
-// 'false' => Boolean('false') = true
-console.log("'false' == false", 'false' == false); // false
-console.log("100 == '100'", 100 == '100'); //true
+// == 연산에서 암시적 형변환은 값을 number로 변환하여 비교한다.
+console.log("== 연산자 암시적 형변환 테스트 ------")
+console.log("'false' == 0", 'false' == 0);
+console.log("0 == 'false'", 0 == 'false');
+console.log("'true' == 1", 'true' == 1);
+console.log("1 == 'true'", 1 == 'true');
+console.log("'okok' == 1", 'okok' == 1);
+console.log("1 == 'okok'", 1 == 'okok');
+console.log("'1' == true", '1' == true); // true
+console.log("'10' == true", '10' == true);
+console.log("'10$' == 10", '10$' == 10);
+
 
 var x = '100';
 
