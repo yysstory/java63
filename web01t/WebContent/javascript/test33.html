@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글로벌 변수와 window 객체</title>
+<title>글로벌 변수/함수와 window 객체</title>
 </head>
 
 <body>
@@ -36,7 +36,12 @@ console.log(g1);
 // 특정 목적을 수행하기 위해 필요한 값과 함수를 보관하는 바구니다.
 console.log("window.g1=", window.g1);
 window.g1 = 400;
-console.log(g1);
+console.log(g1); // 400
+
+// 일반적으로 선언하는 함수도 글로벌 함수이다.
+// window 객체에 포함된다.
+window.f1(); // => f1(); 같다.
+console.log(g1); // 200
 
 </script>
 
