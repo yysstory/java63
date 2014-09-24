@@ -43,6 +43,7 @@ window.setTimeout(function(){
 
 // setInterval(callback, 밀리초): 
 // 반복하여 지정된 시간이 경과할 때 마다 callback 호출.
+/*
 window.setInterval(function(){
 	var today = new Date();
 	document.body.innerHTML = 
@@ -53,7 +54,18 @@ window.setInterval(function(){
 	 today.getMinutes() + ':' +
 	 today.getSeconds();
 }, 1000);
+*/
 
+// window.moveTo(x, y) : 특정 위치로 윈도우 이동하기
+// window.moveBy(x, y) : 현재 위치에서 x, y 만큼 이동하기
+var child = window.open(
+		'http://www.google.com', 'w1', 
+		'left=0,top=0,width=300,height=200');
+child.moveTo(100, 100);
+
+window.setInterval(function(){
+	child.moveBy(10, 10);
+}, 1000);
 </script>
 </body>
 </html>
