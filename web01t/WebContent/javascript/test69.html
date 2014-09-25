@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
+<style>
+form th {
+  text-align: right;
+}
+</style>
 </head>
 
 <body>
@@ -38,6 +43,30 @@
   <td>11</td>
 </tr>
 </table>
+<hr>
+<h2>게시물 상세정보</h2>
+<form>
+<table>
+<tr>
+  <th>제목</th> 
+  <td><input type="text" id="title"></td>
+</tr>
+<tr>
+  <th>내용</th> 
+  <td><textarea id="content"></textarea></td>
+</tr>
+<tr>
+  <th>작성자</th> 
+  <td><input type="text" id="writer"></td>
+</tr>
+<tr>
+  <th>암호</th> 
+  <td><input type="text" id="password"></td>
+</tr>
+</table>
+<button id='btnAdd' type='button'>추가</button>
+<button id='btnCancel' type='reset'>취소</button>
+</form>
 <script>
 "use strict"; 
 
