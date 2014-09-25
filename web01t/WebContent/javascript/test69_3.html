@@ -80,19 +80,6 @@ function Board(title, content, writer, password) {
 	this.count = 0;
 }
 
-function resetForm() {
-	// reset 버튼에게 click 이벤트를 전달 
-	//1) MouseEvent 객체 생성
-	var event = new MouseEvent('click', {
-    'view': window,
-    'bubbles': true,
-    'cancelable': true
-  });
-	
-	//2) reset  버튼에게 이벤트 전달
-	document.getElementById('btnCancel').dispatchEvent(event);
-}
-
 var boardList = [];
 
 document.getElementById('btnAdd').onclick = function(event) {
@@ -104,22 +91,13 @@ document.getElementById('btnAdd').onclick = function(event) {
 	
 	boardList.push(board);
 	
-	resetForm();
-	
-	outputBoardList();
+	// 입력폼 초기화 
+	document.getElementById('title').value = '';
+	document.getElementById('content').value = '';
+	document.getElementById('writer').value = '';
+	document.getElementById('password').value = '';
+	document.getElementById('title').focus();
 };
-
-function outputBoardList() {
-	console.log('------------------------');
-	for (var i in boardList) {
-		console.log(boardList[i].title, 
-				boardList[i].content, 
-				boardList[i].writer, 
-				boardList[i].password, 
-				boardList[i].date, 
-				boardList[i].count );
-	}
-}
 </script>
 </body>
 </html>

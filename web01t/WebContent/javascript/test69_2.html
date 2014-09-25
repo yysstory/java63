@@ -70,56 +70,18 @@ form th {
 <script>
 "use strict"; 
 
-// 게시글을 저장하는 객체 생성자 함수
-function Board(title, content, writer, password) {
-	this.title = title;
-	this.content = content;
-	this.writer = writer;
-	this.password = password;
-	this.date = new Date();
-	this.count = 0;
-}
-
-function resetForm() {
-	// reset 버튼에게 click 이벤트를 전달 
-	//1) MouseEvent 객체 생성
-	var event = new MouseEvent('click', {
-    'view': window,
-    'bubbles': true,
-    'cancelable': true
-  });
-	
-	//2) reset  버튼에게 이벤트 전달
-	document.getElementById('btnCancel').dispatchEvent(event);
-}
-
 var boardList = [];
 
 document.getElementById('btnAdd').onclick = function(event) {
-	var board = new Board(
-			document.getElementById('title').value,
-			document.getElementById('content').value,
-			document.getElementById('writer').value,
-			document.getElementById('password').value);
+	var board = {
+			'title': document.getElementById('title').value,
+			'content': document.getElementById('content').value,
+			'writer': document.getElementById('writer').value,
+			'password': document.getElementById('password').value
+	};
 	
 	boardList.push(board);
-	
-	resetForm();
-	
-	outputBoardList();
 };
-
-function outputBoardList() {
-	console.log('------------------------');
-	for (var i in boardList) {
-		console.log(boardList[i].title, 
-				boardList[i].content, 
-				boardList[i].writer, 
-				boardList[i].password, 
-				boardList[i].date, 
-				boardList[i].count );
-	}
-}
 </script>
 </body>
 </html>
