@@ -61,7 +61,7 @@ form th {
 </tr>
 <tr>
   <th>암호</th> 
-  <td><input type="text" id="password"></td>
+  <td><input type="password" id="password"></td>
 </tr>
 </table>
 <button id='btnAdd' type='button'>추가</button>
@@ -70,6 +70,18 @@ form th {
 <script>
 "use strict"; 
 
+var boardList = [];
+
+document.getElementById('btnAdd').onclick = function(event) {
+	var board = {
+			'title': document.getElementById('title').value,
+			'content': document.getElementById('content').value,
+			'writer': document.getElementById('writer').value,
+			'password': document.getElementById('password').value
+	};
+	
+	boardList.push(board);
+};
 </script>
 </body>
 </html>
