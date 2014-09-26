@@ -1,11 +1,7 @@
 "use strict"; 
 
-//목표: 라이브러리화4 
-//val() 조미료 추가
-//css() 조미료 추가
-//생닭 가공 => bit() if문 참조
-
-
+//목표: 라이브러리화3? 
+//return this의 활용
 
 changeState('create');
 
@@ -23,11 +19,11 @@ function changeState(state) {
 	var createClass = document.querySelectorAll('.create');
 
 	for (var i = 0; i < detailClass.length; i++) {
-		$(detailClass[i]).css('display', stateMap.detail);
+		detailClass[i].style.display = stateMap.detail;
 	}
 
 	for (var i = 0; i < createClass.length; i++) {
-		$(createClass[i]).css('display', stateMap.create);
+		createClass[i].style.display = stateMap.create;
 	}
 }
 
@@ -42,16 +38,25 @@ function Board(title, content, writer, password) {
 }
 
 function resetForm() {
-	$('#btnCancel').click();
+	// reset 버튼에게 click 이벤트를 전달 
+	//1) MouseEvent 객체 생성
+	var event = new MouseEvent('click', {
+		'view': window,
+		'bubbles': true,
+		'cancelable': true
+	});
+
+	//2) reset  버튼에게 이벤트 전달
+	$('#btnCancel').dispatchEvent(event);
 }
 
 var boardList = [];
 
-$('#btnCancel').click(function(event) {
+$('#btnCancel').onclick = function(event) {
 	changeState('create');
-});
+}
 
-$('#btnAdd').click(function(event) {
+$('#btnAdd').onclick = function(event) {
 	var board = new Board(
 			$('#title').value,
 			$('#content').value,
@@ -63,7 +68,7 @@ $('#btnAdd').click(function(event) {
 	resetForm();
 
 	refreshBoardList();
-});
+};
 
 function refreshBoardList() {
 	var boardTable = $('#boardTable');
@@ -97,11 +102,11 @@ function loadBoardDetail(event) {
 	changeState('detail');
 
 	var board = boardList[this.getAttribute('bno')];
-	$('#no').val(this.getAttribute('bno'));
-	$('#title').val(board.title);
-	$('#content').val(board.content);
-	$('#writer').val(board.writer);
-	$('#date').val($.toYYYYMMDD(board.date));
+	$('#no').value = this.getAttribute('bno');
+	$('#title').value = board.title;
+	$('#content').value = board.content;
+	$('#writer').value = board.writer;
+	$('#date').value = $.toYYYYMMDD(board.date);
 }
 
 
