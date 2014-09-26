@@ -26,6 +26,10 @@ form th {
 <h2>게시물 상세정보</h2>
 <form>
 <table>
+<tr class="detail">
+  <th>번호</th> 
+  <td><input type="text" id="no"></td>
+</tr>
 <tr>
   <th>제목</th> 
   <td><input type="text" id="title"></td>
@@ -38,19 +42,30 @@ form th {
   <th>작성자</th> 
   <td><input type="text" id="writer"></td>
 </tr>
-<tr>
+<tr class="create">
   <th>암호</th> 
   <td><input type="password" id="password"></td>
 </tr>
+<tr class="detail">
+  <th>등록일</th> 
+  <td><input type="text" id="date"></td>
+</tr>
 </table>
-<button id='btnAdd' type='button'>추가</button>
+<button id='btnAdd' type='button' class='create'>추가</button>
+<button id='btnChange' type='button' class='detail'>변경</button>
+<button id='btnDelete' type='button' class='detail'>삭제</button>
 <button id='btnCancel' type='reset'>취소</button>
 </form>
 <script>
 "use strict"; 
 
-//목표: 제목에 링크(<a> 태그 추가) 추가
-// <a>에 게시물 번호를 속성으로 추가하기  
+//목표: <a> 클릭할 때 해당 게시물을 배열에서 가져와서 폼에 출력한다.
+// 태그를 모둠으로 묶는다 => class 속성
+
+var elements = document.querySelectorAll('.detail');
+for (var i = 0; i < elements.length; i++) {
+	elements[i].style.display = 'none';
+}
 
 // 게시글을 저장하는 객체 생성자 함수
 function Board(title, content, writer, password) {
@@ -76,6 +91,19 @@ function resetForm() {
 }
 
 var boardList = [];
+
+document.getElementById('btnCancel').onclick = function(event) {
+	var detailClass = document.querySelectorAll('.detail');
+  var createClass = document.querySelectorAll('.create');
+  
+  for (var i = 0; i < detailClass.length; i++) {
+    detailClass[i].style.display = 'none';
+  }
+  
+  for (var i = 0; i < createClass.length; i++) {
+    createClass[i].style.display = '';
+  }
+}
 
 document.getElementById('btnAdd').onclick = function(event) {
 	var board = new Board(
@@ -144,9 +172,25 @@ function refreshBoardList() {
 }
 
 function loadBoardDetail(event) {
-	// 원래 하던 기능 하지마!
 	event.preventDefault();
-	alert(this.getAttribute('bno') + '를 눌렀음');
+	
+	var detailClass = document.querySelectorAll('.detail');
+	var createClass = document.querySelectorAll('.create');
+	
+	for (var i = 0; i < detailClass.length; i++) {
+		detailClass[i].style.display = '';
+	}
+	
+	for (var i = 0; i < createClass.length; i++) {
+		createClass[i].style.display = 'none';
+	}
+	
+	var board = boardList[this.getAttribute('bno')];
+	document.getElementById('no').value = this.getAttribute('bno');
+	document.getElementById('title').value = board.title;
+	document.getElementById('content').value = board.content;
+	document.getElementById('writer').value = board.writer;
+	document.getElementById('date').value = toYYYYMMDD(board.date);
 }
 
 function toYYYYMMDD(date) {
