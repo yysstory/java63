@@ -28,7 +28,13 @@ function bit(value) {
 
 	elements.append = function(child) {
 		for (var i = 0; i < this.length; i++) {
-			this[i].appendChild(child);
+			if (child instanceof Element) {
+				this[i].appendChild(child);
+			} else {
+				for (var x = 0; x < child.length; x++) {
+					this[i].appendChild(child[x]);
+				}
+			}
 		}
 		return this;
 	};
@@ -45,7 +51,7 @@ function bit(value) {
 	};
 
 	elements.attr = function(name, value) {
-		if (value) {
+		if (arguments.length == 2) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].setAttribute(name, value);
 			}
@@ -72,7 +78,7 @@ function bit(value) {
 	}
 
 	elements.val = function(value) {
-		if (value) {
+		if (arguments.length == 1) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].value = value;
 			}
@@ -83,7 +89,7 @@ function bit(value) {
 	};
 
 	elements.css = function(name, value) {
-		if (value) {
+		if (arguments.length == 2) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].style[name] = value;
 			}
