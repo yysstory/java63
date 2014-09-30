@@ -38,6 +38,25 @@
 	margin-left: 200px;
 }
 
+#user {
+	/* border: 1px solid black; */
+	position: relative;
+	top: -30px;
+	padding: 0px;
+}
+
+#user > img {
+	border-radius: 7px;
+}
+
+#userName {
+	/* border: 1px solid red; */
+	position: relative;
+  top: -30px;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-left: 5px;
+}
 
 
 

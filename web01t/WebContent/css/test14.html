@@ -19,7 +19,13 @@
            
 2) absolute
 3) relative
+    => 기본 출력 순서를 고수하면서, 위치를 상/하/좌/우로 움직이고 싶을 때 사용.
 4) fixed
+
+* div 와 span
+1) div => 블록 타입(라인 점유). UI 객체를 묶어서 다루고자 할 때.
+2) span => 인라인 타입(라인에 포함됨). 내용을 구분하고자 할 때.
+
  -->
 </head>
 <body>
@@ -36,7 +42,8 @@
 
 <div id='sidebar'> 
 <div id='user'>
-  <img src=''> 홍길동
+  <img src='user.png'> 
+  <span id='userName'>홍길동</span>
 </div>
 <h1>알림</h1>
 <ul>
