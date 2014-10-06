@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>filter()와 end()</title>
+<title>eq(), first(), last()</title>
 <style>
 .okok {
   text-decoration: line-through;
@@ -10,34 +10,36 @@
 </style>
 <script src='jquery-1.11.1.js'></script>
 <script>
-	/* filter(): 선택 조건을 추가
-	    end() : 추가한 조건을 철회
+	/* eq(인덱스) : 지정된 인덱스 객체 선택
+	    first() : 첫 번째 객체 선택
+	    last() : 마지막 객체 선택
 	 */
 
 	$(function() {
-		  //문제) tr태그를 선택하라 => 짝수 인덱스만 선택하라 => 폰트를 빨강
-		  //$('tr:even').css('color', 'red');
-		  // 필터를 사용했을 때 이점?
-			// DOM 트리를 다시 뒤지지 않는다.
-			/*
-		  $('tr').filter(':even')
-		           .css('color', 'red')
-		         .end()
-		         .css('background-color', 'yellow')
-		         .filter(':odd')
-		           .css('text-decoration', 'line-through')
-		         .end()
-		         .filter(':last')
-		           .css('font-style', 'italic');
-		  */
-		  
-		  // 다음 코드는 4번 DOM 트리를 뒤진다.
-		  $('tr').css('background-color', 'yellow');
-		  $('tr:even').css('color', 'red');
-		  $('tr:odd').css('text-decoration', 'line-through')
-     $('tr:last').css('font-style', 'italic');
-		  
-		  
+		//1) 셀렉터를 이용하여 특정 인덱스의 객체 선택
+		/*
+		$('tr:eq(0)').css({
+			'background-color': 'blue',
+			'color': 'white'
+		});
+		*/
+		
+		//2) jQuery에서 제공하는 eq() 함수 사용하여 특정 인덱스의 객체 선택
+		$('tr').eq(3).css({
+		  'background-color': 'blue',
+		  'color': 'white'
+	  });
+		
+		$('tr').first().css({
+      'background-color': 'black',
+      'color': 'white'
+    });
+		
+		$('tr').last().css({
+      'background-color': 'darkgray',
+      'color': 'white'
+    });
+		
 	});
 </script>
 
