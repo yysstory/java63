@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>selector</title>
+<script src='jquery-1.11.1.js'></script>
+<script>
+
+/* 속성으로 태그 찾기 
+ * CSS: 태그명[속성명=값]
+ */
+$(function(){
+	// type 속성이 radio인 태그를 찾기
+	/*
+  $('input[type=radio]').each(function(index, originalElement){
+	  console.log($(originalElement).val());
+  });
+  */
+  
+	// pseudo 셀렉터(필터) 사용하여 태그 찾기
+	// input:슈도셀렉터
+	// 슈도 셀렉터 => button, checkbox, file, image, password,
+	//               radio, submit, reset, text, ...
+	$('input:checkbox').each(function(index, originalElement){
+	  console.log($(originalElement).val());
+	});
+});    
+
+</script>
+
+</head>
+
+<body>
+<form>
+  <input type='text'><br>
+  <input type="password"><br>
+  <input type="checkbox" value='닭강정'>닭강정<br>
+  <input type="checkbox">크림 파스타<br>
+  <input type="radio" value='남자' name='gender'>남자
+  <input type="radio" value='여자' name='gender'>여자
+  <input type="radio" value='아저씨' name='gender'>아저씨<br>
+  사귀고 있는 이성 친구의 수<select id="s1">
+    <option value='1'>1명</option>
+    <option value='2'>2명</option>
+    <option>3명</option>
+    <option>4명</option>
+  </select>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
