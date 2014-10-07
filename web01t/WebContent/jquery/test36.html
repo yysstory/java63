@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hover()</title>
+<script src='jquery-1.11.1.js'></script>
+<script>
+
+  /* hover() => mouseover, mouseout 이벤트 리스너 등록 단축함수
+      
+  */
+	$(function() {
+		
+		$('#img1').hover(function(event){
+			$(this).css('border', '3px solid green');
+		}, function(event){
+			$(this).css('border', 'none');
+		});
+		
+	});
+</script>
+
+</head>
+
+<body>
+  <button id='btn1'>이미지추가</button>
+  <img id="img1" src='img1.jpg' width='150'>
+  <button id='btnClose' style='display:none;'>X</button>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
