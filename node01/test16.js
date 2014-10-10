@@ -8,6 +8,11 @@ var url = require('url');
 
 
 http.createServer(function handler(req, res) {
+	res.writeHead(200, 'OK', {
+		'Content-Type': 'text/html;charset=UTF-8'
+	});
+	res.write('<html><head><title>계산결과</title></head>');
+	res.write('<body>');
 	
 	if (req.method == 'GET') { 
 		console.log('get 요청----------------------------');
@@ -17,17 +22,30 @@ http.createServer(function handler(req, res) {
 		var v2 = parseInt(obj.query.v2, 10);
 		var op = obj.query.op;
 		
-		var result = v1 + v2;
-		console.log(op, result);
+		var result = compute(v1, op, v2);
 		
+		console.log(v1, op, v2, '=', result);
 	} else {
 		console.log('post 요청');
 	}
+	
+	res.write(v1 + ' ' + op + ' ' + v2 + ' = ' + result);
+	res.write('</body></html>');
 	res.end();
+	
 }).listen(1337, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:1337/');
 
-
+function compute(v1, op, v2) {
+	switch(op) {
+	case 'plus': return v1 + v2;
+	case 'minus': return v1 - v2;
+	case 'multiple': return v1 * v2;
+	case 'divide': return v1 / v2;
+	default: console.log('해당 연산자를 지원하지 않습니다.');
+	}
+	return 0;
+}
 
 
 

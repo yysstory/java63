@@ -17,9 +17,15 @@ http.createServer(function handler(req, res) {
 		var v2 = parseInt(obj.query.v2, 10);
 		var op = obj.query.op;
 		
-		var result = v1 + v2;
-		console.log(op, result);
+		switch(op) {
+		case 'plus': result = v1 + v2; break;
+		case 'minus': result = v1 - v2; break;
+		case 'multiple': result = v1 * v2; break;
+		case 'divide': result = v1 / v2; break;
+		default: console.log('해당 연산자를 지원하지 않습니다.');
+		}
 		
+		console.log(v1, op, v2, '=', result);
 	} else {
 		console.log('post 요청');
 	}
