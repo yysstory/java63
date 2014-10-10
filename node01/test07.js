@@ -17,7 +17,7 @@ http.createServer(function handler(req, res) {
 	
     res.writeHead(200, 'ok', 
     		{'Content-Type': 'text/html;charset=UTF-8'});
-    res.write('<html><head><title>test04</title></head>');
+    res.write('<html><head><title>test07</title></head>');
     res.write('<body>');
     res.write('<h1>안녕하세요. ' + name + '님!</h1>')
     res.write('</body></html>');

@@ -19,7 +19,7 @@ http.createServer(function handler(req, res) {
 	
     res.writeHead(200, 'ok', 
     		{'Content-Type': 'text/html;charset=UTF-8'});
-    res.write('<html><head><title>test04</title></head>');
+    res.write('<html><head><title>test08</title></head>');
     res.write('<body>');
    
     switch(op){
