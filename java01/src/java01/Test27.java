@@ -23,7 +23,7 @@ import java.util.Scanner;
 // $ 연산자? +
 // $ 10 + 20 = 30 입니다.
 
-// 단계2: 메서드 도입 => 값을 계산하는 명령어를 별도의 메서드로 분리하라!
+// 단계3: 메서드 도입 => 값을 계산하는 명령어를 별도의 메서드로 분리하라!
 // 메서드명: compute
 // 파라미터는: v1, v2, op
 // 리턴: v1과 v2의 연산결과
@@ -37,6 +37,20 @@ public class Test27 {
     System.out.println("******************");
   }
   
+  static int compute(int v1, int v2, String op){
+    int result = 0;
+    
+    switch(op){
+    case "+": result = v1 + v2; break;
+    case "-": result = v1 - v2; break;
+    case "*": result = v1 * v2; break;
+    case "/": result = v1 / v2; break;
+     }
+    
+    return result;
+  }
+  
+  
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     System.out.print("값1? ");
@@ -48,13 +62,8 @@ public class Test27 {
     System.out.print("연산자? ");
     String op = scanner.nextLine();
 
-    int result = 0;
-    switch(op){
-    case "+": result = v1 + v2; break;
-    case "-": result = v1 - v2; break;
-    case "*": result = v1 * v2; break;
-    case "/": result = v1 / v2; break;
-     }
+    int result = compute(v1,v2,op);
+   
     
     //메서드 호출: 반드시 호출할 때 정확하게 파라미터를 넘겨야 한다.
     displayResult(v1, v2, op, result);
