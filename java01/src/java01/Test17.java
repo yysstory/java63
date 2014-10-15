@@ -13,7 +13,7 @@ package java01;
 public class Test17 {
 
   public static void main(String[] args) {
-    int age = 20;
+    int age = Integer.parseInt(args[0]);
     if (age < 18) {
       System.out.println("청소년입니다.");
     } else if (age >= 20 && age < 40) {
