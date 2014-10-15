@@ -28,7 +28,7 @@ public class Test24 {
     //   84, 88, 92, 96, 100
     //   
     // - for 문을 사용하라!
-    int x = 0;
+    /*int x = 0;
     do {
       x += 4;
       System.out.print(x+" ");        
@@ -38,7 +38,19 @@ public class Test24 {
           System.out.print("@");        
           }
         }
-    } while (x < 100);
+    } while (x < 100);*/
+    
+    for (int i = 4; i < 101; i += 4) {
+
+      System.out.printf("%d ", i);
+      if ((i % 20) == 0) {
+        System.out.println();
+        if ((i % 60) == 0) {
+          System.out.print("@");
+        }
+      }
+    }
+
   }
 
 }
