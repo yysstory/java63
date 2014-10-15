@@ -27,8 +27,7 @@ public class Test24 {
     //   @64, 68, 72, 76, 80(엔터)
     //   84, 88, 92, 96, 100
     //   
-    // - do ~ while 문을 사용하라
-    long startMilliSec = System.currentTimeMillis();
+    // - for 문을 사용하라!
     int x = 0;
     do {
       x += 4;
@@ -40,8 +39,6 @@ public class Test24 {
           }
         }
     } while (x < 100);
-    long endMillisSec = System.currentTimeMillis();
-    System.out.println(endMillisSec - startMilliSec);
   }
 
 }
