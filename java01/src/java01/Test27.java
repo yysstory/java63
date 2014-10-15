@@ -23,7 +23,10 @@ import java.util.Scanner;
 // $ 연산자? +
 // $ 10 + 20 = 30 입니다.
 
-// 단계2: 메서드 도입 => 결과 출력을 별도의 메서드로 분리!
+// 단계2: 메서드 도입 => 값을 계산하는 명령어를 별도의 메서드로 분리하라!
+// 메서드명: compute
+// 파라미터는: v1, v2, op
+// 리턴: v1과 v2의 연산결과
 public class Test27 {
   // void : 리턴하는 결과가 없다.
   static void displayResult(
