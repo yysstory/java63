@@ -1,15 +1,17 @@
-/* 메서드(함수)
- - 특정 기능을 수행하는 명령어를 묶어 놓은 것.
- - 파라미터 : 기능을 수행하는 필요한 정보를 전달
- - 리턴 값: 기능을 수행한 후 결과를 전달
- - 문법
-   공개범위 스태틱여부 리턴타입 메서드명(타입 변수명, 타입 변수명, ...)  {
-     return 값;
-   }
-   예)
-   int plus(int i, int b) {
-     return i + b;
-    }
+/* 클래스 변수
+ - 클래스를 로딩할 때 준비되는 변수
+ - Method Area 영역에 준비됨.
+ - JVM이 실행을 종료할 때까지 유지
+ 
+ * 로컬변수
+ - 함수가 호출될 때 준비되는 변수
+ - Stack 영역에 준비됨.
+ - 함수 호출이 끝나면 제거된다.
+ 
+ * 인스턴스 변수
+ - 인스턴스가 생성될 때 준비되는 변수
+ - Heap 영역에 준비됨.
+ - 가비지 컬렉터에 의해 해제되기 전까지 존재한다.
  */
 package java01;
 
@@ -23,51 +25,48 @@ import java.util.Scanner;
 // $ 연산자? +
 // $ 10 + 20 = 30 입니다.
 
-// 단계3: 메서드 도입 => 값을 계산하는 명령어를 별도의 메서드로 분리하라!
-// 메서드명: compute
-// 파라미터는: v1, v2, op
-// 리턴: v1과 v2의 연산결과
+// 단계4: 클래스 변수 도입 
+//    =>  compute() 와 displayResult()에서 공유할 값을 보관  
 public class Test27 {
-  // void : 리턴하는 결과가 없다.
-  static void displayResult(
-      int v1, int v2, String op, int result) {
+  //클래스 변수 선언
+  static int v1;
+  static int v2;
+  static String op;
+  static int result;
+  
+  static void displayResult() {
     System.out.println("******************");
     System.out.printf("%d %s %d = %d\n",
         v1, op, v2, result);
     System.out.println("******************");
   }
   
-  static int compute(int v1, int v2, String op){
-    int result = 0;
-    
+  static void compute(){
     switch(op){
     case "+": result = v1 + v2; break;
     case "-": result = v1 - v2; break;
     case "*": result = v1 * v2; break;
     case "/": result = v1 / v2; break;
      }
-    
-    return result;
   }
   
   
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     System.out.print("값1? ");
-    int v1 = Integer.parseInt(scanner.nextLine());
+    v1 = Integer.parseInt(scanner.nextLine());
 
     System.out.print("값2? ");
-    int v2 = Integer.parseInt(scanner.nextLine());
+    v2 = Integer.parseInt(scanner.nextLine());
 
     System.out.print("연산자? ");
-    String op = scanner.nextLine();
+    op = scanner.nextLine();
 
-    int result = compute(v1,v2,op);
+    compute();
    
     
     //메서드 호출: 반드시 호출할 때 정확하게 파라미터를 넘겨야 한다.
-    displayResult(v1, v2, op, result);
-    
+    displayResult();
   }
 
 }
