@@ -21,7 +21,25 @@ package java01;
 public class Test18 {
   
   public static void main(String[] args) {
+    System.out.println("\n\n---------------------------------");
+    System.out.println("당신의 나이대를 아래 보기에서 선택하시오");
+    System.out.println("\n 1) 10대 \n 2) 20대 \n 3) 30대 \n 4) 40대 \n 5) 50대 \n 6) 기타 ");
+    System.out.println("\n\n---------------------------------");
+    System.out.print("번호를 입력하세요 : ");
     
+    java.util.Scanner scanner = new java.util.Scanner(System.in);
+    int input = Integer.parseInt(scanner.nextLine());
+     
+    switch(input){
+    case 1 : System.out.println("10대 입니다."); break;
+    case 2 : System.out.println("20대 입니다."); break;
+    case 3 : System.out.println("30대 입니다."); break;
+    case 4 : System.out.println("40대 입니다."); break;
+    case 5 : System.out.println("50대 입니다."); break;
+    case 6 : System.out.println("기타."); break;
+    default : System.out.println("유효하지 않은 번호"); 
+    }
+     
   }
 
 }
