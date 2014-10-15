@@ -25,66 +25,46 @@ import java.util.Scanner;
 
 // 단계1: 메서드 도입 전
 public class Test27 {
-  //3) switch 문을 사용하여 계산 결과를 result 변수에 담는다.
+  // 3) switch 문을 사용하여 계산 결과를 result 변수에 담는다.
   // 그리고 그 결과를 입력 값과 함께 출력한다.
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     System.out.print("값1? ");
     int v1 = Integer.parseInt(scanner.nextLine());
-    
+
     System.out.print("값2? ");
     int v2 = Integer.parseInt(scanner.nextLine());
-    
+
     System.out.print("연산자? ");
     String op = scanner.nextLine();
+
+    int result = 0;
+    switch(op){
+    case "+": result = v1 + v2; break;
+    case "-": result = v1 - v2; break;
+    case "*": result = v1 * v2; break;
+    case "/": result = v1 / v2; break;
+     }
     
-    System.out.println("10 + 20 = 30 입니다.");
+    System.out.printf("%d %s %d = %d",
+        v1,op,v2,result);
   }
-  
+
   /*
-  //2) java.util.Scanner 객체를 사용하여 사용자로부터 값을 입력받는다.
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("값1? ");
-    int v1 = Integer.parseInt(scanner.nextLine());
-    
-    System.out.print("값2? ");
-    int v2 = Integer.parseInt(scanner.nextLine());
-    
-    System.out.print("연산자? ");
-    String op = scanner.nextLine();
-    
-    System.out.println("10 + 20 = 30 입니다.");
-  }
-  */
-  
+   * //2) java.util.Scanner 객체를 사용하여 사용자로부터 값을 입력받는다. public static void
+   * main(String[] args) { Scanner scanner = new Scanner(System.in);
+   * System.out.print("값1? "); int v1 = Integer.parseInt(scanner.nextLine());
+   * 
+   * System.out.print("값2? "); int v2 = Integer.parseInt(scanner.nextLine());
+   * 
+   * System.out.print("연산자? "); String op = scanner.nextLine();
+   * 
+   * System.out.println("10 + 20 = 30 입니다."); }
+   */
+
   /*
-  //1) 단순히 출력문을 4번 사용하여 결과를 출력하라!
-  public static void main(String[] args) {
-    System.out.println("값1? 10");
-    System.out.println("값2? 20");
-    System.out.println("연산자? +");
-    System.out.println("10 + 20 = 30 입니다.");
-  }
-  */
+   * //1) 단순히 출력문을 4번 사용하여 결과를 출력하라! public static void main(String[] args) {
+   * System.out.println("값1? 10"); System.out.println("값2? 20");
+   * System.out.println("연산자? +"); System.out.println("10 + 20 = 30 입니다."); }
+   */
 }
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-
-
-
