@@ -47,10 +47,8 @@ public class Test31 {
     
     c1.divide(2);
     
-    System.out.println("c1의 결과는 = " + 
-              c1.getResult());
-    System.out.println("c2의 결과는 = " + 
-              c2.getResult());
+    System.out.println("c1의 결과는 = " + c1.getResult());
+    System.out.println("c2의 결과는 = " + c2.getResult());
   }
 
 }
