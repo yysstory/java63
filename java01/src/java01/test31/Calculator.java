@@ -10,25 +10,31 @@ public class Calculator {
   //          Heap 메모리에 준비하라! 그리고 그 시작 주소를 리턴하라!
   private int result;
   
-  // 인스턴스 변수를 사용하려면 그 인스턴스의 시작 주소를 알아야 한다.
-  // 따라서, 메서드의 파라미터에 인스턴스 주소를 넘겨줘라!
-  static int getResult(Calculator that) {
-    return that.result;
+  // 인스턴스 메서드
+  int getResult() {
+    return this.result;
   }
   
-  static void plus(Calculator that, int value) {
-    that.result += value;
+  void plus(int value) {
+    /* Calculator this,
+     this 변수는 내부에 숨겨진 변수이다.
+     메서드를 호출할 때 사용한 인스턴스의 주소를 보관한다.
+      만약, 인스턴스 변수에 this를 붙이지 않으면,
+      컴파일러가 자동으로 있다고 가정하고 컴파일한다.
+     */
+    //this.result += value;
+    result += value; /* this 를 생략해도 된다.*/
   }
   
-  static void minus(Calculator that,int value) {
-    that.result -= value;
+  void minus(int value) {
+    this.result -= value;
   }
   
-  static void multiple(Calculator that,int value) {
-    that.result *= value;
+  void multiple(int value) {
+    this.result *= value;
   }
   
-  static void divide(Calculator that,int value) {
-    that.result /= value;
+  void divide(int value) {
+    this.result /= value;
   }
 }
