@@ -5,7 +5,8 @@ package java01.test37;
 
 // Score : 학생의 이름과 국어, 영어, 수학, 평균, 합계를 저장하는 
 //       메모리의 데이터 형이다.
-public class Score {
+
+class Score {
   String name; // 용어: 인스턴스 변수, 속성(attribute)
   int kor;
   int eng;
