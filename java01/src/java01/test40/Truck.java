@@ -16,11 +16,23 @@
 package java01.test40;
 
 public class Truck extends Car {
-  float weight; // kg
-  
+  float weight = 1000; // 초기화 문장을 통해 변수의 값을 1000kg으로 설정한다.
+  boolean autoDump;
   // 개발자가 클래스에 대해 생성자를 만들지 않으면,
   // 컴파일러가 자동으로 기본 생성자를 만들어 준다.
   //public Truck() {}
+  
+  public Truck() {
+    //autoDump = true; 오류! 생성자 호출 후에 와야 한다.
+    //생성자를 정의할 때 super 클래스의 생성자를 호출하는 문자을 작성하지 않으면,
+    //다음과 같이 수퍼 클래스의 기본 생성자를 호출하는 문장이 자동으로 추가된다.
+    //=> 그래서 서브 클래스의 생성자가 실행되기 전에 반드시 수퍼 클래스의 
+    //   생성자가 먼저 실행된다.
+    //주의! 수퍼 클래스의 생성자를 호출하는 문장이 제일 먼저 와야 한다.
+    // 안 그러면 오류!
+    //super();
+    autoDump = true;
+  }
   
 }
 
