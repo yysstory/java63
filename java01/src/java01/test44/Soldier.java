@@ -4,6 +4,7 @@ public class Soldier extends Mover {
   int attack;
   int level;
   
+  //* Overriding
   // Mover로부터 상속받은 move() 메서드를 
   // 서브 클래스의 역할에 맞게 재정의 하는 것! => 오버라이딩(Overriding)
   // 문법: 
