@@ -2,11 +2,11 @@ package java01.test51;
 
 class MyArray2 {
   Object[] list = new Object[10];
-  int index;
+  int cursor;
 
   public int add(Object instance) {
-    if (index < list.length) {
-      list[index++] = instance;
+    if (cursor < list.length) {
+      list[cursor++] = instance;
       return 0;
     } else {
       return -1;
@@ -14,19 +14,19 @@ class MyArray2 {
   }
 
   public int size() {
-    return index;
+    return cursor;
   }
 
-  public Object get(int index) {
-    return list[index];
+  public Object get(int pos) {
+    return list[pos];
   }
 
-  public int remove(int index) {
-    if (index >= 0 && index < this.index) {
-      for (int i = index; i < this.index; i++) {
-        if (i == (this.index - 1)) {
+  public int remove(int pos) {
+    if (pos >= 0 && pos < this.cursor) {
+      for (int i = pos; i < this.cursor; i++) {
+        if (i == (this.cursor - 1)) {
           list[i] = null;
-          this.index--;
+          this.cursor--;
         } else {
           list[i] = list[i + 1];
         } // if
@@ -35,6 +35,10 @@ class MyArray2 {
     } else {
       return -1;
     } // if 
+  }
+  
+  public int insert(int pos, String value) {
+    return -1;
   }
 }
 
@@ -63,6 +67,11 @@ public class CollectionTest03 {
       System.out.println(arr.get(i));
     }// for
 
+    arr.insert(3, "xxxxx");
+    System.out.println("-----------------");
+    for (int i = 0; i < arr.size(); i++) {
+      System.out.println(arr.get(i));
+    }// for
   }
 
 }
