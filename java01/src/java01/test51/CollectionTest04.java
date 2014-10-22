@@ -3,16 +3,17 @@
  */
 package java01.test51;
 
-class Bucket {
-  // 값(인스턴스 주소)을 저장하기 위한 변수 선언
-  Object value;
-  
-  // 다음 버킷의 주소 저장 : 링크 정보 
-  Bucket next;
-}
 
 /* 버킷 관리 */
 class MyLinkedList {
+  class Bucket {
+    // 값(인스턴스 주소)을 저장하기 위한 변수 선언
+    Object value;
+    
+    // 다음 버킷의 주소 저장 : 링크 정보 
+    Bucket next;
+  }
+  
   Bucket start;
   Bucket end;
   int size;
