@@ -158,7 +158,7 @@ public class CollectionTest07 {
 
   public static void main(String[] args) {
     MyLinkedList4 arr = new MyLinkedList4();
-    for (int i = 0; i < 25000; i++) {
+    for (int i = 0; i < 15000; i++) {
       arr.add("==>" + i);
     } // for
 
