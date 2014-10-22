@@ -37,7 +37,7 @@ class MyLinkedList2 {
       return null;
     
     Bucket cursor = start;
-    for (int i = 1; i <= index; i++) {
+    for (int i = 0; i < index; i++) {
       cursor = cursor.next;
     } //for
     return cursor.value;
