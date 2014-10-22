@@ -37,18 +37,53 @@ class MyLinkedList2 {
       return null;
     
     Bucket cursor = start;
-    for (int i = 0; i < index; i++) {
+    for (int i = 1; i <= index; i++) {
       cursor = cursor.next;
     } //for
     return cursor.value;
   }
   
   public int insert(int index, Object value) {
-    return -1;
+    if (index < 0 || index >= this.size) 
+      return -1;
+    
+    Bucket temp = new Bucket();
+    temp.value = value;
+    
+    Bucket cursor = start;
+
+    if (index == 0){
+      temp.next = start;
+      start = temp;
+      
+    } else {
+      for (int i = 1; i < index; i++) {
+        cursor = cursor.next;
+       }
+      temp.next = cursor.next;
+      cursor.next = temp;
+    }
+    size++;
+    return 0;
   }
   
   public int remove(int index) {
-    return -1;
+    if (index < 0 || index >= this.size){
+      return -1;
+    } //if
+
+    Bucket cursor = start;
+    if(index == 0){
+      start = start.next;
+
+    } else{
+      for(int i = 1; i <= index-1; i++){
+        cursor = cursor.next; 
+      } // for
+      cursor.next = cursor.next.next;
+    } //if
+    size--;
+    return 0;
   }
 }
 
@@ -59,7 +94,45 @@ public class CollectionTest05 {
     }// for
   }
 
+  /* LinkedList 삭제 테스트*/
   public static void main(String[] args) {
+    MyLinkedList2 arr = new MyLinkedList2();
+    arr.add("00000");
+    arr.add("11111");
+    arr.add("22222");
+    arr.add("33333");
+    arr.add("44444");
+    arr.add("55555");
+    arr.add("66666");
+    arr.add("77777");
+
+    System.out.println("-----------------");
+    printArray(arr);
+    
+    System.out.println("-30번 삭제: -------------");
+    arr.remove(-30);
+    printArray(arr);
+    
+    System.out.println("30번 삭제: -------------");
+    arr.remove(30);
+    printArray(arr);
+    
+    System.out.println("0번 삭제: -------------");
+    arr.remove(0);
+    printArray(arr);
+    
+    System.out.println("6번 삭제: -------------");
+    arr.remove(6);
+    printArray(arr);
+    
+    System.out.println("2번 삭제: -------------");
+    arr.remove(2);
+    printArray(arr);
+    
+  }
+  
+  /* LinkedList에 입력 테스트*/
+  public static void main01(String[] args) {
     MyLinkedList2 arr = new MyLinkedList2();
     arr.add("00000");
     arr.add("11111");
@@ -85,32 +158,12 @@ public class CollectionTest05 {
     arr.insert(0, "!!!!!!");
     printArray(arr);
     
-    System.out.println("9번에 입력: -----------------");
-    arr.insert(9, "@@@@@@@");
+    System.out.println("8번에 입력: -----------------");
+    arr.insert(8, "@@@@@@@");
     printArray(arr);
     
     System.out.println("4번에 입력: -----------------");
     arr.insert(4, "######");
-    printArray(arr);
-    
-    System.out.println("-30번 삭제: -------------");
-    arr.remove(-30);
-    printArray(arr);
-    
-    System.out.println("30번 삭제: -------------");
-    arr.remove(30);
-    printArray(arr);
-    
-    System.out.println("0번 삭제: -------------");
-    arr.remove(0);
-    printArray(arr);
-    
-    System.out.println("10번 삭제: -------------");
-    arr.remove(10);
-    printArray(arr);
-    
-    System.out.println("4번 삭제: -------------");
-    arr.remove(4);
     printArray(arr);
     
   }
