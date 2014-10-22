@@ -1,5 +1,8 @@
-/* LinkedList 데이터 구조 2
- - insert()와 remove() 구현
+/* LinkedList 데이터 구조 3
+ - 인덱스로 버킷을 알아내는 코드를 별도의 메서드로 정의함.
+ - getBucketByIndex()
+ - 이 메서드는 클래스 내부에서만 사용할 것이므로 private으로
+ 접근을 제한한다.
  */
 package java01.test51;
 
