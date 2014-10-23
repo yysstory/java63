@@ -1,8 +1,13 @@
+/* * {
+	border: 1px solid red;
+}
+ */
 body { 
   background: #1F394D url('../images/bgGradient.png');
   background-repeat: repeat-x;
   margin: 0; 
 }
+
 
 h3 {
   font-size: 1.2em;
@@ -11,10 +16,10 @@ h3 {
 #schedulePane { 
   background: url('../images/wrapperBg-trans.png'); 
   background-repeat: no-repeat;
-  height: 622px;
-  margin: 0 auto;
   position: relative;
-  width: 865px; 
+  height: 622px;
+  width: 865px;
+  margin: 0 auto;
 }
 
 #logo {
@@ -36,34 +41,39 @@ h3 {
 }
 
 #navigation a {
+	
   display: block;
-  float: left;
-  height: 0;
-  margin: 0 0 10px 0;
-  overflow: hidden;
   padding: 140px 0 0 0;
-  width: 155px;
+  height: 0;
+  overflow: hidden;
+  margin: 0 0 10px 0; 
+  
   z-index: 200;
+  width: 155px;
+  float: left;
 }
 
 #navigation a#beginners {
   background: url('../images/beginnersBtn.png') no-repeat;
 }
-#navigation a#beginners.active {
+
+#navigation a#beginners:hover {
   background: url('../images/beginnersBtnActive.png') no-repeat;
 }
+
 #navigation a#intermediate {
   background: url('../images/intermediateBtn.png') no-repeat;
 }
-#navigation a#intermediate.active {
+#navigation a#intermediate:hover {
   background: url('../images/intermediateBtnActive.png') no-repeat;
 }
 #navigation a#advanced {
   background: url('../images/advancedBtn.png') no-repeat;
 }
-#navigation a#advanced.active {
+#navigation a#advanced:hover {
   background: url('../images/advancedBtnActive.png') no-repeat;
 }
+
 
 #tabs {
   position: absolute;
@@ -86,9 +96,11 @@ h3 {
 #tabs a#welcome.active {
   background: url('../images/welcomeTabActive.png') no-repeat; 
 }
+
 #tabs a#welcome.inactive {
   background: url('../images/welcomeTabInactive.png') no-repeat; 
 }
+
 #tabs a#beginners.active {
   background: url('../images/beginnersTabActive.png') no-repeat; 
 }
@@ -118,7 +130,6 @@ h3 {
   height: 380px; 
   padding: 10px;
 }
-
 table { 
   border: 6px solid #1f394d; 
   border-collapse: collapse; 
