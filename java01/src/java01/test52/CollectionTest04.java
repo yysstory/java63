@@ -8,7 +8,10 @@
  */
 package java01.test52;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class CollectionTest04 {
   /* member inner class
@@ -55,8 +58,27 @@ public class CollectionTest04 {
     
     // 질문: 키를 모른다고 가정하고 map에 저장된 값(이름)을 모두 출력하시오!
     // 힌트: API 문서를 보시오. 
+    // 방법1: EntrySet 활용
+    System.out.println("-----------------");
+    Set<Entry<String,Score>> kvSet = map.entrySet();
+    for (Entry<String,Score> entry : kvSet) {
+      System.out.println(entry.getKey() + ":" 
+            + entry.getValue().name);
+    }
     
+    // 방법2: 먼저 key 목록을 얻은 다음에, 그 키를 사용하여 값을 꺼내기
+    System.out.println("-----------------");
+    Set<String> keySet = map.keySet();
+    for (String key : keySet) {
+      System.out.println(key + ":" + map.get(key).name);
+    }
     
+    // 방법3: key 값을 알 필요가 없다면, 값만 꺼내기.
+    System.out.println("-----------------");
+    Collection<Score> valueList = map.values();
+    for (Score value : valueList) {
+      System.out.println(value.name);
+    }
     
   }
 
