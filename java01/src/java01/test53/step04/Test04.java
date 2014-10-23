@@ -15,6 +15,7 @@
  */
 package java01.test53.step04;
 
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.Properties;
 
@@ -24,10 +25,10 @@ public class Test04 {
     
     // 클래스 이름(패키지명 포함)으로 객체 생성하기
     // 1) 클래스를 로딩하라.
-    Class c = Class.forName(iteratorClassName);
+    Class clazz = Class.forName(iteratorClassName);
     
     // 2) Class 객체를 사용하여 인스턴스 생성
-    Iterator iterator = (Iterator)c.newInstance();
+    Iterator iterator = (Iterator)clazz.newInstance();
     
     // 3) Iterator를 사용하기 전에 필요한 값을 설정한다.
     iterator.setList(args);
@@ -35,6 +36,18 @@ public class Test04 {
     while(iterator.hasNext()) {
       System.out.println(iterator.next());
     }
+    
+    System.out.println("-----------------");
+    // Iterator 클래스의 메서드 이름을 출력
+    Method[] methods = clazz.getMethods(); 
+    for (Method method : methods) {
+      System.out.println(method.getName()); //public 메서드 
+    }
+    
+    
+    // 안타깝게도 다른 Iterator는 사용할 수 없다.
+    // 다음 단계를 보기 바람!
+    
   }
   
   // JVM 프로퍼티 값 꺼내기 예제
@@ -55,9 +68,7 @@ public class Test04 {
       key = (String)keyList.nextElement();
       System.out.println(key + " ==> " + props.getProperty(key));
     }
-    
   }
-
 }
 
 
