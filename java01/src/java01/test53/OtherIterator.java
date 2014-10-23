@@ -2,10 +2,10 @@ package java01.test53;
 
 import java01.test53.step05.Iterator;
 
-public class EvenIterator extends Iterator {
+public class OtherIterator extends Iterator {
   int cursor;
   
-  public EvenIterator() {}
+  public OtherIterator() {}
   
   public boolean hasNext() {
     if (cursor < list.length)
