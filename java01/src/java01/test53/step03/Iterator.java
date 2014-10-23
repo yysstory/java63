@@ -1,7 +1,4 @@
-/* 1단계
- - 하드 코딩되어 있는 데이터를 순차적으로 출력하기
- */
-package java01.test53.step01;
+package java01.test53.step03;
 
 public class Iterator {
   String[] list;
