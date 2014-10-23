@@ -4,9 +4,15 @@ public class ReverseIterator {
   String[] list;
   int cursor;
   
+  public ReverseIterator() {}
+  
   public ReverseIterator(String[] list) {
     this.list = list;
     cursor = list.length - 1; // 배열의 끝 인덱스 가리킴.
+  }
+  
+  public void setList(String[] list) {
+    this.list = list;
   }
   
   public boolean hasNext() {

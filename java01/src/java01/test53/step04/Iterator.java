@@ -4,7 +4,13 @@ public class Iterator {
   String[] list;
   int cursor;
   
+  public Iterator() {}
+  
   public Iterator(String[] list) {
+    this.list = list;
+  }
+  
+  public void setList(String[] list) {
     this.list = list;
   }
   

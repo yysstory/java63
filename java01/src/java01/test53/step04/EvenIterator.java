@@ -4,7 +4,13 @@ public class EvenIterator {
   String[] list;
   int cursor;
   
+  public EvenIterator() {}
+  
   public EvenIterator(String[] list) {
+    this.list = list;
+  }
+  
+  public void setList(String[] list) {
     this.list = list;
   }
   
