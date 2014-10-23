@@ -1,0 +1,150 @@
+@CHARSET "UTF-8";
+
+#header {
+    /* border: 1px solid red;   */
+    height: 250px;
+ 
+    background: url('http://192.168.0.33/Project/WebContent/images/c1.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+#menu{
+  /* border: 1px solid blue;  */
+  background: url('http://192.168.0.33/Project/WebContent/images/logo.png') no-repeat;
+  background-position: center;
+} 
+
+#user {
+   /* border: 1px solid black;  */
+  position: relative;
+  padding: 0px;
+  margin : 140px 0px 0px 30px;
+  font-color : white;
+}
+
+#captain{
+  width : 340px;
+  /* border: 1px solid red; */
+  float: right;
+  clear: left;
+}
+
+#user > img {
+  border-radius: 7px;
+}
+
+#userName {
+  /* border: 1px solid blue; */ 
+  position: relative;
+   top: -30px;
+   font-size: 1.3em;
+   font-weight: bold;
+   margin-left: 5px;
+}
+
+#studentBackground{
+  /* border: 1px solid red; */
+  background: url('http://192.168.0.33/Project/WebContent/images/n1.jpg') no-repeat;
+  background-size: 100% 100%;
+  margin : 15px;
+  
+}
+
+#student1 {
+  /*  border: 1px solid green; */ 
+   float : left;
+   width : 300px;
+   height: 200px;
+   padding : 0px;
+}
+
+#student2 {
+    /* border: 1px solid blue; */
+    height: 200px; 
+    margin-left: 400px;
+    padding : 0px;
+}
+
+#main {
+  /* border: 1px solid blue; */
+  
+  /* line-height: 1.5em;
+  margin-left: 170px; */
+}
+
+#footer {
+  
+   border: 1px solid black; 
+  text-align: center;
+   clear: left; 
+}
+
+#student1 a#s1 {
+  background: url('http://192.168.0.33/Project/WebContent/images/btn1.png') no-repeat;
+}
+
+#tb1{
+  margin : 30px 30px 30px 0px;
+}
+
+#tb2{
+  margin :30px 0px 30px 0px;;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@CHARSET "UTF-8";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+
+@CHARSET "UTF-8";
+
+body {
+  font-family: @CHARSET "UTF-8";erdana, Geneva, Arial, sans-serif;
+  font-size: large; 
+  background: #1F394D url('http://192.168.0.33/Project/WebContent/images/bgGradient.png');
+  background-repeat: repeat-x;
+  margin: 0; 
+}
+
+
+div {
+  padding: 10px;
+}
+
+ div#main {
+  width: 800px;
+ 
+  
+  border-width: 1px;
+  border-color: red;
+  border-style: solid;
+  
+  background: #1F394D url('http://192.168.0.33/Project/WebContent/images/bg2.png');
+  background-repeat: repeat;
+  
+  padding: 20px;
+  margin: 30px auto;
+} 

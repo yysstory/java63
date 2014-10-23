@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 분리하기</title>
+<link href="common.css" rel="stylesheet" type="text/css">
+<link href="general.css" rel="stylesheet" type="text/css">
+<script src='seatGame.js'></script>
+
+</head>
+<body>
+
+
+<div id='main'>
+<div id = 'header'>
+
+<div id ='menu'>
+<div id ='user'>
+<img src='http://192.168.0.33/Project/WebContent/images/user.png'> 
+  <span id='userName' style ='color:white'>백문이 불여일실행~~!!</span>
+
+
+  <div id = 'captain'>
+  <form name = 'form2'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+<input type='text' name='name' size='5' style ='font-size:15pt'>
+  </form>
+</div><!-- captain -->
+</div> <!-- user -->
+
+</div> <!-- menu -->
+</div><!-- header -->
+
+<form name = 'form1'>
+<div id ='studentBackground'>
+<div id='student1'>
+<table id='tb1' border='1'  style ='height:90%'>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+</tr>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+</tr>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+</tr>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+</tr>
+
+</table>
+</div> <!-- student1 -->
+
+<div id='student2'>
+<table id='tb2' border='1' style ='height:90%'>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+</tr>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+</tr>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+</tr>
+<tr>
+<td><input type='text' name='num' size='5' style ='font-size:15pt' class="captainLine"></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+<td><input type='text' name='num' size='5' style ='font-size:15pt'></td>
+</tr>
+
+</table>
+</div><!-- student2 -->
+</div><!--  studentBackground -->
+
+<div id='footer'>
+<input type="button" value= "시작" onclick="random()">
+<input type="button" value= "조장등록" onclick="captain()">
+<input type='reset' value= '종료'>
+</div><!-- footer -->
+</form>
+
+</div><!-- main -->
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
