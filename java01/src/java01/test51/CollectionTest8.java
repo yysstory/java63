@@ -5,12 +5,12 @@ class MyStack {
   int top;
   
   public void push(Object value) {
-    
+    list[top++] = value; 
   }
   
   // 마지막에 입력한 값을 꺼낸다. 목록에서 제거됨.
   public Object pop() {  
-    return null;
+    return list[--top];
   }
 }
 
@@ -29,17 +29,19 @@ class MyQueue {
   }
   
   public void add(Object value) {
-    
+    end.value = value;
+    end.next = new Bucket();
+    end = end.next;
   }
   
   // 첫 번째 입력 값을 꺼낸다. 목록에서 제거됨.
   public Object poll() { 
-    return null;
+    Object temp = start.value;
+    start = start.next;
+
+    return temp;
   }
 }
-
-
-
 
 public class CollectionTest8 {
 
@@ -71,6 +73,7 @@ public class CollectionTest8 {
     for (int i = 0; i < 4; i++) {
       System.out.println(queue.poll());
     }//for
+    
     /* 예상 출력 결과
     AAAA
     BBBB
