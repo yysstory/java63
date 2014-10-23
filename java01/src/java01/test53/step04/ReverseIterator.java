@@ -13,6 +13,7 @@ public class ReverseIterator {
   
   public void setList(String[] list) {
     this.list = list;
+    cursor = list.length - 1;
   }
   
   public boolean hasNext() {
