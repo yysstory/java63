@@ -19,6 +19,12 @@ public class GameCenter {
     int result = 0;
     
     for (int i = 0; i < 200; i++) {
+      if (i > 100) {
+        Thread.currentThread().sleep(100);
+        System.out.print(".");
+        if ((i % 20) == 0)
+          System.out.println();
+      }
       result = evaluate(gamerA.play(), gamerB.play());
       
       if (result == 1) {
@@ -41,7 +47,7 @@ public class GameCenter {
       }
     }
     
-    System.out.printf("%s(%d) : %s(%d)",
+    System.out.printf("\n%s(%d) : %s(%d)",
         gamerAName, aScore, gamerBName, bScore);
 
   }
