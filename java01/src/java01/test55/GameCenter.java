@@ -18,15 +18,21 @@ public class GameCenter {
     int bScore = 0;
     int result = 0;
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 200; i++) {
       result = evaluate(gamerA.play(), gamerB.play());
       
       if (result == 1) {
-        aScore++; bScore--;
+        if (i >= 100) {
+          aScore++; 
+          bScore--;
+        }
         gamerA.sendResult(Gamer.WIN);
         gamerB.sendResult(Gamer.LOSE);
       } else if (result == -1) {
-        aScore--; bScore++;
+        if (i >= 100) {
+          aScore--; 
+          bScore++;  
+        }
         gamerA.sendResult(Gamer.LOSE);
         gamerB.sendResult(Gamer.WIN);
       } else {
