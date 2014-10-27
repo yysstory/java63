@@ -15,7 +15,7 @@ public class Selector {
     int no = -1;
     
     for (int i = 10; i > 0; i--) {
-      Thread.currentThread().sleep(1000);
+      Thread.currentThread().sleep(500);
       System.out.println(i);
       no = (int)(Math.random() * 30);
       System.out.println(students[no] + "일까요?");
