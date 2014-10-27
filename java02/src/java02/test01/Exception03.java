@@ -36,15 +36,16 @@ public class Exception03 {
   
   // 여러 종류의 예외를 처리하기
   public static void main(String[] args) {
+    // catch문 작성 시 자식 예외부터 처리하라. => 다형적 변수!
     try {
-      int result = compute(10, 20, "+");
+      int result = compute(10, 0, "/");
       System.out.println(result);
-      
-    } catch (Exception ex) {
-      System.out.println("실행 오류!");
       
     } catch (ArithmeticException ex) {
       System.out.println("연산 오류!");
+      
+    } catch (Exception ex) {
+      System.out.println("실행 오류!");
       
     }
 
