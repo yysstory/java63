@@ -21,7 +21,7 @@ public class Test01 {
       // 리턴 타입이 int라 해서 4바이트를 읽는 것은 아니다.
       while ((b = in.read()) != -1) {
         count++;
-      }
+      } 
       
       /* read() 중에 오류가 발생하면 close()를 호출도 못한다.
        * 그래서 자원을 해제하는 명령은 finally 블록에 두도록 하라!
