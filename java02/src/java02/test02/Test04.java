@@ -1,9 +1,9 @@
 /* Quiz
- - 파일을 복제하는 기능을 구현하시오.
- - $ Test02 img1.jpg(엔터)
- - => img1.jpg 파일을 복제하여 img1-01.jpg
- 
- - 힌트: 출력은 FileOutputStream 클래스를 사용하라!
+ - Test04 읽어들일파일명 출력할디렉토리명
+ - 출력할 파일명이 다음과 같을 경우,
+   예) Test04 img1.jpg aaa
+ - aaa 폴더를 먼저 생성하고,
+   그 폴더 아래에 읽어들인 파일(img1.jpg)를 출력한다.
  */
 package java02.test02;
 
@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class Test02 {
+public class Test04 {
 
   public static void main(String[] args)  {
     FileInputStream in = null;

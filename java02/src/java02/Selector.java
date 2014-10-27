@@ -30,23 +30,25 @@ public class Selector {
   public static void ping(ArrayList<String> list) throws Exception {
     System.out.println("\n------------------");
     int count = 1;
+    /*
     for (String name : list) {
       System.out.print(name + ",");
       if ((count % 5) == 0)
         System.out.println();
       count++;
-    }
+    }*/
     
-    if (list.size() == 2) {
+    Thread.sleep(1000);
+    
+    if (list.size() == 1) {
+      System.out.print("^^ 당첨 => ");
       Thread.sleep(3000);
-    } else {
-      Thread.sleep(1000);
+      System.out.println(list.get(0));
+      return;
     }
     
-    if (list.size() == 1) 
-      return;
-    
-    list.remove((int)(Math.random() * list.size()));
+    System.out.println(
+        "탈출=>" + list.remove((int)(Math.random() * list.size())));
     ping(list);
     
     return;
