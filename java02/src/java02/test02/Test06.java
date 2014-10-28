@@ -7,10 +7,18 @@ import java.io.File;
 
 public class Test06 {
   public static void main(String[] args) throws Exception {
-    File f = new File("."); 
-    String[] files = f.list();
-    for (String filename : files) {
-      System.out.println(filename);
+    displayList(".");
+  }
+  
+  public static void displayList(String filename) {
+    System.out.println(filename);
+    
+    File f = new File(filename);
+    if (f.isDirectory()) {
+      String[] files = f.list();
+      for (String name : files) {
+        displayList(f.getPath() + "/" + name);
+      }
     }
   }
 }
