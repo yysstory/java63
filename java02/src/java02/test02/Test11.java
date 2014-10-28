@@ -8,6 +8,7 @@
       내부에서 바이트 배열로 만들어 다른 출력 스트림에게 넘긴다.
  * 
  */
+
 package java02.test02;
 
 import java.io.DataOutputStream;
@@ -59,16 +60,4 @@ public class Test11 {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
