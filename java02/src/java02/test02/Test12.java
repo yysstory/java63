@@ -25,16 +25,21 @@ public class Test12 {
   }
   
   public static void main(String[] args) throws Exception {
-    FileOutputStream out = new FileOutputStream("test11_2.dat");
+    FileOutputStream out = new FileOutputStream("test12.dat");
     DataOutputStream out2 = new DataOutputStream(out);
     
     Score obj = new Score("홍길동", 100, 90, 80);
     
     // 연습: obj 인스턴스 값 출력
-    
+    out2.writeUTF(obj.name);
+    out2.writeInt(obj.kor);
+    out2.writeInt(obj.eng);
+    out2.writeInt(obj.math);
+    out2.writeInt(obj.sum);
+    out2.writeFloat(obj.average);
     
     // 닫을 때 꺼꾸로 닫는다.
-    out2.close();
+    out2.close(); 
     out.close();
   }
   
