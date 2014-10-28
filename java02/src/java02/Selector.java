@@ -38,7 +38,7 @@ public class Selector {
       count++;
     }*/
     
-    Thread.sleep(1000);
+    Thread.sleep(800);
     
     if (list.size() == 1) {
       System.out.print("^^ 당첨 => ");
