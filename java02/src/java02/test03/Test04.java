@@ -1,12 +1,11 @@
-/* 자바 사용되는 코드는 메서드 블록으로 분리한다.
- - 사용자에게서 명령어를 입력 받는 부분
- - 여러 클래스 메서드에서 공통으로 사용하는 객체는 클래스 변수로 만든다.
+/* help 명령어 처리
+ * add 명령어 일부분 처리
  */
 package java02.test03;
 
 import java.util.Scanner;
 
-public class Test03 {
+public class Test04 {
   static Scanner scanner; 
   
   public static void main(String[] args) {
@@ -18,6 +17,10 @@ public class Test03 {
 
       switch (token[0]) {
       case "add":
+        System.out.println("이름:" + token[1]);
+        System.out.println("국어:" + token[2]);
+        System.out.println("영어:" + token[3]);
+        System.out.println("수학:" + token[4]);
         System.out.println("저장하였습니다.");
         break;
       case "list":
@@ -33,7 +36,12 @@ public class Test03 {
         System.out.println("변경하였습니다.");
         break;
       case "help":
-        System.out.println("명령");
+        System.out.println("list");
+        System.out.println("view 인덱스");
+        System.out.println("add 이름 국어 영어 수학");
+        System.out.println("delete 인덱스");
+        System.out.println("update 인덱스");
+        System.out.println("exit");
         break;
       case "exit":
         System.out.println("파일에 저장하였습니다.");

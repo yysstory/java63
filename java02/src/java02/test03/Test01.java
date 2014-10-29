@@ -1,3 +1,6 @@
+/* Scanner를 이용하여 사용자로부터 명령어를 입력받는다.
+ * 
+ */
 package java02.test03;
 
 import java.util.Scanner;

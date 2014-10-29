@@ -1,3 +1,6 @@
+/* 반복문을 이용하여 입력 받는 기능을 무한 반복한다.
+ - label과 break 문을 이용하여 바깥 반복문 탈출하기
+ */
 package java02.test03;
 
 import java.util.Scanner;
