@@ -1,11 +1,4 @@
-/* add 명령어 처리 구현
- - 사용자가 입력한 값을 저장할 Entity 역할 클래스 정의
- - Entity : 데이터를 표현하는 역할을 수행하는 클래스
-   Control: Entity와 Boundary를 중계. 비즈니스 로직 수행
-   Boundary: 사용자에게 UI 제공하는 역할.
- - Entity 클래스 => 사용자 데이터 타입(개발자가 임의적으로 만든 데이터 타입)을 
-                   정의한 클래스
- - Score
+/* list 명령 처리
  */
 package java02.test03;
 
@@ -13,11 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Test07 {
+public class Test08 {
   static Scanner scanner; 
   static ArrayList<Score> list = new ArrayList<Score>();
 
-  // Entity 클래스 => 사용자(개발자) 정의 데이터 타입 
   static class Score implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -52,7 +44,7 @@ public class Test07 {
           doAdd(token);
           break;
         case "list":
-          System.out.println("목록");
+          doList();
           break;
         case "view":
           System.out.println("상세정보");
@@ -81,6 +73,16 @@ public class Test07 {
     scanner.close();
 
 
+  }
+
+  private static void doList() {
+    int index = 0;
+    for (Score score : list) {
+      System.out.printf("%-3d %-10s %3d %3d %3d\n", 
+          index, score.name, score.kor, score.eng, score.math);
+      index++;
+    }
+    
   }
 
   private static void doHelp() {
