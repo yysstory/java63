@@ -1,4 +1,4 @@
-/* view 명령 처리
+/* update 명령 처리
  */
 package java02.test03;
 

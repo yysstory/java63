@@ -1,8 +1,7 @@
-/* view 명령 처리
+/* update 명령 처리
  */
 package java02.test03;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,8 +9,6 @@ public class Test12 {
   static Scanner scanner; 
   static ArrayList<Score12> list = new ArrayList<Score12>();
 
-  
-  
   public static void main(String[] args) {
 
     scanner = new Scanner(System.in);
@@ -48,13 +45,11 @@ public class Test12 {
         }
 
       } catch (Exception e) {
-        //e.printStackTrace();
+        e.printStackTrace();
         System.out.println("명령어 처리 중 오류 발생. 다시 시도해 주세요.");
       }
     }
     scanner.close();
-
-
   }
 
   private static void doUpdate(int index) {
@@ -62,28 +57,29 @@ public class Test12 {
     
     Score12 score = list.get(index);
     Score12 tempScore = new Score12(
-        score.name, score.kor, score.eng, score.math);
+        score.getName(), score.getKor(), 
+        score.getEng(), score.getMath());
     
     String text = null;
-    System.out.printf("이름(%s):", score.name);
+    System.out.printf("이름(%s):", score.getName());
     text = scanner.nextLine();
     if (text.length() > 0)
-      tempScore.name = text;
+      tempScore.setName(text);
     
-    System.out.printf("국어(%d):", score.kor);
+    System.out.printf("국어(%d):", score.getKor());
     text = scanner.nextLine();
     if (text.length() > 0)
-      tempScore.kor = Integer.parseInt(text);
+      tempScore.setKor(Integer.parseInt(text));
     
-    System.out.printf("영어(%d):", score.eng);
+    System.out.printf("영어(%d):", score.getEng());
     text = scanner.nextLine();
     if (text.length() > 0)
-      tempScore.eng = Integer.parseInt(text);
+      tempScore.setEng(Integer.parseInt(text)); 
     
-    System.out.printf("수학(%d):", score.math);
+    System.out.printf("수학(%d):", score.getMath());
     text = scanner.nextLine();
     if (text.length() > 0)
-      tempScore.math = Integer.parseInt(text);
+      tempScore.setMath(Integer.parseInt(text));
     
     System.out.print("정말 변경하시겠습니까?(y/n)");
     if (scanner.nextLine().equalsIgnoreCase("y")) {
@@ -112,12 +108,12 @@ public class Test12 {
     Score12 score = list.get(index);
     
     System.out.println("인덱스: " + index);
-    System.out.println("이름: " + score.name);
-    System.out.println("국어: " + score.kor);
-    System.out.println("영어: " + score.eng);
-    System.out.println("수학: " + score.math);
-    System.out.println("총점: " + score.sum);
-    System.out.println("평균: " + score.average);
+    System.out.println("이름: " + score.getName());
+    System.out.println("국어: " + score.getKor());
+    System.out.println("영어: " + score.getEng());
+    System.out.println("수학: " + score.getMath());
+    System.out.println("총점: " + score.getSum());
+    System.out.println("평균: " + score.getAverage());
   }
 
   private static void doDelete(int index) {
@@ -127,7 +123,7 @@ public class Test12 {
     
     Score12 score = list.get(index);
     
-    System.out.print(score.name + "의 성적을 삭제하시겠습니까?(y/n)");
+    System.out.print(score.getName() + "의 성적을 삭제하시겠습니까?(y/n)");
     if (scanner.nextLine().equalsIgnoreCase("y")) {
       list.remove(index);
       System.out.println("삭제하였습니다.");
@@ -141,7 +137,8 @@ public class Test12 {
     int index = 0;
     for (Score12 score : list) {
       System.out.printf("%-3d %-10s %3d %3d %3d\n", 
-          index, score.name, score.kor, score.eng, score.math);
+          index, score.getName(), score.getKor(), 
+          score.getEng(), score.getMath());
       index++;
     }
     
