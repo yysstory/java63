@@ -1,9 +1,18 @@
-/* Score 객체 복제하기
- - Score13 클래스 참조하세요.
+/* 데이터 보관처리
+ - File I/O API를 사용하여 데이터를 저장하고 꺼낸다.
+ - load(), save() 메서드 준비
+ 
+ - CSV(comma seperated value) 문자열을 가지고 객체를 초기화할 수 있도록 
+   Score13에 생성자 추가한다.
  */
 package java02.test03;
 
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Test14 {
@@ -11,7 +20,7 @@ public class Test14 {
   static ArrayList<Score13> list = new ArrayList<Score13>();
 
   public static void main(String[] args) {
-
+    load();
     scanner = new Scanner(System.in);
 
     loop: 
@@ -39,7 +48,7 @@ public class Test14 {
           doHelp();
           break;
         case "exit":
-          System.out.println("파일에 저장하였습니다.");
+          save();
           break loop;
         default:
           System.out.println("이 명령어를 지원하지 않습니다.");
@@ -53,6 +62,51 @@ public class Test14 {
     scanner.close();
   }
 
+  private static void load() {
+    Scanner dataScanner = null;
+    try {
+      dataScanner = new Scanner(new FileReader("test14.dat"));
+      
+      while (true) {
+        try { 
+          list.add(new Score13(dataScanner.nextLine()));
+        } catch (NoSuchElementException e) {
+          break;
+        }
+      }
+      System.out.println("데이터가 로딩되었습니다.");
+      
+    } catch (Exception e) {
+      System.out.println("데이터가 로딩이 실패하였습니다.");
+      list.clear();
+    } finally {
+      try {dataScanner.close();} catch (Exception e) {}
+    }
+    
+  }
+
+  private static void save() {
+    BufferedWriter out = null;
+    try {
+      out = new BufferedWriter(
+                new FileWriter("test14.dat"));
+      for (Score13 score : list) {
+        out.write(score.getName() + "," +
+            score.getKor() + "," + 
+            score.getEng() + "," +
+            score.getMath() + "\n");
+      }
+      System.out.println("파일에 저장하였습니다.");
+      
+    } catch (IOException e) {
+      System.out.println("파일 저장 중 오류 발생!");
+      
+    } finally {
+      try {out.close();} catch (Exception ex) {}
+    }
+  }
+  
+  
   private static void doUpdate(int index) 
       throws CloneNotSupportedException {
     if (!isValid(index)) return;

@@ -36,6 +36,15 @@ public class Score13 implements Serializable, Cloneable {
     compute();
   }
   
+  public Score13(String csv) {
+    String[] token = csv.split(",");
+    this.name = token[0]; 
+    this.kor = Integer.parseInt(token[1]); 
+    this.eng = Integer.parseInt(token[2]); 
+    this.math = Integer.parseInt(token[3]);
+    compute();
+  }
+  
   @Override
   public Score13 clone() throws CloneNotSupportedException {
     return (Score13)super.clone();
