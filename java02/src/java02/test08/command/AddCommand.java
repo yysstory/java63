@@ -10,7 +10,12 @@ import java02.test08.annotation.Component;
 
 @Component("add")
 public class AddCommand implements Command {
-
+  ScoreDao scoreDao;
+  
+  public void setScoreDao(ScoreDao scoreDao) {
+    this.scoreDao = scoreDao;
+  }
+  
   @Override
   public String getCommandInfo() {
     return "add";
@@ -18,8 +23,6 @@ public class AddCommand implements Command {
 
   @Override
   public void service(Map<String, Object> params) throws Exception {
-    ScoreDao scoreDao = (ScoreDao)params.get("scoreDao");
-    
     @SuppressWarnings("unchecked")
     ArrayList<String> options = 
         (ArrayList<String>)params.get("options");

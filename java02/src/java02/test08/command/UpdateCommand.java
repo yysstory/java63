@@ -11,7 +11,12 @@ import java02.test08.annotation.Component;
 
 @Component("update")
 public class UpdateCommand implements Command {
-
+  ScoreDao scoreDao;
+  
+  public void setScoreDao(ScoreDao scoreDao) {
+    this.scoreDao = scoreDao;
+  }
+  
   @Override
   public String getCommandInfo() {
     return "update";
@@ -19,7 +24,6 @@ public class UpdateCommand implements Command {
 
   @Override
   public void service(Map<String, Object> params) throws Exception {
-    ScoreDao scoreDao = (ScoreDao)params.get("scoreDao");
     Scanner scanner = (Scanner)params.get("scanner");
     
     @SuppressWarnings("unchecked")
