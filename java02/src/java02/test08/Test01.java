@@ -1,17 +1,14 @@
-/* 명령어를 처리하는 Command 객체를 자동 생성하여
- * commandMap에 등록하기
- - 1) application-context.properties 파일에 명령어 처리 클래스 정보를 둔다.
- - 2) 이 프로퍼티 파일을 읽고 클래스를 로딩하여 인스턴스를 생성한다.
- - 3) 생성한 인스턴스를 commandMap에 등록한다.
+/* 오픈 소스 Reflections를 사용하여 클래스 찾기
  */
 package java02.test08;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java02.test08.annotation.Component;
-import java02.test08.util.ClassFinder;
+
+import org.reflections.Reflections;
 
 public class Test01 {
   Scanner scanner; 
@@ -21,26 +18,14 @@ public class Test01 {
   public void init() throws Exception {
     commandMap = new HashMap<String,Command>();
     
-    // 클래스가 들어 있는 폴더를 뒤져서
-    // @Component 애노테이션이 붙은 클래스를 로딩한다.
-    // 그 로딩된 클래스의 인스턴스를 생성하여
-    // commandMap에 저장한다.
+    Reflections reflections = new Reflections("java02.test08");
+    Set<Class<?>> clazzList = 
+        reflections.getTypesAnnotatedWith(Component.class);
     
-    // 1) 폴더를 뒤져서 클래스 이름(패키지명 + 클래스명)을 알아낸다.
-    ClassFinder classFinder = new ClassFinder("java02.test07");
-    classFinder.find("./bin");
-    List<String> classNames = classFinder.getClassList();
-    
-    // 2) 클래스를 로딩한다.
-    Class clazz = null;
     Command command = null;
     Component component = null;
     
-    for (String className : classNames) {
-      clazz = Class.forName(className);
-      
-      // 3) 로딩된 클래스 중에서 @Component 애노테이션이 붙은 클래스만
-      //   인스턴스를 생성한다.
+    for (Class clazz : clazzList) {
       component = (Component) clazz.getAnnotation(Component.class);
       if (component != null) {
         command = (Command)clazz.newInstance();

@@ -1,8 +1,5 @@
-/* 명령어를 처리하는 Command 객체를 자동 생성하여
- * commandMap에 등록하기
- - 1) application-context.properties 파일에 명령어 처리 클래스 정보를 둔다.
- - 2) 이 프로퍼티 파일을 읽고 클래스를 로딩하여 인스턴스를 생성한다.
- - 3) 생성한 인스턴스를 commandMap에 등록한다.
+/* 애노테이션이 붙은 클래스를 찾아 자동 로딩하기
+ - 클래스를 찾을 때 ClassFinder를 사용한다.
  */
 package java02.test07;
 
