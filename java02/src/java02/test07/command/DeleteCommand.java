@@ -7,7 +7,9 @@ import java.util.Scanner;
 import java02.test07.Command;
 import java02.test07.Score;
 import java02.test07.ScoreDao;
+import java02.test07.annotation.Component;
 
+@Component("delete")
 public class DeleteCommand implements Command {
 
   @Override

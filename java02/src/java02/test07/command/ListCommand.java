@@ -1,10 +1,13 @@
 package java02.test07.command;
 
 import java.util.Map;
+
 import java02.test07.Command;
 import java02.test07.Score;
 import java02.test07.ScoreDao;
+import java02.test07.annotation.Component;
 
+@Component("list")
 public class ListCommand implements Command {
 
   @Override

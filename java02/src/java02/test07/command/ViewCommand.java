@@ -6,7 +6,9 @@ import java.util.Map;
 import java02.test07.Command;
 import java02.test07.Score;
 import java02.test07.ScoreDao;
+import java02.test07.annotation.Component;
 
+@Component("view")
 public class ViewCommand implements Command {
 
   @Override

@@ -1,9 +1,12 @@
 package java02.test07.command;
 
 import java.util.Map;
+
 import java02.test07.Command;
 import java02.test07.ScoreDao;
+import java02.test07.annotation.Component;
 
+@Component("exit")
 public class ExitCommand implements Command {
 
   @Override
