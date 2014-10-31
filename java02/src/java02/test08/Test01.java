@@ -65,9 +65,17 @@ public class Test01 {
         // invoke()를 사용하여 메서드를 소출한다.
         try { 
           method = clazz.getMethod("setScoreDao", ScoreDao.class);
-          System.out.println(
-              clazz.getName() + "." + method.getName());
+          //System.out.println(
+          //    clazz.getName() + "." + method.getName());
           method.invoke(command, scoreDao);
+        } catch (Exception e) {}
+        
+        // Scanner 의존 객체 주입
+        try { 
+          method = clazz.getMethod("setScanner", Scanner.class);
+          //System.out.println(
+          //    clazz.getName() + "." + method.getName());
+          method.invoke(command, scanner);
         } catch (Exception e) {}
         
         commandMap.put(component.value(), command);
@@ -92,8 +100,6 @@ public class Test01 {
         
         HashMap<String,Object> params = 
             new HashMap<String,Object>();
-        params.put("scoreDao", scoreDao);
-        params.put("scanner", scanner);
         
         ArrayList<String> options = new ArrayList<String>();
         for (int i = 1; i < token.length; i++) {
