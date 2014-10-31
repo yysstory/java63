@@ -12,11 +12,16 @@ import java02.test08.annotation.Component;
 @Component("delete")
 public class DeleteCommand implements Command {
   ScoreDao scoreDao;
+  Scanner scanner;
   
   public void setScoreDao(ScoreDao scoreDao) {
     this.scoreDao = scoreDao;
   }
   
+  public void setScanner(Scanner scanner) {
+    this.scanner = scanner;
+  }
+
   @Override
   public String getCommandInfo() {
     return "delete";
@@ -24,8 +29,6 @@ public class DeleteCommand implements Command {
 
   @Override
   public void service(Map<String, Object> params) throws Exception {
-    Scanner scanner = (Scanner)params.get("scanner");
-    
     @SuppressWarnings("unchecked")
     ArrayList<String> options = 
         (ArrayList<String>)params.get("options");

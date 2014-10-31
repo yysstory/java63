@@ -12,6 +12,7 @@ public class ListCommand implements Command {
   ScoreDao scoreDao;
   
   public void setScoreDao(ScoreDao scoreDao) {
+    //System.out.println("List.setScoreDao() 학시리 호출됨.");
     this.scoreDao = scoreDao;
   }
 
