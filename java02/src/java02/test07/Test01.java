@@ -6,12 +6,12 @@
  */
 package java02.test07;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Properties;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
+import java02.test07.annotation.Component;
+import java02.test07.util.ClassFinder;
 
 public class Test01 {
   Scanner scanner; 
@@ -21,19 +21,31 @@ public class Test01 {
   public void init() throws Exception {
     commandMap = new HashMap<String,Command>();
     
-    Properties props = new Properties();
-    props.load(new FileReader("application-context.properties"));
-    Set keySet = props.keySet();
+    // 클래스가 들어 있는 폴더를 뒤져서
+    // @Component 애노테이션이 붙은 클래스를 로딩한다.
+    // 그 로딩된 클래스의 인스턴스를 생성하여
+    // commandMap에 저장한다.
     
-    String classname = null;
+    // 1) 폴더를 뒤져서 클래스 이름(패키지명 + 클래스명)을 알아낸다.
+    ClassFinder classFinder = new ClassFinder("java02.test07");
+    classFinder.find("./bin");
+    List<String> classNames = classFinder.getClassList();
+    
+    // 2) 클래스를 로딩한다.
     Class clazz = null;
     Command command = null;
+    Component component = null;
     
-    for (Object key : keySet) {
-      classname = (String)props.get(key);
-      clazz = Class.forName(classname.trim());
-      command = (Command)clazz.newInstance();
-      commandMap.put((String)key, command);
+    for (String className : classNames) {
+      clazz = Class.forName(className);
+      
+      // 3) 로딩된 클래스 중에서 @Component 애노테이션이 붙은 클래스만
+      //   인스턴스를 생성한다.
+      component = (Component) clazz.getAnnotation(Component.class);
+      if (component != null) {
+        command = (Command)clazz.newInstance();
+        commandMap.put(component.value(), command);
+      }
     }
     
     scoreDao = new ScoreDao();

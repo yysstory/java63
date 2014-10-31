@@ -5,7 +5,7 @@ import java.util.Map;
 import java02.test07.Command;
 import java02.test07.annotation.Component;
 
-@Component("exit")
+@Component("help")
 public class HelpCommand implements Command {
 
   @Override
