@@ -28,7 +28,7 @@ public class Selector {
   }
   
   public static void ping(ArrayList<String> list) throws Exception {
-    System.out.println("\n------------------");
+    
     int count = 1;
     /*
     for (String name : list) {
@@ -49,8 +49,10 @@ public class Selector {
     
     String name = list.remove((int)(Math.random() * list.size())); 
     
-    if (!name.startsWith("@"))
+    if (!name.startsWith("@")) {
+      System.out.println("\n------------------");
       System.out.println(name);
+    }
     ping(list);
     
     return;
