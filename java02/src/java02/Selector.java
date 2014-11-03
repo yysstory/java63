@@ -50,7 +50,7 @@ public class Selector {
     String name = list.remove((int)(Math.random() * list.size())); 
     
     if (!name.startsWith("@")) {
-      System.out.println("\n------------------");
+      System.out.println("\n------------------");                                                                                                                                           
       System.out.println(name);
     }
     ping(list);
