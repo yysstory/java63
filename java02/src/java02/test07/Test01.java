@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import java02.test05.commands.ListCommand;
 import java02.test07.annotation.Component;
 import java02.test07.util.ClassFinder;
 
@@ -40,8 +42,7 @@ public class Test01 {
       //   인스턴스를 생성한다.
       component = (Component) clazz.getAnnotation(Component.class);
       if (component != null) {
-        command = (Command)clazz.newInstance();
-        commandMap.put(component.value(), command);
+        commandMap.put(component.value(), (Command)clazz.newInstance());
       }
     }
     
