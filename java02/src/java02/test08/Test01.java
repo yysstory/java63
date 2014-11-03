@@ -57,29 +57,28 @@ public class Test01 {
     
     for (Class clazz : clazzList) {
       component = (Component) clazz.getAnnotation(Component.class);
-      if (component != null) {
-        command = (Command)clazz.newInstance();
-        
-        // 만약 setScoreDao가 있다면 호출하여 ScoreDao객체를 주입한다.
-        // Class 관리자로부터 해당 클래스의 Method 객체를 얻는다.
-        // invoke()를 사용하여 메서드를 소출한다.
-        try { 
-          method = clazz.getMethod("setScoreDao", ScoreDao.class);
-          //System.out.println(
-          //    clazz.getName() + "." + method.getName());
-          method.invoke(command, scoreDao);
-        } catch (Exception e) {}
-        
-        // Scanner 의존 객체 주입
-        try { 
-          method = clazz.getMethod("setScanner", Scanner.class);
-          //System.out.println(
-          //    clazz.getName() + "." + method.getName());
-          method.invoke(command, scanner);
-        } catch (Exception e) {}
-        
-        commandMap.put(component.value(), command);
-      }
+      command = (Command)clazz.newInstance();
+      commandMap.put(component.value(), command);
+      
+      // 만약 setScoreDao가 있다면 호출하여 ScoreDao객체를 주입한다.
+      // Class 관리자로부터 해당 클래스의 Method 객체를 얻는다.
+      // invoke()를 사용하여 메서드를 소출한다.
+      try { 
+        method = clazz.getMethod("setScoreDao", ScoreDao.class);
+        //System.out.println(
+        //    clazz.getName() + "." + method.getName());
+        method.invoke(command, scoreDao);
+        // ==> command.setScoreDao(scoreDao);
+      } catch (Exception e) {}
+      
+      // Scanner 의존 객체 주입
+      try { 
+        method = clazz.getMethod("setScanner", Scanner.class);
+        //System.out.println(
+        //    clazz.getName() + "." + method.getName());
+        method.invoke(command, scanner);
+      } catch (Exception e) {}
+      
     }
     
     

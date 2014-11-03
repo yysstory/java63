@@ -1,26 +1,20 @@
 package java02.test09.command;
 
 import java.util.Map;
-
-import java02.test09.Command;
 import java02.test09.ScoreDao;
+import java02.test09.annotation.Command;
 import java02.test09.annotation.Component;
 
 @Component("exit")
-public class ExitCommand implements Command {
+public class ExitCommand {
   ScoreDao scoreDao;
   
   public void setScoreDao(ScoreDao scoreDao) {
     this.scoreDao = scoreDao;
   }
-  
-  @Override
-  public String getCommandInfo() {
-    return "exit";
-  }
 
-  @Override
-  public void service(Map<String, Object> params) throws Exception {
+  @Command
+  public void doExit(Map<String, Object> params) throws Exception {
     try {
       scoreDao.save();
     } catch (Exception e) {

@@ -2,27 +2,21 @@ package java02.test09.command;
 
 import java.util.ArrayList;
 import java.util.Map;
-
-import java02.test09.Command;
 import java02.test09.Score;
 import java02.test09.ScoreDao;
+import java02.test09.annotation.Command;
 import java02.test09.annotation.Component;
 
 @Component("view")
-public class ViewCommand implements Command {
+public class ViewCommand {
   ScoreDao scoreDao;
   
   public void setScoreDao(ScoreDao scoreDao) {
     this.scoreDao = scoreDao;
   }
-  
-  @Override
-  public String getCommandInfo() {
-    return "view";
-  }
 
-  @Override
-  public void service(Map<String, Object> params) throws Exception {
+  @Command
+  public void doView(Map<String, Object> params) throws Exception {
     @SuppressWarnings("unchecked")
     ArrayList<String> options = 
         (ArrayList<String>)params.get("options");
