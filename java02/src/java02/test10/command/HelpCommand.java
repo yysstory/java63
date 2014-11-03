@@ -4,10 +4,10 @@ import java.util.Map;
 import java02.test10.annotation.Command;
 import java02.test10.annotation.Component;
 
-@Component("help")
+@Component
 public class HelpCommand {
 
-  @Command
+  @Command("help")
   public void doHelp(Map<String, Object> params) throws Exception {
     System.out.println("list");
     System.out.println("view 인덱스");

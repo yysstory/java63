@@ -8,7 +8,7 @@ import java02.test10.ScoreDao;
 import java02.test10.annotation.Command;
 import java02.test10.annotation.Component;
 
-@Component("delete")
+@Component
 public class DeleteCommand {
   ScoreDao scoreDao;
   Scanner scanner;
@@ -21,7 +21,7 @@ public class DeleteCommand {
     this.scanner = scanner;
   }
 
-  @Command
+  @Command("delete")
   public void execute(Map<String, Object> params) throws Exception {
     @SuppressWarnings("unchecked")
     ArrayList<String> options = 

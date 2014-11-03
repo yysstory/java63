@@ -6,7 +6,7 @@ import java02.test10.ScoreDao;
 import java02.test10.annotation.Command;
 import java02.test10.annotation.Component;
 
-@Component("list")
+@Component
 public class ListCommand {
   ScoreDao scoreDao;
   
@@ -15,7 +15,7 @@ public class ListCommand {
     this.scoreDao = scoreDao;
   }
 
-  @Command
+  @Command("list")
   public void doList(Map<String, Object> params) throws Exception {
     int index = 0;
     for (Score score : scoreDao.getList()) {

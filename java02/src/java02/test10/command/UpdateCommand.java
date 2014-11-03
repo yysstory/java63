@@ -8,7 +8,7 @@ import java02.test10.ScoreDao;
 import java02.test10.annotation.Command;
 import java02.test10.annotation.Component;
 
-@Component("update")
+@Component
 public class UpdateCommand {
   ScoreDao scoreDao;
   Scanner scanner;
@@ -21,7 +21,7 @@ public class UpdateCommand {
     this.scanner = scanner;
   }
 
-  @Command
+  @Command("update")
   public void doUpdate(Map<String, Object> params) throws Exception {
     @SuppressWarnings("unchecked")
     ArrayList<String> options = 

@@ -5,7 +5,7 @@ import java02.test10.ScoreDao;
 import java02.test10.annotation.Command;
 import java02.test10.annotation.Component;
 
-@Component("exit")
+@Component
 public class ExitCommand {
   ScoreDao scoreDao;
   
@@ -13,7 +13,7 @@ public class ExitCommand {
     this.scoreDao = scoreDao;
   }
 
-  @Command
+  @Command("exit")
   public void doExit(Map<String, Object> params) throws Exception {
     try {
       scoreDao.save();

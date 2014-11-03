@@ -7,7 +7,7 @@ import java02.test10.ScoreDao;
 import java02.test10.annotation.Command;
 import java02.test10.annotation.Component;
 
-@Component("add")
+@Component
 public class AddCommand {
   ScoreDao scoreDao;
   
@@ -15,7 +15,7 @@ public class AddCommand {
     this.scoreDao = scoreDao;
   }
   
-  @Command
+  @Command("add")
   public void ohora(Map<String, Object> params) throws Exception {
     @SuppressWarnings("unchecked")
     ArrayList<String> options = 
