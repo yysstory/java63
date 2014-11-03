@@ -43,13 +43,15 @@ public class Test02 {
     
     commandMap = new HashMap</*귀찮다. 컴파일러 너가 알아서 추측해서 적어라*/>();
     
-    Reflections reflections = new Reflections("java02.test09");
+    Reflections reflections = new Reflections("java02.test10");
     Set<Class<?>> clazzList = 
         reflections.getTypesAnnotatedWith(Component.class);
     
     Object command = null;
     Component component = null;
     Method method = null;
+    CommandInfo commandInfo = null;
+    Command commandAnno = null;
     
     for (Class clazz : clazzList) {
       component = (Component) clazz.getAnnotation(Component.class);
@@ -59,9 +61,17 @@ public class Test02 {
       // @Command가 붙은 메서드를 모두 찾는다.
       // 그 메서드와 인스턴스를 CommandInfo에 담아서
       // CommandMap에 등록한다.
+      Set<Method> methods = ReflectionUtils.getMethods(
+          clazz,
+          ReflectionUtils.withAnnotation(Command.class));
       
-      commandMap.put(component.value(), command);
-      
+      for (Method m :methods) {
+        commandAnno = m.getAnnotation(Command.class);
+        commandInfo = new CommandInfo();
+        commandInfo.instance = command;
+        commandInfo.method = m;
+        commandMap.put(commandAnno.value(), commandInfo);
+      }
       
       try { 
         method = clazz.getMethod("setScoreDao", ScoreDao.class);
@@ -82,14 +92,14 @@ public class Test02 {
   }
   
   public void service() {
-    Object command = null;
+    CommandInfo commandInfo = null;
     loop: 
     while (true) {
       try {
         String[] token = promptCommand();
-        command = commandMap.get(token[0]);
+        commandInfo = commandMap.get(token[0]);
         
-        if (command == null) {
+        if (commandInfo == null) {
           System.out.println("해당 명령을 지원하지 않습니다.");
           continue;
         }
@@ -103,17 +113,7 @@ public class Test02 {
         }
         params.put("options", options);
         
-        Set<Method> methods = ReflectionUtils.getMethods(
-            command.getClass(), /* 메서드를 찾을 클래스 타입 */
-            ReflectionUtils.withAnnotation(Command.class) /* 조건 */
-            );
-        
-        for (Method m :methods) {
-          //System.out.println(command.getClass().getName() + "=>" +
-          //    m.getName());
-          m.invoke(command, params);
-          break;
-        }
+        commandInfo.method.invoke(commandInfo.instance, params);
         
         if (token[0].equals("exit"))
           break loop;
