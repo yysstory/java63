@@ -44,7 +44,7 @@ var mouseoversound=createsoundbite("alarm.mp3");
 
 
 
-$('#countMessage').html("120");
+$('#countMessage').html("300");
 $('#countMessage').css("font-size", "40px");
 
 setInterval(function(){
@@ -52,7 +52,7 @@ setInterval(function(){
 	count--;
 	$('#countMessage').html(count);
 	if (count <= 0) {
-		$('#countMessage').text("150");
+		$('#countMessage').text("300");
 		mouseoversound.playclip();
   }
 }, 1000);
