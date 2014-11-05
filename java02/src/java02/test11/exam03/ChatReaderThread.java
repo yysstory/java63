@@ -15,7 +15,7 @@ public class ChatReaderThread extends Thread {
       String message = null;
       while (true) {
         message = in.nextLine();
-        System.out.println("==> " + message);
+        System.out.println("\n==> " + message);
       }
     } catch (Exception e) {
       System.out.println("데이터 수신중 오류 발생!");

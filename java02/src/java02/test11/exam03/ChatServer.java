@@ -17,7 +17,12 @@ public class ChatServer {
     try {
       keyboard = new Scanner(System.in);
       ss = new ServerSocket(8888);
+      
+      System.out.println("클라이언트 연결을 기다리고 있습니다.");
+      
       socket = ss.accept();
+      
+      System.out.println("클라이언트가 연결되었습니다.");
       
       in = new Scanner(socket.getInputStream());
       out = new PrintStream(socket.getOutputStream());
