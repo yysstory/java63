@@ -14,33 +14,30 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.Method;
 
-public class ChatClient extends Frame {
-  TextField tfServerAddr = new TextField(20);
-  TextField tfName = new TextField(10);
-  Button btnConnect = new Button("연결");
-  TextArea taContent = new TextArea();
-  TextField tfInput = new TextField(30);
-  Button btnSend = new Button("보내기");
+public class ChatClient04 extends Frame {
+  TextField serverAddr = new TextField(20);
+  TextField name = new TextField(10);
+  Button connectBtn = new Button("연결");
+  TextArea content = new TextArea();
+  TextField input = new TextField(30);
+  Button sendBtn = new Button("보내기");
   
-  String username;
-  String serverAddress;
-  
-  public ChatClient() {
+  public ChatClient04() {
     // 윈도우 준비
     Panel toolbar = new Panel(new FlowLayout(FlowLayout.LEFT));
     toolbar.add(new Label("이름:"));
-    toolbar.add(tfName);
+    toolbar.add(name);
     toolbar.add(new Label("서버:"));
-    toolbar.add(tfServerAddr);
-    toolbar.add(btnConnect);
+    toolbar.add(serverAddr);
+    toolbar.add(connectBtn);
     
     this.add(toolbar, BorderLayout.NORTH);
     
-    this.add(taContent, BorderLayout.CENTER);
+    this.add(content, BorderLayout.CENTER);
     
     Panel bottom = new Panel(new FlowLayout(FlowLayout.LEFT));
-    bottom.add(tfInput);
-    bottom.add(btnSend);
+    bottom.add(input);
+    bottom.add(sendBtn);
     
     this.add(bottom, BorderLayout.SOUTH);
     
@@ -54,28 +51,47 @@ public class ChatClient extends Frame {
       }
     });
     
+    /*
+    Object obj = new Object() {
+      public void m() {
+        System.out.println("okok");
+      }
+    };
+    
+    
+    Class c = obj.getClass();
+    Method m;
+    try {
+      m = c.getMethod("m");
+      m.invoke(obj);
+      
+    } catch (Exception e1) {
+      e1.printStackTrace();
+    }*/
+    
+    /*
+    new Object() {
+      public void m() {
+        System.out.println("ohora!!!");
+      }
+    }.m();
+    */
+    
+    
     // ActionEvent는 버튼을 눌렀을 때 발생하는 이벤트이다.
     //connectBtn.addActionListener(new MyConnectListener());
     
     // 실무에서는 한번 밖에 안 쓸 객체라면 익명 이너 클래스로 정의한다. 
-    btnConnect.addActionListener(new ActionListener(){
-      //String username;
+    connectBtn.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e) {
-        // 바깥 클래스의 인스턴스 변수를 사용할 때는
-        // 정확하게 바깥 클래스의 this를 지정하거나 
-        // 아니면 차라리 생략하라!
-        // 단, 로컬변수나 이너 클래스에 같은 이름을 가진 변수가 있다면
-        // 생략 불가하다.
-        /*ChatClient.this.*/username = tfName.getText();
-        serverAddress = tfServerAddr.getText();
-        System.out.println("사용자 이름:" + username);
-        System.out.println("서버 주소:" + serverAddress);
+        System.out.println("연결 버튼 눌렀네..");
+        
       }
     });
     
     // 보내기 버튼을 눌렀을 때,
     //sendBtn.addActionListener(new MySendListener());
-    btnSend.addActionListener(new ActionListener(){
+    sendBtn.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e) {
         System.out.println("보내기 버튼 눌렀네..");
         
@@ -84,7 +100,7 @@ public class ChatClient extends Frame {
   }
   
   public static void main(String[] args) {
-    ChatClient wnd = new ChatClient();
+    ChatClient04 wnd = new ChatClient04();
     wnd.setSize(400, 600);
     wnd.setVisible(true);
   }
