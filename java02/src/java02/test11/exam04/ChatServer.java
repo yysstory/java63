@@ -9,6 +9,8 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.PrintStream;
@@ -44,6 +46,7 @@ public class ChatServer extends Frame implements ActionListener {
         try {
           out.println("quit");
           taContent.append("클라이언트와 연결을 종료했습니다.\n");
+          socket.shutdownInput();
         } catch (Exception ex) {}
         try {in.close();} catch (Exception ex) {}
         try {out.close();} catch (Exception ex) {}
@@ -54,6 +57,7 @@ public class ChatServer extends Frame implements ActionListener {
     });
     
     btnSend.addActionListener(this);
+    tfInput.addActionListener(this);
   }
   
   public void service() {
@@ -88,6 +92,7 @@ public class ChatServer extends Frame implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     taContent.append("나:" + tfInput.getText() + "\n");
     out.println(tfInput.getText());
+    tfInput.setText("");
   }
 }
 

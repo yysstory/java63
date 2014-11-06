@@ -35,11 +35,15 @@ function random(){
 			clearInterval(timer);
 			return;
 		}
-		no = Math.floor(Math.random() * names.length); // 0 <= x < 1
-		  result[i] = names.splice(no, 1);
-		  document.form1.num[i].value = result[i];
+		while (true) {
+		  no = Math.floor(Math.random() * 30); // 0 <= x < 1
+		  if (document.form1.num[no].value == "") {
+			document.form1.num[no].value = names.splice(0, 1);
+			break;
+		  }
+		}
 		i++;
-	}, 1000);
+	}, 2000);
 	
 	/*
 	for (var i = 0; i < 30; i++) {
