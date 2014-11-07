@@ -68,6 +68,92 @@ from MEMBERS;
 select concat(UNAME, '(', EMAIL, ')') as username
 from MEMBERS;
 
+/* 제조사 입력 */
+insert into MAKERS(MKNAME,HOME,TEL)
+values('애플','www.apple.com','100-1001');
+
+insert into MAKERS(MKNAME,HOME,TEL)
+values('삼성','www.samsung.com','100-1002');
+
+insert into MAKERS(MKNAME,HOME,TEL)
+values('LG','www.lg.com','100-1003');
+
+insert into MAKERS(MKNAME,HOME,TEL)
+values('IBM','www.ibm.com','100-1004');
+
+insert into MAKERS(MKNAME,HOME,TEL)
+values('인텔','www.intel.com','100-1005');
+
+insert into MAKERS(MKNAME,HOME,TEL)
+values('구글','www.google.com','100-1006');
+
+/* 제품 입력 */
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('아이폰6', 100, 1);
+
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('아이폰5', 100, 1);
+
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('아이패드', 50, 1);
+
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('갤럭시S5', 2000, 2);
+
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('갤럭시S4', 1000, 2);
+
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('갤럭시노트', 500, 2);
+
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('구글글라스', 10000, 6);
+
+insert into PRODUCTS(PNAME,QTY,MKNO)
+values('넥서스7', 100, 6);
+
+/* 사진 정보 입력 */
+insert into PROD_PHOTS(PNO, URL)
+values(1, 'a01.gif');
+
+insert into PROD_PHOTS(PNO, URL)
+values(2, 'a02.gif');
+
+insert into PROD_PHOTS(PNO, URL)
+values(4, 'a04.gif');
+
+insert into PROD_PHOTS(PNO, URL)
+values(5, 'a05.gif');
+
+insert into PROD_PHOTS(PNO, URL)
+values(7, 'a07.gif');
+
+
+/* 주문 정보 입력*/
+insert into ORDERS(PNO, UID, QTY, ODATE)
+values (1, 'u01', 1, '2014-05-07');
+
+insert into ORDERS(PNO, UID, QTY, ODATE)
+values (1, 'u02', 3, '2014-06-07');
+
+insert into ORDERS(PNO, UID, QTY, ODATE)
+values (2, 'u01', 3, '2014-07-07');
+
+insert into ORDERS(PNO, UID, QTY, ODATE)
+values (2, 'u05', 1, '2014-08-07');
+
+insert into ORDERS(PNO, UID, QTY, ODATE)
+values (3, 'u07', 6, '2014-09-07');
+
+insert into ORDERS(PNO, UID, QTY, ODATE)
+values (7, 'u10', 1, '2014-10-07');
+
+
+
+
+
+
+
 
 
 
