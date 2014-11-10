@@ -62,10 +62,115 @@ SELECT ONO, ODATE FROM ORDERS ORDER BY PNO, UID DESC;
 SELECT ONO AS NO, ODATE AS 'Order Date', PNO 'Product No', UID id
 FROM ORDERS;
 
+
 /* WHERE 절
  * 문법: 
  * WHERE 조건1 (AND | OR) 조건2 ...  
  */
+
+/* 연산자 사용
+ * 
+ */
+/* 1) 더하기 연산자*/
+select ono, qty, qty * 500000 AS TOTAL from ORDERS;
+
+/* 2) 비교 연산자 */
+SELECT ONO, QTY FROM ORDERS
+WHERE QTY > 2;
+
+SELECT ONO, QTY FROM ORDERS
+WHERE QTY = 1;
+
+SELECT ONO, QTY FROM ORDERS
+WHERE QTY > 1 AND QTY <= 5;
+
+/* 문자열 비교 */
+SELECT UID, UNAME, EMAIL
+FROM MEMBERS
+WHERE UNAME='홍길동';
+
+/* '%'는 0개 이상의 글자 */
+SELECT UID, UNAME, EMAIL
+FROM MEMBERS
+WHERE UNAME LIKE '김%';
+
+/* '_'는 1개의 글자 */
+SELECT UID, UNAME, EMAIL
+FROM MEMBERS
+WHERE UNAME LIKE '김_진';
+
+/* 제품명에 '럭시'라는 글자를 포함한 모든 제품 선택하기
+ * => 주의! 검색 속도가 매우 느리다. 
+ */
+SELECT PNO, PNAME
+FROM PRODUCTS
+WHERE PNAME LIKE '%럭시%';
+
+/* IN 
+ * 
+ */
+SELECT PNO,PNAME,MKNO
+FROM PRODUCTS
+WHERE MKNO=1 OR MKNO=2;
+
+SELECT PNO,PNAME,MKNO
+FROM PRODUCTS
+WHERE MKNO IN (1, 2);
+
+
+
+/* NULL 여부 검사
+ * 
+ */
+SELECT * FROM PROD_PHOTS 
+WHERE PNO IS NULL;
+
+SELECT * FROM PROD_PHOTS 
+WHERE PNO IS NOT NULL;
+
+/* BETWEEN A AND B
+ * 
+ */
+SELECT * FROM ORDERS
+WHERE QTY >= 1 AND QTY <=3;
+
+SELECT * FROM ORDERS
+WHERE QTY BETWEEN 1 AND 3;
+
+/* UNION => 결과의 결합 */
+/* 두 개의 결과를 합쳐서 하나로 다루고 싶을 때 */
+/* 예) 제품 이름과 제조사이름을 알고 싶다.*/
+SELECT PNAME FROM PRODUCTS
+UNION
+SELECT MKNAME FROM MAKERS;
+
+/* 예) 2014년 7월 이후의 주문 정보와 애플 제품 주문 정보 
+ *
+ */
+
+/* UNION => 두 결과 데이터를 합칠 때 중복 데이터 제거*/ 
+SELECT * FROM ORDERS WHERE ODATE >= '2014-7-1'
+UNION
+SELECT * FROM ORDERS WHERE PNO IN (1, 2, 3);
+
+/* UNION ALL => 두 결과 데이터를 중복에 상관없이 합친다.*/
+SELECT * FROM ORDERS WHERE ODATE >= '2014-7-1'
+UNION ALL
+SELECT * FROM ORDERS WHERE PNO IN (1, 2, 3);
+
+/* 7월 이후 주문 정보 중에서 애플 제품을 제외한 주문 정보 */
+/* MySQL은 MINUS 없다. 다른 문법으로 대체해야 한다. */
+/*
+SELECT * FROM ORDERS WHERE ODATE >= '2014-7-1'
+MINUS
+SELECT * FROM ORDERS WHERE PNO IN (1, 2, 3);
+*/
+SELECT * FROM ORDERS 
+WHERE 
+  ODATE >= '2014-7-1'
+  AND PNO NOT IN (1, 2, 3);
+  
+
 
 
 

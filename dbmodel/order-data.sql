@@ -128,6 +128,15 @@ values(5, 'a05.gif');
 insert into PROD_PHOTS(PNO, URL)
 values(7, 'a07.gif');
 
+insert into PROD_PHOTS(URL)
+values('x01.gif');
+
+insert into PROD_PHOTS(URL)
+values('x02.gif');
+
+insert into PROD_PHOTS(URL)
+values('x03.gif');
+
 
 /* 주문 정보 입력*/
 insert into ORDERS(PNO, UID, QTY, ODATE)
