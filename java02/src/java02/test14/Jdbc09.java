@@ -1,4 +1,4 @@
-/* UPDATE 실행
+/* DELETE 실행
  * 
  * executeUpdate(SQL) 호출
  */
@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Jdbc08 {
+public class Jdbc09 {
 
   public static void main(String[] args) {
     Connection con = null;
@@ -29,10 +29,9 @@ public class Jdbc08 {
       stmt = con.createStatement();
       System.out.println("Statement 객체 준비 완료.");
       
-      stmt.executeUpdate("UPDATE PRODUCTS SET" +
-        " PNAME='넥서스10', QTY=999" +
-        " WHERE PNO=10");
-      System.out.println("데이터 변경 완료.");
+      stmt.executeUpdate("DELETE FROM PRODUCTS "
+          + "WHERE PNO IN(9,10)");
+      System.out.println("데이터 삭제 완료.");
       
     } catch (Exception ex) {
       ex.printStackTrace();

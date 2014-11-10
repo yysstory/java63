@@ -37,7 +37,7 @@ public class Jdbc07 {
       
       stmt.executeUpdate("INSERT INTO PRODUCTS(PNAME,QTY,MKNO)" +
         " VALUES('넥서스10', 99, 6)");
-      System.out.println("서버에 질의 완료. ResultSet 준비 완료.");
+      System.out.println("데이터 입력 완료.");
       
     } catch (Exception ex) {
       ex.printStackTrace();
