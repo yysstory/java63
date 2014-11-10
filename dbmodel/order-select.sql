@@ -169,7 +169,27 @@ SELECT * FROM ORDERS
 WHERE 
   ODATE >= '2014-7-1'
   AND PNO NOT IN (1, 2, 3);
-  
+
+/* 서브 쿼리 */
+/* 1) 주문 제품의 주문 번호와 제품명을 출력하라 */
+SELECT 
+  ONO, 
+  PNO,
+  (SELECT PNAME FROM PRODUCTS WHERE PNO=T1.PNO) AS NAME,
+  QTY 
+FROM ORDERS T1;
+
+/* 2) 검색어와 일치하는 회사 제품의 주문 정보를 출력하시오.*/
+SELECT *
+FROM ORDERS
+WHERE PNO IN (SELECT PNO FROM PRODUCTS WHERE MKNO=1);
+
+/* 3) '2014-7-1' 이후에 주문한 정보 중에서 u01, u05가 주문한 것
+ * 
+ */
+SELECT *
+FROM (SELECT * FROM ORDERS WHERE ODATE >= '2014-7-1') AS T1
+WHERE UID IN ('u01', 'u05');
 
 
 
