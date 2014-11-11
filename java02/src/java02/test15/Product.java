@@ -18,7 +18,7 @@ package java02.test15;
 
 import java.io.Serializable;
 
-public class Product implements Serializable {
+public class Product implements Serializable, Cloneable {
   private static final long serialVersionUID = 1L;
   
   protected int       no;
@@ -35,6 +35,11 @@ public class Product implements Serializable {
     this.makerNo = makerNo;
   }
 
+  @Override
+  public Product clone() throws CloneNotSupportedException {
+    return (Product) super.clone();
+  }
+  
   @Override
   public String toString() {
     return "Product [no=" + no + ", name=" + name + ", quantity=" + quantity

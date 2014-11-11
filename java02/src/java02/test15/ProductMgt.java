@@ -1,9 +1,3 @@
-/* commandMap에 명령어를 처리하는 객체를 저장할 때,
- * 명령어 처리 객체뿐만 아니라 메서드 객체도 함께 저장한다.
- 
-  1. 새로운 타입 정의 => CommandInfo
- 
- */
 package java02.test15;
 
 import java.lang.reflect.Method;
@@ -11,14 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
-
-import java02.test10.ScoreDao;
-import java02.test10.annotation.Command;
-import java02.test10.annotation.Component;
+import java02.test15.annotation.Command;
+import java02.test15.annotation.Component;
 
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
-//import static org.reflections.Reflections.*;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class ProductMgt {
@@ -28,22 +19,15 @@ public class ProductMgt {
   }
   
   Scanner scanner; 
-  ScoreDao scoreDao;
+  ProductDao productDao;
   HashMap<String,CommandInfo> commandMap;
   
   public void init() throws Exception {
-    scoreDao = new ScoreDao();
-    try {
-      scoreDao.load();
-    } catch (Exception e) {
-      System.out.println("데이터 로딩 중 오류가 발생하였습니다.");
-    }
-    
+    productDao = new ProductDao();
     scanner = new Scanner(System.in);
+    commandMap = new HashMap<>();
     
-    commandMap = new HashMap</*귀찮다. 컴파일러 너가 알아서 추측해서 적어라*/>();
-    
-    Reflections reflections = new Reflections("java02.test10");
+    Reflections reflections = new Reflections("java02.test15");
     Set<Class<?>> clazzList = 
         reflections.getTypesAnnotatedWith(Component.class);
     
@@ -57,10 +41,6 @@ public class ProductMgt {
       component = (Component) clazz.getAnnotation(Component.class);
       command = clazz.newInstance();
 
-      // @Component 애노테이션이 붙은 클래스에서
-      // @Command가 붙은 메서드를 모두 찾는다.
-      // 그 메서드와 인스턴스를 CommandInfo에 담아서
-      // CommandMap에 등록한다.
       Set<Method> methods = ReflectionUtils.getMethods(
           clazz,
           ReflectionUtils.withAnnotation(Command.class));
@@ -74,16 +54,12 @@ public class ProductMgt {
       }
       
       try { 
-        method = clazz.getMethod("setScoreDao", ScoreDao.class);
-        //System.out.println(
-        //    clazz.getName() + "." + method.getName());
-        method.invoke(command, scoreDao);
+        method = clazz.getMethod("setProductDao", ProductDao.class);
+        method.invoke(command, productDao);
       } catch (Exception e) {}
       
       try { 
         method = clazz.getMethod("setScanner", Scanner.class);
-        //System.out.println(
-        //    clazz.getName() + "." + method.getName());
         method.invoke(command, scanner);
       } catch (Exception e) {}
     }
