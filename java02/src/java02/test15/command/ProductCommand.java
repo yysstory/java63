@@ -63,7 +63,23 @@ public class ProductCommand {
   
   @Command("list")
   public void list(Map<String, Object> params) {
-    for (Product product : productDao.selectList()) {
+    @SuppressWarnings("unchecked")
+    ArrayList<String> options = 
+        (ArrayList<String>)params.get("options");
+    
+    int pageNo = 0;
+    int pageSize = 0;
+    
+    if (options.size() > 0) {
+      pageNo = Integer.parseInt(options.get(0));
+      pageSize = 3;
+    }
+    
+    if (options.size() > 1) {
+      pageSize = Integer.parseInt(options.get(1));
+    }
+    
+    for (Product product : productDao.selectList(pageNo, pageSize)) {
       System.out.printf("%-3d %-20s %7d %-3d\n", 
           product.getNo(), 
           product.getName(), 

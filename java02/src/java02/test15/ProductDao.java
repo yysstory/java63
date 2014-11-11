@@ -1,10 +1,5 @@
-/* PreparedStatement 사용하기
- * => SQL문을 미리 준비하여 입력 값을 파라미터로 전달한다.
- * => 이점
- *    1) 서버에 SQL문을 보내기 전에 한번만 컴파일한다.
- *       => 만약 같은 SQL문을 한번에 여러번 실행하는 경우에는 속도가 빠르다.
- *    2) 입렵 값을 파라미터로 전달하기 때문에 => 바이너리 데이터 입력 가능하다.
- *    3) 코딩이 간결하다.    
+/* 페이징 처리
+ * => DBMS마다 처리하는 방법이 다르다.    
  */
 package java02.test15;
 
@@ -107,7 +102,7 @@ public class ProductDao {
     }
   }
   
-  public List<Product> selectList() {
+  public List<Product> selectList(int pageNo, int pageSize) {
     Connection con = null;
     Statement stmt = null;
     ResultSet rs = null;
@@ -119,8 +114,15 @@ public class ProductDao {
           "study", 
           "study");
       stmt = con.createStatement();
-      rs = stmt.executeQuery(
-          "SELECT PNO,PNAME,QTY,MKNO FROM PRODUCTS");
+      
+      String sql = "SELECT PNO,PNAME,QTY,MKNO FROM PRODUCTS"; 
+      
+      if (pageSize > 0) {
+        sql += " limit " + ((pageNo - 1) * pageSize) 
+            + "," + pageSize;
+      }
+      
+      rs = stmt.executeQuery(sql);
       
       ArrayList<Product> list = new ArrayList<Product>();
       Product product = null;
