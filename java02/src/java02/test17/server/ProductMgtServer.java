@@ -86,7 +86,7 @@ public class ProductMgtServer {
     public void run() {
       CommandInfo commandInfo = null;
       try {
-        String[] token = in.nextLine().split(" ");
+        String[] token = in.nextLine().split("\\?");
         commandInfo = commandMap.get(token[0]);
         
         if (commandInfo == null) {

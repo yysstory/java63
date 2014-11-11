@@ -2,6 +2,7 @@ package java02.test17.server.command;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -23,21 +24,47 @@ public class ProductCommand {
     this.scanner = scanner;
   }
   
+  private HashMap<String,String> parseQueryString(String query) {
+    //예) query ==>  name=제품명&qty=20&mkno=6
+    // ==> {"name=제품명","qty=20","mkno=6"}
+    String[] entryList = query.split("&");
+    
+    HashMap<String,String> tempMap = new HashMap<>(); 
+    
+    String[] token = null;
+    for (String entry : entryList) {
+      token = entry.split("="); // 예)name=제품명
+      tempMap.put(token[0], token[1]);
+    }
+    return tempMap;
+  }
+  
+  @SuppressWarnings("unchecked")
   @Command("add")
   public void add(Map<String, Object> params) {
-    Product product = new Product();
+    PrintStream out = (PrintStream)params.get("out");
     
-    System.out.print("제품명:");
-    product.setName(scanner.nextLine());
+    ArrayList<String> options = 
+        (ArrayList<String>)params.get("options");
     
-    System.out.print("수량:");
-    product.setQuantity(Integer.parseInt(scanner.nextLine()));
-    
-    System.out.print("제조사 번호:");
-    product.setMakerNo(Integer.parseInt(scanner.nextLine()));
-    
-    productDao.insert(product);
-    System.out.println("저장하였습니다.");
+    try {
+      HashMap<String,String> valueMap = 
+          parseQueryString(options.get(0));
+      
+      Product product = new Product();
+      product.setName(valueMap.get("name"));
+      product.setQuantity(Integer.parseInt(valueMap.get("qty")));
+      product.setMakerNo(Integer.parseInt(valueMap.get("mkno")));
+      
+      productDao.insert(product);
+      out.println("저장하였습니다.");
+      out.println();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+      out.println("서버가 바쁩니다. 잠시 후 다시 시도하세요.");
+      out.println();
+    }
   }
   
   @Command("delete")
@@ -149,15 +176,20 @@ public class ProductCommand {
     int no = Integer.parseInt(options.get(0));
     
     Product product = productDao.selectOne(no);
+    
+    PrintStream out = (PrintStream)params.get("out");
+    
     if (product == null) {
-      System.out.println("해당 번호의 제품 정보를 찾을 수 없습니다.");
+      out.println("해당 번호의 제품 정보를 찾을 수 없습니다.");
+      out.println();
       return;
     }
     
-    System.out.println("제품번호: " + no);
-    System.out.println("제품명: " + product.getName());
-    System.out.println("수량: " + product.getQuantity());
-    System.out.println("제조사 번호: " + product.getMakerNo());
+    out.println("제품번호: " + no);
+    out.println("제품명: " + product.getName());
+    out.println("수량: " + product.getQuantity());
+    out.println("제조사 번호: " + product.getMakerNo());
+    out.println();
   }
 }
 
