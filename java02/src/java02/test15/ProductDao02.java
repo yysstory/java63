@@ -16,8 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDao {
-  public ProductDao() {}
+public class ProductDao02 {
+  public ProductDao02() {}
 
   public Product selectOne(int no) {
     Connection con = null;
