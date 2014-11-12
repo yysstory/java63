@@ -4,13 +4,14 @@ import java.io.PrintStream;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
 import java02.test17.server.annotation.Command;
 import java02.test17.server.annotation.Component;
+import java02.test17.server.util.DBConnectionPool;
 
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
@@ -25,11 +26,19 @@ public class ProductMgtServer {
   Scanner scanner; 
   ProductDao productDao;
   HashMap<String,CommandInfo> commandMap;
+  DBConnectionPool conPool;
   
   public void init() throws Exception {
     productDao = new ProductDao();
     scanner = new Scanner(System.in);
     commandMap = new HashMap<>();
+    conPool = new DBConnectionPool(
+        "com.mysql.jdbc.Driver",
+        "jdbc:mysql://localhost:3306/studydb" + 
+            "?useUnicode=true&characterEncoding=utf8", 
+        "study",
+        "study");
+    productDao.setDbConnectionPool(conPool);
     
     Reflections reflections = 
         new Reflections("java02.test17.server.command");
@@ -68,8 +77,6 @@ public class ProductMgtServer {
         method.invoke(command, scanner);
       } catch (Exception e) {}
     }
-    
-    
   }
   
   class ServiceThread extends Thread {
