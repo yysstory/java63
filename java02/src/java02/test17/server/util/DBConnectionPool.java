@@ -24,7 +24,7 @@ public class DBConnectionPool {
   
   public Connection getConnection() throws Exception {
     if (conList.size() > 0) {
-      return conList.get(0);
+      return conList.remove(0);
     } else {
       return DriverManager.getConnection(url, username, password);
     }
