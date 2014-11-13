@@ -1,18 +1,20 @@
 package java02.test19.server;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
-
 import java02.test19.server.annotation.Command;
 import java02.test19.server.annotation.Component;
 import java02.test19.server.util.DBConnectionPool;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
@@ -29,6 +31,22 @@ public class ProductMgtServer {
   DBConnectionPool conPool;
   
   public void init() throws Exception {
+    // MyBatis 설정 파일 경로
+    String resource = "java02/test19/server/mybatis-config.xml";
+    
+    // 설정 파일을 읽어 들일 입력 스트림 객체를 준비한다.
+    // Resources의 getResourceAsStream()을 사용하면,
+    // mybatis 설정 파일을 클래스 경로에서 찾는 스트림 객체를 리턴한다.
+    InputStream inputStream = Resources.getResourceAsStream(resource);
+    
+    // mybatis 설정 파일대로 동작할 SqlSessionFactory를 얻는다.
+    // 빌더 역할을 수행하는 객체를 통해서 얻는다.
+    SqlSessionFactory sqlSessionFactory = 
+        new SqlSessionFactoryBuilder().build(inputStream);
+    
+    
+    
+    
     productDao = new ProductDao();
     scanner = new Scanner(System.in);
     commandMap = new HashMap<>();
