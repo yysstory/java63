@@ -42,26 +42,13 @@ public class ProductDao {
   }
   
   public void update(Product product) {
-    Connection con = null;
-    PreparedStatement stmt = null;
-    
+    SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      con = dbConnectionPool.getConnection();
-      stmt = con.prepareStatement(
-          "UPDATE PRODUCTS SET PNAME=?,QTY=?,MKNO=? WHERE PNO=?");
-      stmt.setString(1, product.getName());
-      stmt.setInt(2, product.getQuantity());
-      stmt.setInt(3, product.getMakerNo());
-      stmt.setInt(4, product.getNo());
-
-      stmt.executeUpdate();
-      
-    } catch (Exception ex) {
-      throw new RuntimeException(ex);
-      
+      sqlSession.update(
+        "java02.test19.server.ProductDao.update", product);
+      sqlSession.commit();
     } finally {
-      try {stmt.close();} catch (Exception ex) {}
-      dbConnectionPool.returnConnection(con);
+      sqlSession.close();
     }
   }
   
@@ -102,21 +89,13 @@ public class ProductDao {
   }
   
   public void insert(Product product) {
-    Connection con = null;
-    PreparedStatement stmt = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      con = dbConnectionPool.getConnection();
-      stmt = con.prepareStatement(
-          "INSERT INTO PRODUCTS(PNAME,QTY,MKNO) VALUES(?,?,?)");
-      stmt.setString(1, product.getName());
-      stmt.setInt(2, product.getQuantity());
-      stmt.setInt(3, product.getMakerNo());
-      stmt.executeUpdate();
-    } catch (Exception ex) {
-      throw new RuntimeException(ex);
+      sqlSession.insert(
+        "java02.test19.server.ProductDao.insert", product);
+      sqlSession.commit();
     } finally {
-      try {stmt.close();} catch (Exception ex) {}
-      dbConnectionPool.returnConnection(con);
+      sqlSession.close();
     }
   }
 }
