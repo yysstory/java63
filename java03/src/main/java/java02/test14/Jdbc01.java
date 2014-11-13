@@ -6,6 +6,8 @@
  */
 package java02.test14;
 
+import java.sql.DriverManager;
+
 
 public class Jdbc01 {
 
