@@ -30,34 +30,14 @@ public class ProductDao {
   public ProductDao() {}
 
   public Product selectOne(int no) {
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession();
     
     try {
-      con = dbConnectionPool.getConnection();
-      stmt = con.createStatement();
-      rs = stmt.executeQuery(
-          "SELECT PNO,PNAME,QTY,MKNO FROM PRODUCTS"
-          + " WHERE PNO=" + no);
-      if (rs.next()) {
-        Product product = new Product();
-        product.setNo(rs.getInt("PNO"));
-        product.setName(rs.getString("PNAME"));
-        product.setQuantity(rs.getInt("QTY"));
-        product.setMakerNo(rs.getInt("MKNO"));
-        return product;
-      } else {
-        return null;
-      }
-      
-    } catch (Exception ex) {
-      throw new RuntimeException(ex);
-      
+      return sqlSession.selectOne(
+        "java02.test19.server.ProductDao.selectOne", 
+        no /* new Integer(no) */);
     } finally {
-      try {rs.close();} catch (Exception ex) {}
-      try {stmt.close();} catch (Exception ex) {}
-      dbConnectionPool.returnConnection(con);
+      sqlSession.close();
     }
   }
   
