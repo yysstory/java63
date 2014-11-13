@@ -44,9 +44,6 @@ public class ProductMgtServer {
     SqlSessionFactory sqlSessionFactory = 
         new SqlSessionFactoryBuilder().build(inputStream);
     
-    
-    
-    
     productDao = new ProductDao();
     scanner = new Scanner(System.in);
     commandMap = new HashMap<>();
@@ -56,10 +53,12 @@ public class ProductMgtServer {
             "?useUnicode=true&characterEncoding=utf8", 
         "study",
         "study");
+    
     productDao.setDbConnectionPool(conPool);
+    productDao.setSqlSessionFactory(sqlSessionFactory);
     
     Reflections reflections = 
-        new Reflections("java02.test18.server.command");
+        new Reflections("java02.test19.server.command");
     Set<Class<?>> clazzList = 
         reflections.getTypesAnnotatedWith(Component.class);
     
