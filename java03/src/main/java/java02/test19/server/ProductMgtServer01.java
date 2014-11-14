@@ -18,7 +18,7 @@ import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class ProductMgtServer {
+public class ProductMgtServer01 {
   static class CommandInfo {
     public Object instance;
     public Method method;
@@ -27,7 +27,6 @@ public class ProductMgtServer {
   Scanner scanner; 
   ProductDao productDao;
   HashMap<String,CommandInfo> commandMap;
-  ApplicationContext appCtx;
   
   public void init() throws Exception {
     // MyBatis 설정 파일 경로
@@ -46,13 +45,6 @@ public class ProductMgtServer {
     scanner = new Scanner(System.in);
     commandMap = new HashMap<>();
     productDao.setSqlSessionFactory(sqlSessionFactory);
-    
-    
-    // java02.test19.server 패키지 및 하위 패키지의 모든 클래스를 뒤진다.
-    // @Component 애노테이션이 붙은 클래스를 찾는다.
-    // 해당 클래스의 인스턴스를 생성하여 보관한다.
-    appCtx = new ApplicationContext("java02.test19.server");
-    
     
     Reflections reflections = 
         new Reflections("java02.test19.server.command");
@@ -175,7 +167,7 @@ public class ProductMgtServer {
   }
 
   public static void main(String[] args) throws Exception {
-    ProductMgtServer app = new ProductMgtServer();
+    ProductMgtServer01 app = new ProductMgtServer01();
     app.init();
     app.service();
     app.destroy();
