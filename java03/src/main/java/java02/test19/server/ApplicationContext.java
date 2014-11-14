@@ -1,5 +1,8 @@
 package java02.test19.server;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 import java02.test19.server.annotation.Component;
@@ -39,6 +42,55 @@ public class ApplicationContext {
       }
     }
   }
+  
+  public void addBean(String key, Object instance) {
+    objPool.put(key, instance);
+  }
+  
+  public void injectDependency() throws Exception {
+    Method[] methods = null;
+    Parameter parameter = null;
+    Object dependency = null;
+    
+    // objPool에서 객체를 하나 꺼낸다.
+    for (Object obj : objPool.values()) {
+      //System.out.println(obj.getClass().getName());
+      
+      // 그 객체에서 setter 메서드를 꺼낸다.
+      methods = obj.getClass().getMethods();
+      for (Method m : methods) {
+        if (m.getName().startsWith("set")) {
+          //System.out.println("   " + m.getName());
+          
+          // setter 메서드의 파라미터 타입 알아내기
+          parameter = m.getParameters()[0];
+          //System.out.println("      " + parameter.getType().getName());
+          
+          // setter 메서드의 파라미터 타입과 일치하는 객체를 찾는다.
+          dependency = findDependency(parameter.getType());
+          
+          if (dependency != null) {
+            // setter 메서드를 호출하여 찾은 객체를 주입한다.
+            m.invoke(obj, dependency);
+          }
+        }
+      }
+    }
+  }
+
+  private Object findDependency(Class<?> type) {
+    for (Object obj : objPool.values()) {
+      if (type.isInstance(obj)) {
+        return obj;
+      }
+    }
+    return null;
+  }
+  
+  public Collection<Object> getAllBeans() {
+    return objPool.values();
+  }
+  
 }
 
 
