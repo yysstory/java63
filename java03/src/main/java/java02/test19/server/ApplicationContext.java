@@ -1,7 +1,6 @@
 package java02.test19.server;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
@@ -49,7 +48,7 @@ public class ApplicationContext {
   
   public void injectDependency() throws Exception {
     Method[] methods = null;
-    Parameter parameter = null;
+    //Parameter parameter = null; // JDK 1.8 이상
     Object dependency = null;
     
     // objPool에서 객체를 하나 꺼낸다.
@@ -63,11 +62,12 @@ public class ApplicationContext {
           //System.out.println("   " + m.getName());
           
           // setter 메서드의 파라미터 타입 알아내기
-          parameter = m.getParameters()[0];
+          //parameter = m.getParameters()[0]; //JDK 1.8 이상
           //System.out.println("      " + parameter.getType().getName());
           
           // setter 메서드의 파라미터 타입과 일치하는 객체를 찾는다.
-          dependency = findDependency(parameter.getType());
+          //dependency = findDependency(parameter.getType());
+          dependency = findDependency(m.getParameterTypes()[0]);
           
           if (dependency != null) {
             // setter 메서드를 호출하여 찾은 객체를 주입한다.
