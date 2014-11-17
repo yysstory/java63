@@ -15,14 +15,13 @@ public class Test01 {
     //Car c = new Car();
     ApplicationContext ctx =
         new ClassPathXmlApplicationContext(
-            new String[]{"java02/test21/spring/exam08/application-context.xml"});
+            new String[]{"java02/test21/spring/exam09/application-context.xml"});
     
     Car c1 = (Car)ctx.getBean("b01");
     System.out.println(c1);
     
     Car c2 = (Car)ctx.getBean("b02");
     System.out.println(c2);
-    
     
   }
 

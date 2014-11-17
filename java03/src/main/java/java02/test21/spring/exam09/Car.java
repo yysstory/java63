@@ -1,13 +1,14 @@
 package java02.test21.spring.exam09;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Car {
   String model;
   int cc;
   Engine engine;
-  List<Tire> tires;
+  Set<Tire> tires;
+  Map<String,Object> options;
   
   public Car() {}
   
@@ -19,16 +20,21 @@ public class Car {
     this.model = model;
     this.cc = cc;
   }
-  
   @Override
   public String toString() {
     return "Car [model=" + model + ", cc=" + cc + ", engine=" + engine
-        + ", tires=" + tires + "]";
+        + ", tires=" + tires + ", options=" + options + "]";
   }
-  public List<Tire> getTires() {
+  public Map<String, Object> getOptions() {
+    return options;
+  }
+  public void setOptions(Map<String, Object> options) {
+    this.options = options;
+  }
+  public Set<Tire> getTires() {
     return tires;
   }
-  public void setTires(List<Tire> tires) {
+  public void setTires(Set<Tire> tires) {
     this.tires = tires;
   }
   public String getModel() {
