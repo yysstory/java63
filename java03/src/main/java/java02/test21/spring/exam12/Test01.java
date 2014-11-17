@@ -23,6 +23,12 @@ public class Test01 {
     Tire t02= (Tire)ctx.getBean("t02");
     System.out.println(t02);
     
+    Car c01= (Car)ctx.getBean("c01");
+    System.out.println(c01);
+    
+    Car c02= (Car)ctx.getBean("c02");
+    System.out.println(c02);
+    
   }
 
 }
