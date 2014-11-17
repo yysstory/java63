@@ -27,7 +27,42 @@
     </bean>
     
     
-    <!-- 스프링 규칙에 따라 -->
+    <!-- 스프링 규칙에 따라 날짜 데이터를 자동 변환할 수 있도록 
+      커스텀 프로퍼티 에디터 사용하기
+     -->
+    <!-- 날짜 데이터를 다루는 커스텀 에디터 준비하기 -->
+    <bean id="dateEditor"
+       class="org.springframework.beans.propertyeditors.CustomDateEditor">
+      <constructor-arg ref="dateFormat"/>
+      <constructor-arg value="false"/>
+    </bean>
+    
+    <!-- 커스텀 에디터를 스프링 프레임워크에 등록해줄 에디터 등록기 준비 
+      => 개발자가 에디터 등록기를 만들어야 한다.
+      => org.springframework.beans.PropertyEditorRegistrar 구현체 준비
+    -->
+    <bean id="customEditorRegistrar"
+      class="java02.test21.spring.exam12.MyAppPropertyEditorRegistrar">
+      <property name="customDateEditor" ref="dateEditor"/>
+    </bean>
+    
+    <!-- 커스텀 에디터 등록기를 "스프링 에디터 설정 관리자"에게 추가한다. -->
+    <bean id="customEditorConfigurer" 
+       class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+	   <property name="propertyEditorRegistrars">
+	     <list>
+	       <ref bean="customEditorRegistrar"/>
+	     </list>
+	   </property>
+	  </bean>
+    
+    <bean id="t02" class="java02.test21.spring.exam12.Tire">
+      <property name="maker" value="금호타이어"/>
+      <property name="width"><value>205</value></property>
+      <property name="height" value="60"/>
+      <property name="radial"><value>16</value></property>
+      <property name="createdDate" value="2014-11-17"/>
+    </bean>
     
 </beans>
 

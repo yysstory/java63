@@ -20,6 +20,9 @@ public class Test01 {
     Tire t01 = (Tire)ctx.getBean("t01");
     System.out.println(t01);
     
+    Tire t02= (Tire)ctx.getBean("t02");
+    System.out.println(t02);
+    
   }
 
 }
