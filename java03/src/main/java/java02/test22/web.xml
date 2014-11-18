@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
@@ -23,7 +23,7 @@
           예) http://localhost:8080/웹앱이름/okok/nono/hi
   -->
   <servlet-mapping>
-    <servlet-name>hello</servlet-name>
+    <servlet-name>ok hello</servlet-name>
     <url-pattern>/okok/nono/hi</url-pattern>
   </servlet-mapping>
 </web-app>

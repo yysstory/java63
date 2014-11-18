@@ -1,18 +1,13 @@
 package java02.test21.server;
 
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import java02.test21.server.command.CommandMapping;
 import java02.test21.server.command.CommandMapping.CommandInfo;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -24,11 +19,6 @@ public class ProductMgtServer {
   CommandMapping commandMapping;
   
   public void init() throws Exception {
-    String resource = "java02/test19/server/mybatis-config.xml";
-    InputStream inputStream = Resources.getResourceAsStream(resource);
-    SqlSessionFactory sqlSessionFactory = 
-        new SqlSessionFactoryBuilder().build(inputStream);
-    
     scanner = new Scanner(System.in);
     
     appCtx = new ClassPathXmlApplicationContext(
