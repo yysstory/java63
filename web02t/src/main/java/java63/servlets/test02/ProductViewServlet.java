@@ -59,12 +59,13 @@ public class ProductViewServlet extends GenericServlet {
     out.println("<div class='container'>");
     out.println("<h1>제품 정보</h1>");
     
-    out.println("<form class='form-horizontal' role='form'>");
+    out.println("<form class='form-horizontal' role='form' "
+        + "action='update' method='post'>");
     out.println("<div class='form-group'>");
     out.println("  <label for='no' class='col-sm-2 control-label'>번호</label>");
     out.println("  <div class='col-sm-10'>");
-    out.println("    <input type='text' class='form-control' ");
-    out.println("        id='no' value='" + product.getNo() + "'>");
+    out.println("    <input type='text' class='form-control' readonly ");
+    out.println("        id='no' name='no' value='" + product.getNo() + "'>");
     out.println("  </div>");
     out.println("</div>");
     
@@ -72,7 +73,7 @@ public class ProductViewServlet extends GenericServlet {
     out.println("  <label for='name' class='col-sm-2 control-label'>제품</label>");
     out.println("  <div class='col-sm-10'>");
     out.println("    <input type='text' class='form-control' ");
-    out.println("        id='name' value='" + product.getName() + "'>");
+    out.println("        id='name' name='name' value='" + product.getName() + "'>");
     out.println("  </div>");
     out.println("</div>");
     
@@ -80,7 +81,7 @@ public class ProductViewServlet extends GenericServlet {
     out.println("  <label for='qty' class='col-sm-2 control-label'>수량</label>");
     out.println("  <div class='col-sm-10'>");
     out.println("    <input type='text' class='form-control' ");
-    out.println("        id='qty' value='" + product.getQuantity() + "'>");
+    out.println("        id='qty' name='qty' value='" + product.getQuantity() + "'>");
     out.println("  </div>");
     out.println("</div>");
     
@@ -88,7 +89,7 @@ public class ProductViewServlet extends GenericServlet {
     out.println("  <label for='mkno' class='col-sm-2 control-label'>제조사</label>");
     out.println("  <div class='col-sm-10'>");
     out.println("   <input type='text' class='form-control' ");
-    out.println("        id='mkno' value='" + product.getMakerNo() + "'>");
+    out.println("        id='mkno' name='mkno' value='" + product.getMakerNo() + "'>");
     out.println("  </div>");
     out.println("</div>");
     
@@ -110,12 +111,28 @@ public class ProductViewServlet extends GenericServlet {
     out.println("    history.back();");
     out.println("  });");
     
-    out.println("$('#btnDelete').click(function(){");
-    out.println("  if (window.confirm('삭제하시겠습니까?')) {");
-    out.println("    location.href = 'delete?no=" +  product.getNo() + "'");
-    out.println("  }");
-    out.println("});");
+    out.println("  $('#btnDelete').click(function(){");
+    out.println("    if (window.confirm('삭제하시겠습니까?')) {");
+    out.println("      location.href = 'delete?no=" +  product.getNo() + "'");
+    out.println("    }");
+    out.println("  });");
     
+    out.println("  $('#btnUpdate').click(function(){");
+    out.println("    if ( $('#name').val().length == 0) {");
+    out.println("      alert('제품명은 필수 입력 항목입니다.');");
+    out.println("      return false;");
+    out.println("    }");
+        
+    out.println("    if ( $('#qty').val().length == 0) {");
+    out.println("      alert('수량은 필수 입력 항목입니다.');");
+    out.println("      return false;");
+    out.println("    }");
+        
+    out.println("    if ( $('#mkno').val().length == 0) {");
+    out.println("      alert('제조사 번호는 필수 입력 항목입니다.');");
+    out.println("      return false;");
+    out.println("    }");
+    out.println("  });");
     
     out.println("</script>");
     
