@@ -58,11 +58,16 @@ public class ProductListServlet extends GenericServlet {
     
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    
     out.println("<html>");
+    out.println("<head>");
+    out.println("<link rel='stylesheet'"); 
+    out.println("      href='../../css/bootstrap.min.css'>");
+    out.println("<link rel='stylesheet'"); 
+    out.println("      href='../../css/bootstrap-theme.min.css'>");
+    out.println("</head>");
     out.println("<body>");
     out.println("<h1>제품 목록</h1>");
-    out.println("<table>");
+    out.println("<table class='table'>");
     out.println("<tr>");
     out.println("  <th>번호</th><th>제품</th><th>수량</th><th>제조사</th>");
     out.println("</tr>");
