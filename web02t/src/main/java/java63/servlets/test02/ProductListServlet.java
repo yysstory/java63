@@ -69,6 +69,7 @@ public class ProductListServlet extends GenericServlet {
     out.println("<body>");
     out.println("<div class='container'>");
     out.println("<h1>제품 목록</h1>");
+    out.println("<p><a href='product-form.html' class='btn btn-primary'>새제품</a></p>");
     out.println("<table class='table table-hover'>");
     out.println("<tr>");
     out.println("  <th>#</th><th>제품</th><th>수량</th><th>제조사</th>");
