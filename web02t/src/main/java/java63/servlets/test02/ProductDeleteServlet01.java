@@ -15,19 +15,14 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-/* Refresh 하기2
- * => <meta> 태그에 refresh 정보 넣기
- * 
- */
-
-@WebServlet("/test02/product/delete")
-public class ProductDeleteServlet extends GenericServlet {
+//@WebServlet("/test02/product/delete")
+public class ProductDeleteServlet01 extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
   SqlSessionFactory sqlSessionFactory;
   ProductDao productDao;
   
-  public ProductDeleteServlet() {
+  public ProductDeleteServlet01() {
     try {
       String resource = "java63/servlets/test02/dao/mybatis-config.xml";
       InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -52,7 +47,6 @@ public class ProductDeleteServlet extends GenericServlet {
     PrintWriter out = response.getWriter();
     out.println("<html>");
     out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='5;url=list'>");
     out.println("<link rel='stylesheet'"); 
     out.println("      href='../../css/bootstrap.min.css'>");
     out.println("<link rel='stylesheet'"); 
@@ -64,6 +58,12 @@ public class ProductDeleteServlet extends GenericServlet {
     out.println("<h1>삭제 결과</h1>");
     out.println("<p>삭제하였습니다</p>");
     out.println("</div>");
+    
+    out.println("<script>");
+    out.println("window.setTimeout(function(){");
+    out.println("  window.location.href = 'list';");
+    out.println("}, 1000);");
+    out.println("</script>");
     
     out.println("</body>");
     out.println("</html>");

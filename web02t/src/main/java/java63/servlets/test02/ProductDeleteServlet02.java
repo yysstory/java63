@@ -10,24 +10,28 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-/* Refresh 하기2
- * => <meta> 태그에 refresh 정보 넣기
+/* Refresh 하기
+ * => 응답헤더에 리프래시 정보 추가하기
  * 
+ * 
+ * service() 메서드가 호출될 때 넘어오는 파라미터의 비밀!
+ * HttpServletRequest와 HttpServletResponse 객체가 넘어온다.
  */
 
-@WebServlet("/test02/product/delete")
-public class ProductDeleteServlet extends GenericServlet {
+//@WebServlet("/test02/product/delete")
+public class ProductDeleteServlet02 extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
   SqlSessionFactory sqlSessionFactory;
   ProductDao productDao;
   
-  public ProductDeleteServlet() {
+  public ProductDeleteServlet02() {
     try {
       String resource = "java63/servlets/test02/dao/mybatis-config.xml";
       InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -52,7 +56,6 @@ public class ProductDeleteServlet extends GenericServlet {
     PrintWriter out = response.getWriter();
     out.println("<html>");
     out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='5;url=list'>");
     out.println("<link rel='stylesheet'"); 
     out.println("      href='../../css/bootstrap.min.css'>");
     out.println("<link rel='stylesheet'"); 
@@ -67,6 +70,17 @@ public class ProductDeleteServlet extends GenericServlet {
     
     out.println("</body>");
     out.println("</html>");
+    
+    // 생각해 볼 문제
+    // Q) 응답 헤더 다음에 콘텐츠가 출력되는데, 이와 같이
+    //    콘텐츠를 출력한 다음에 응답 헤더를 설정하는 것은 
+    //    무의미한 일이 아니냐?
+    // A) out.println()을 호출한다고 해서 바로 클라이언트로 
+    //    데이터를 보내는 것은 아니다. 내부 버퍼에 보관하고 있다가
+    //    버퍼가 모두 차거나 service() 메서드가 리턴할 때 
+    //    비로서 클라이언트로 응답한다.
+    HttpServletResponse orginResponse = (HttpServletResponse)response;
+    orginResponse.setHeader("Refresh", "2;url=list");
   }
   
 }
