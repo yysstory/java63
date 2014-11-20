@@ -64,8 +64,10 @@ public class ProductListServlet extends GenericServlet {
     out.println("      href='../../css/bootstrap.min.css'>");
     out.println("<link rel='stylesheet'"); 
     out.println("      href='../../css/bootstrap-theme.min.css'>");
+    out.println("<link rel='stylesheet' href='../../css/common.css'>");
     out.println("</head>");
     out.println("<body>");
+    out.println("<div class='container'>");
     out.println("<h1>제품 목록</h1>");
     out.println("<table class='table table-hover'>");
     out.println("<tr>");
@@ -81,6 +83,10 @@ public class ProductListServlet extends GenericServlet {
       out.println("</tr>");
     }
     out.println("</table>");
+    out.println("</div>");
+    
+    out.println("<script src='../../js/jquery-1.11.1.js'></script>");
+    
     out.println("</body>");
     out.println("</html>");
   }

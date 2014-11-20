@@ -53,8 +53,10 @@ public class ProductViewServlet extends GenericServlet {
     out.println("      href='../../css/bootstrap.min.css'>");
     out.println("<link rel='stylesheet'"); 
     out.println("      href='../../css/bootstrap-theme.min.css'>");
+    out.println("<link rel='stylesheet' href='../../css/common.css'>");
     out.println("</head>");
     out.println("<body>");
+    out.println("<div class='container'>");
     out.println("<h1>제품 정보</h1>");
     
     out.println("<form class='form-horizontal' role='form'>");
@@ -89,7 +91,25 @@ public class ProductViewServlet extends GenericServlet {
     out.println("        id='mkno' value='" + product.getMakerNo() + "'>");
     out.println("  </div>");
     out.println("</div>");
+    
+    out.println("<div class='form-group'>");
+    out.println("  <div class='col-sm-offset-2 col-sm-10'>");
+    out.println("    <button id='btnUpdate' type='submit' class='btn btn-primary'>변경</button>");
+    out.println("    <button id='btnDelete' type='button' class='btn btn-primary'>삭제</button>");
+    out.println("    <button id='btnCancel' type='button' class='btn btn-primary'>취소</button>");
+    out.println("  </div>");
+    out.println("</div>");
+    
     out.println("</form>");
+    out.println("</div>");
+    
+    out.println("<script src='../../js/jquery-1.11.1.js'></script>");
+    
+    out.println("<script>");
+    out.println("  $('#btnCancel').click(function(){");
+    out.println("    history.back();");
+    out.println("  });");
+    out.println("</script>");
     
     out.println("</body>");
     out.println("</html>");
