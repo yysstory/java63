@@ -109,6 +109,14 @@ public class ProductViewServlet extends GenericServlet {
     out.println("  $('#btnCancel').click(function(){");
     out.println("    history.back();");
     out.println("  });");
+    
+    out.println("$('#btnDelete').click(function(){");
+    out.println("  if (window.confirm('삭제하시겠습니까?')) {");
+    out.println("    location.href = 'delete?no=" +  product.getNo() + "'");
+    out.println("  }");
+    out.println("});");
+    
+    
     out.println("</script>");
     
     out.println("</body>");
