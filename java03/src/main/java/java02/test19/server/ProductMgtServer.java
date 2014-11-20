@@ -103,7 +103,7 @@ public class ProductMgtServer {
   
   @SuppressWarnings("resource")
   public void service() throws Exception {
-    ServerSocket serverSocket = new ServerSocket(8888);
+    ServerSocket serverSocket = new ServerSocket(9999);
     Socket socket = null;
     
     while (true) {
