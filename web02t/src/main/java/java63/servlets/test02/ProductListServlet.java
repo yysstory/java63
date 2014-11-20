@@ -67,14 +67,15 @@ public class ProductListServlet extends GenericServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>제품 목록</h1>");
-    out.println("<table class='table'>");
+    out.println("<table class='table table-hover'>");
     out.println("<tr>");
-    out.println("  <th>번호</th><th>제품</th><th>수량</th><th>제조사</th>");
+    out.println("  <th>#</th><th>제품</th><th>수량</th><th>제조사</th>");
     out.println("</tr>");
     for (Product product : productDao.selectList(pageNo, pageSize)) {
       out.println("<tr>");
       out.println("  <td>" + product.getNo() + "</td>");
-      out.println("  <td>" + product.getName() + "</td>");
+      out.println("  <td><a href='view?no=" + product.getNo() + "'>" 
+            + product.getName() + "</a></td>");
       out.println("  <td>" + product.getQuantity() + "</td>");
       out.println("  <td>" + product.getMakerNo() + "</td>");
       out.println("</tr>");
