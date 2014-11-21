@@ -21,6 +21,7 @@ public class ProductListServlet extends GenericServlet {
   @Override
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
+    System.out.println("service() 실행 시작");
     int pageNo = 0;
     int pageSize = 0;
     
@@ -76,6 +77,7 @@ public class ProductListServlet extends GenericServlet {
     
     out.println("</body>");
     out.println("</html>");
+    System.out.println("service() 실행 완료");
   }
   
 }

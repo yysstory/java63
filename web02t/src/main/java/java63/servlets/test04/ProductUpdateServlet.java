@@ -19,7 +19,8 @@ public class ProductUpdateServlet extends GenericServlet {
   @Override
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
+    //다음 코드는 필터로 대체함.
+    //request.setCharacterEncoding("UTF-8");
     
     Product product = new Product();
     product.setNo(Integer.parseInt(request.getParameter("no")));
