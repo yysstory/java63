@@ -8,12 +8,12 @@
        호출하면 얻을 수 있다. -->
 	<context-param>
 		<param-name>mybatisConfig</param-name>
-		<param-value>java63/servlets/test03/dao/mybatis-config.xml</param-value>
+		<param-value>java63/servlets/test04/dao/mybatis-config.xml</param-value>
 	</context-param>
 	
 	<!-- 리스너 등록하기 -->
 	<listener>
-	  <listener-class>java63.servlets.test03.ContextLoaderListener</listener-class>
+	  <listener-class>java63.servlets.test04.ContextLoaderListener</listener-class>
 	</listener>
 
   <!--  
