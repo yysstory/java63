@@ -2,6 +2,8 @@ package java63.servlets.test03;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import java63.servlets.test03.dao.ProductDao;
 import java63.servlets.test03.domain.Product;
 
 import javax.servlet.GenericServlet;
@@ -19,7 +21,14 @@ public class ProductViewServlet extends GenericServlet {
       throws ServletException, IOException {
     int no = Integer.parseInt(request.getParameter("no"));
     //Product product = AppInitServlet.productDao.selectOne(no);
-    Product product = ContextLoaderListener.productDao.selectOne(no);
+    //Product product = ContextLoaderListener.productDao.selectOne(no);
+    
+    // ProductDao를 ServletContext 보관소에서 꺼내는 방식을 사용
+    // => 단점: 위의 방식보다 코드가 늘었다.
+    // => 장점: 특정 클래스에 종속되지 않는다. 유지보수에서 더 중요!
+    ProductDao productDao = (ProductDao)this.getServletContext()
+                                         .getAttribute("productDao");
+    Product product = productDao.selectOne(no);
     
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
