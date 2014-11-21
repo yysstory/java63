@@ -1,10 +1,12 @@
 package java63.servlets.test04;
 
 import java.io.IOException;
+
 import java63.servlets.test04.dao.ProductDao;
 import java63.servlets.test04.domain.Product;
 
 import javax.servlet.GenericServlet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -35,7 +37,18 @@ public class ProductAddServlet extends GenericServlet {
     // => 장점: 특정 클래스에 종속되지 않는다. 유지보수에서 더 중요!
     ProductDao productDao = (ProductDao)this.getServletContext()
                                          .getAttribute("productDao");
-    productDao.insert(product);
+    try {
+      productDao.insert(product);
+      
+    } catch (Exception e) {
+      /* Forward로 다른 서블릿에게 제어권 위임하기
+       * => 제어권이 넘어가면 돌아오지 않는다.
+       */
+      RequestDispatcher rd = 
+          request.getRequestDispatcher("/common/error");
+      request.setAttribute("error", e);
+      rd.forward(request, response);
+    }
     
     HttpServletResponse orginResponse = (HttpServletResponse)response;
     orginResponse.sendRedirect("list");
