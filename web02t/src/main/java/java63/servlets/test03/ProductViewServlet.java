@@ -18,7 +18,8 @@ public class ProductViewServlet extends GenericServlet {
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
     int no = Integer.parseInt(request.getParameter("no"));
-    Product product = AppInitServlet.productDao.selectOne(no);
+    //Product product = AppInitServlet.productDao.selectOne(no);
+    Product product = ContextLoaderListener.productDao.selectOne(no);
     
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();

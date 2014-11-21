@@ -19,7 +19,8 @@ public class ProductDeleteServlet extends GenericServlet {
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
     int no = Integer.parseInt(request.getParameter("no"));
-    AppInitServlet.productDao.delete(no);
+    //AppInitServlet.productDao.delete(no);
+    ContextLoaderListener.productDao.delete(no);
     
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();

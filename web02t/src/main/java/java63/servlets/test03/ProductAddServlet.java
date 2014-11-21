@@ -25,7 +25,8 @@ public class ProductAddServlet extends GenericServlet {
     product.setQuantity(Integer.parseInt(request.getParameter("qty")));
     product.setMakerNo(Integer.parseInt(request.getParameter("mkno")));
     
-    AppInitServlet.productDao.insert(product);
+    //AppInitServlet.productDao.insert(product);
+    ContextLoaderListener.productDao.insert(product);
     
     HttpServletResponse orginResponse = (HttpServletResponse)response;
     orginResponse.sendRedirect("list");

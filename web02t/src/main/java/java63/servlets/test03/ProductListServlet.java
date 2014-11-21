@@ -49,7 +49,9 @@ public class ProductListServlet extends GenericServlet {
     out.println("<tr>");
     out.println("  <th>#</th><th>제품</th><th>수량</th><th>제조사</th>");
     out.println("</tr>");
-    for (Product product : AppInitServlet.productDao.selectList(pageNo, pageSize)) {
+    
+    //for (Product product : AppInitServlet.productDao.selectList(pageNo, pageSize)) {
+    for (Product product : ContextLoaderListener.productDao.selectList(pageNo, pageSize)) {
       out.println("<tr>");
       out.println("  <td>" + product.getNo() + "</td>");
       out.println("  <td><a href='view?no=" + product.getNo() + "'>" 
