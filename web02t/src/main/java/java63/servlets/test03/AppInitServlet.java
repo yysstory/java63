@@ -67,8 +67,8 @@ public class AppInitServlet extends GenericServlet {
   @Override
   public void init() throws ServletException {
     try {
-      String resource = "java63/servlets/test02/dao/mybatis-config.xml";
-      InputStream inputStream = Resources.getResourceAsStream(resource);
+      InputStream inputStream = Resources.getResourceAsStream(
+          this.getInitParameter("mybatisConfig"));
       SqlSessionFactory sqlSessionFactory = 
           new SqlSessionFactoryBuilder().build(inputStream);
       

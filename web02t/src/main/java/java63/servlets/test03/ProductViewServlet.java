@@ -1,10 +1,7 @@
 package java63.servlets.test03;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-
-import java63.servlets.test03.dao.ProductDao;
 import java63.servlets.test03.domain.Product;
 
 import javax.servlet.GenericServlet;
@@ -13,37 +10,15 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
 @WebServlet("/test03/product/view")
 public class ProductViewServlet extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
-  SqlSessionFactory sqlSessionFactory;
-  ProductDao productDao;
-  
-  public ProductViewServlet() {
-    try {
-      String resource = "java63/servlets/test02/dao/mybatis-config.xml";
-      InputStream inputStream = Resources.getResourceAsStream(resource);
-      sqlSessionFactory = 
-          new SqlSessionFactoryBuilder().build(inputStream);
-      
-      productDao = new ProductDao();
-      productDao.setSqlSessionFactory(sqlSessionFactory);
-      
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-  
   @Override
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
     int no = Integer.parseInt(request.getParameter("no"));
-    Product product = productDao.selectOne(no);
+    Product product = AppInitServlet.productDao.selectOne(no);
     
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();

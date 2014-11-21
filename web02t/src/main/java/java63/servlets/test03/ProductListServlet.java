@@ -1,10 +1,7 @@
 package java63.servlets.test03;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-
-import java63.servlets.test03.dao.ProductDao;
 import java63.servlets.test03.domain.Product;
 
 import javax.servlet.GenericServlet;
@@ -13,33 +10,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
 @WebServlet("/test03/product/list")
 public class ProductListServlet extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
   static final int PAGE_DEFAULT_SIZE = 3;
-
-  SqlSessionFactory sqlSessionFactory;
-  ProductDao productDao;
-  
-  public ProductListServlet() {
-    try {
-      String resource = "java63/servlets/test02/dao/mybatis-config.xml";
-      InputStream inputStream = Resources.getResourceAsStream(resource);
-      sqlSessionFactory = 
-          new SqlSessionFactoryBuilder().build(inputStream);
-      
-      productDao = new ProductDao();
-      productDao.setSqlSessionFactory(sqlSessionFactory);
-      
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
   
   @Override
   public void service(ServletRequest request, ServletResponse response)
@@ -74,7 +49,7 @@ public class ProductListServlet extends GenericServlet {
     out.println("<tr>");
     out.println("  <th>#</th><th>제품</th><th>수량</th><th>제조사</th>");
     out.println("</tr>");
-    for (Product product : productDao.selectList(pageNo, pageSize)) {
+    for (Product product : AppInitServlet.productDao.selectList(pageNo, pageSize)) {
       out.println("<tr>");
       out.println("  <td>" + product.getNo() + "</td>");
       out.println("  <td><a href='view?no=" + product.getNo() + "'>" 
