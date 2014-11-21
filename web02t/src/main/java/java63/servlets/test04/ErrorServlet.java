@@ -13,7 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/test04/product/list")
-public class ProductListServlet extends GenericServlet {
+public class ErrorServlet extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
   static final int PAGE_DEFAULT_SIZE = 3;
