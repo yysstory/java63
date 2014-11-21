@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/test03/product/add")
+@WebServlet("/test04/product/add")
 public class ProductAddServlet extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
