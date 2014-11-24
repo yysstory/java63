@@ -2,6 +2,7 @@ package java63.servlets.test04;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java63.servlets.test04.dao.ProductDao;
 
 import javax.servlet.GenericServlet;
@@ -26,8 +27,12 @@ public class ProductDeleteServlet extends GenericServlet {
     // ProductDao를 ServletContext 보관소에서 꺼내는 방식을 사용
     // => 단점: 위의 방식보다 코드가 늘었다.
     // => 장점: 특정 클래스에 종속되지 않는다. 유지보수에서 더 중요!
-    ProductDao productDao = (ProductDao)this.getServletContext()
-                                         .getAttribute("productDao");
+    //ProductDao productDao = (ProductDao)this.getServletContext()
+    //                                     .getAttribute("productDao");
+    
+    ProductDao productDao = (ProductDao) ContextLoaderListener.appCtx
+        .getBean("productDao");
+    
     productDao.delete(no);
     
     response.setContentType("text/html;charset=UTF-8");
