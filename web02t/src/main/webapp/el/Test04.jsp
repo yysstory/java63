@@ -12,57 +12,43 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>값 꺼내기</h1>
-<h2>배열 값 꺼내기</h2>
-<%
-pageContext.setAttribute("scores", 
-    new int[]{100, 90, 80});
-%>
-<%=((int[])pageContext.getAttribute("scores"))[1]%><br>
-${pageScope.scores[1]}<br>
-${scores[1]}<br>
+<h1>연산자</h1>
+<h2>산술 연산자</h2>
+\${10 + 20} = ${10 + 20}<br>
+\${10 - 20} = ${10 - 20}<br>
+\${10 * 20} = ${10 * 20}<br>
+\${10 / 20} = ${10 / 20}<br>
+\${10 % 20} = ${10 % 20}<br>
+\${10 div 20} = ${10 div 20}<br>
+\${10 mod 20} = ${10 mod 20}<br>
 
-<h2>리스트 값 꺼내기</h2>
-<%
-List<String> names = new ArrayList<String>();
-names.add("홍길동");
-names.add("임꺽정");
-names.add("윤봉길");
-names.add("안중근");
-pageContext.setAttribute("names", names);
-%>
-<%=((List<String>)pageContext.getAttribute("names")).get(2)%><br>
-${pageScope.names[2]}<br>
-${names[2]}<br>
+<h2>논리 연산자</h2>
+\${true && false} = ${true && false}<br>
+\${true || false} = ${true || false}<br>
+\${true and false} = ${true and false}<br> 
+\${true or false} = ${true or false}<br>
+\${!true} = ${!true}<br>
+\${not true} = ${not true}<br> 
 
-<h2>맵에서 값 꺼내기</h2>
-<%
-Map<String,Integer> maps = new HashMap<String,Integer>();
-maps.put("홍길동", 178);
-maps.put("임꺽정", 180);
-maps.put("이순신", 175);
-maps.put("lee", 175);
+<h2>관계 연산자</h2>
+\${10 == 11} = ${10 == 11}<br>
+\${10 eq 11} = ${10 eq 11}<br>
 
-pageContext.setAttribute("maps", maps);
-%>
-${pageScope.maps["홍길동"]}<br>
-${maps["임꺽정"]}<br>
-${maps.lee}<br>
+\${10 != 11} = ${10 != 11}<br>
+\${10 ne 11} = ${10 ne 11}<br>
 
-<h2>자바 일반 객체에서 값 꺼내기</h2>
-<%
-Product product = new Product();
-product.setNo(10);
-product.setName("아이폰");
-product.setQuantity(200);
-product.setMakerNo(2);
+\${10 < 11} = ${10 < 11}<br>
+\${10 lt 11} = ${10 lt 11}<br>
 
-pageContext.setAttribute("product", product);
-%>
-${pageScope.product.no}<br>
-${product.name}<br>
-${product.quantity}<br>
-${product.makerNo}<br>
+\${10 > 11} = ${10 > 11}<br>
+\${10 gt 11} = ${10 gt 11}<br>
+
+\${10 <= 11} = ${10 <= 11}<br>
+\${10 le 11} = ${10 le 11}<br>
+
+\${10 >= 11} = ${10 >= 11}<br>
+\${10 ge 11} = ${10 ge 11}<br>
+
 </body>
 </html>
 
