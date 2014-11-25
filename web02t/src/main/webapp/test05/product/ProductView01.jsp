@@ -2,17 +2,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <jsp:include page="/common/header"/>  
 </head>
 <body>
 <div class='container'>
-<h1>제품 정보(v1.0)</h1>
-<jsp:useBean 
-  scope="request"
-  type="java63.servlets.test05.domain.Product"
-  id="product"/>
+<h1>제품 정보(by JSP)</h1>
+<%
+Product product = (Product)request.getAttribute("product");
+%>
 <form class='form-horizontal' role='form' action='update' method='post'>
 <div class='form-group'>
   <label for='no' class='col-sm-2 control-label'>번호</label>

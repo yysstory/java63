@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class='container'>
-<h1>제품 목록(by JSP)</h1>
+<h1>제품 목록(v1.0)</h1>
 <p><a href='product-form.html' class='btn btn-primary'>새제품</a></p>
 <table class='table table-hover'>
 <tr>
