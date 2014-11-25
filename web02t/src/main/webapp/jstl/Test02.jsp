@@ -44,6 +44,14 @@ ${product.name}<br>
 <c:set target="${pageScope.product}" 
              property="name" value="오호라폰"/>
 ${product.name}<br>
+
+<h2>c:remove</h2>
+<p>보관소에 저장된 객체 제거하기</p>
+${pageScope.name1}<br>
+<c:remove var="name1" scope="page"/>
+<%pageContext.removeAttribute("name2"); %>
+제거한 후에 name1은? ${pageScope.name1}<br>
+제거한 후에 name2는? ${pageScope.name2}<br>
 </body>
 </html>
 
