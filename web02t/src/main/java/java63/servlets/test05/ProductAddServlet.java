@@ -4,12 +4,11 @@ import java.io.IOException;
 import java63.servlets.test05.dao.ProductDao;
 import java63.servlets.test05.domain.Product;
 
-import javax.servlet.GenericServlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
@@ -17,11 +16,24 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 @WebServlet("/test05/product/add")
-public class ProductAddServlet extends GenericServlet {
+public class ProductAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void service(ServletRequest request, ServletResponse response)
+  protected void doGet(
+      HttpServletRequest request, 
+      HttpServletResponse response)
+      throws ServletException, IOException {
+    
+    RequestDispatcher rd = 
+        request.getRequestDispatcher("/test05/product/ProductForm.jsp");
+    rd.forward(request, response);
+  }
+  
+  @Override
+  public void doPost(
+      HttpServletRequest request, 
+      HttpServletResponse response)
       throws ServletException, IOException {
     //다음 코드는 필터로 대체함.
     //request.setCharacterEncoding("UTF-8");
@@ -52,8 +64,7 @@ public class ProductAddServlet extends GenericServlet {
       rd.forward(request, response);
     }
     
-    HttpServletResponse orginResponse = (HttpServletResponse)response;
-    orginResponse.sendRedirect("list");
+    response.sendRedirect("list");
   }
   
 }
