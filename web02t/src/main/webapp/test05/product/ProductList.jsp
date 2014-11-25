@@ -15,10 +15,12 @@
 <tr>
   <th>#</th><th>제품</th><th>수량</th><th>제조사</th>
 </tr>
-
+<jsp:useBean
+  scope="request" 
+  type="java.util.List<java63.servlets.test05.domain.Product>"
+  id="products"/>
+  
 <%
-List<Product> products = 
-  (List<Product>)request.getAttribute("products");
 for (Product product : products) {
 %>
 <tr>
