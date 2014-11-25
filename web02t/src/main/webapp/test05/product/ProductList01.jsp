@@ -5,7 +5,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%-- JSP 주석
+=> 클라이언트로 출력되지 않는다.
+
+include를 JSP 액션 태그(기본으로 제공하는 태그)를 사용해서 처리하기
+ --%>
 <jsp:include page="/common/header"/>  
+<% //위의 태그는 다음과 같은 자바 코드를 생성한다.
+//RequestDispatcher rd = request.getRequestDispatcher("/common/header");
+//rd.include(request, response);
+%>
 </head>
 <body>
 <div class='container'>
