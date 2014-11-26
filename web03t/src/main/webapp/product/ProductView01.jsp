@@ -37,7 +37,9 @@
    <select id='mkno' name='mkno' class='form-control'>
       <option value="0">제조사를 선택하세요</option>
       <c:forEach items="${makers}" var="maker">
-        <option value="${maker.no}">${maker.name}</option>
+        <option value="${maker.no}"
+        <c:if test="${maker.no==product.makerNo}">selected</c:if>
+        >${maker.name}</option>
       </c:forEach>    
     </select>
   </div>
@@ -53,10 +55,6 @@
 </div>
 <script src='../js/jquery-1.11.1.js'></script>
 <script>
-  $(function(){
-	  $('#mkno').val(${product.makerNo});
-  });
-
   $('#btnCancel').click(function(){
     history.back();
   });
@@ -74,8 +72,8 @@
       alert('수량은 필수 입력 항목입니다.');
       return false;
     }
-    if ( $('#mkno').val() == '0') {
-      alert('제조사를 선택하세요');
+    if ( $('#mkno').val().length == 0) {
+      alert('제조사 번호는 필수 입력 항목입니다.');
       return false;
     }
   });
