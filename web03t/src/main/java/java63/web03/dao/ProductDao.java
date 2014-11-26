@@ -19,6 +19,7 @@ public interface ProductDao {
   void delete(int no);
   List<?> selectList(Map<String,Object> params);
   void insert(Product product);
+  void insertPhoto(Product product);
 }
 
 

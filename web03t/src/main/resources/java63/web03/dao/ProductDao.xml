@@ -61,7 +61,8 @@
     WHERE PNO=#{value}
   </select>
   
-  <insert id="insert" parameterType="Product">
+  <insert id="insert" parameterType="Product"
+    useGeneratedKeys="true" keyColumn="PNO" keyProperty="no">
     INSERT INTO PRODUCTS(PNAME,QTY,MKNO) 
     VALUES (#{name}, #{quantity}, #{makerNo})
   </insert>
@@ -77,6 +78,11 @@
   <delete id="delete" parameterType="int">
     DELETE FROM PRODUCTS WHERE PNO=#{value}
   </delete>
+  
+  <insert id="insertPhoto" parameterType="Product">
+    INSERT INTO PROD_PHOTS(PNO,URL) 
+    VALUES (#{no}, #{photo})
+  </insert>
 </mapper>
 
 
