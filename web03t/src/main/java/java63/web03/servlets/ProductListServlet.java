@@ -1,6 +1,7 @@
 package java63.web03.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java63.web03.dao.ProductDao;
 
 import javax.servlet.RequestDispatcher;
@@ -43,9 +44,13 @@ public class ProductListServlet extends HttpServlet {
           WebApplicationContextUtils.getWebApplicationContext(
               this.getServletContext());
       
+      HashMap<String,Object> paramMap = new HashMap<>();
+      paramMap.put("startIndex", ((pageNo - 1) * pageSize));
+      paramMap.put("pageSize", pageSize);
+      
       ProductDao productDao = (ProductDao)appCtx.getBean("productDao");
       request.setAttribute("products", 
-          productDao.selectList(pageNo, pageSize));
+          productDao.selectList(paramMap));
       
       // include를 수행할 때는 여기에서 콘텐츠 타입을 설정해야 한다.
       response.setContentType("text/html;charset=UTF-8");
