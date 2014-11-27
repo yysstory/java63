@@ -4,18 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/common/Header.jsp"/> 
-<style>
-.prod-pho {
-  border: 1px solid gray;
-  width: 200px;
-  height: 200px;
-}
-</style> 
+<jsp:include page="/common/Header.jsp"/>  
 </head>
 <body>
 <div class='container'>
-<h1>제품 정보(v1.3)</h1>
+<h1>제품 정보(v1.2)</h1>
 <form class='form-horizontal' role='form' action='update.do' method='post'>
 <div class='form-group'>
   <label for='no' class='col-sm-2 control-label'>번호</label>
@@ -47,15 +40,6 @@
         <option value="${maker.no}">${maker.name}</option>
       </c:forEach>    
     </select>
-  </div>
-</div>
-<div class='form-group'>
-  <label for='photosDiv' class='col-sm-2 control-label'>사진</label>
-  <div class='col-sm-10' id='photosDiv'>
-  <c:forEach items="${photos}" var="photo">
-    <img class='prod-pho' 
-      src='${pageContext.servletContext.contextPath}/fileupload/${photo.url}'>
-  </c:forEach>
   </div>
 </div>
 <div class='form-group'>
