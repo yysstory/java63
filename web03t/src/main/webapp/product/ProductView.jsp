@@ -15,7 +15,8 @@
 </head>
 <body>
 <div class='container'>
-<h1>제품 정보(v1.3)</h1>
+<jsp:include page="/common/LoginPanel.jsp"/>  
+<h1>제품 정보</h1>
 <form class='form-horizontal' role='form' action='update.do' method='post'>
 <div class='form-group'>
   <label for='no' class='col-sm-2 control-label'>번호</label>
