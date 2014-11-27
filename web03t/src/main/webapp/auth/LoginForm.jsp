@@ -14,7 +14,7 @@
   <label for='uid' class='col-sm-2 control-label'>아이디</label>
   <div class='col-sm-10'>
     <input type='text' class='form-control' 
-        id='uid' name='uid' placeholder='아이디'>
+        id='uid' name='uid' placeholder='아이디' value='${uid}'>
   </div>
 </div>
 <div class='form-group'>
