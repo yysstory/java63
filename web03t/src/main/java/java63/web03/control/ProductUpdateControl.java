@@ -6,14 +6,14 @@ import java63.web03.domain.Product;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Component("/product/update.do")
+@Controller
 public class ProductUpdateControl {
   @Autowired ProductDao productDao;
   
-  @RequestMapping
+  @RequestMapping("/product/update.do")
   public String execute(HttpServletRequest request) throws Exception {
     Product product = new Product();
     product.setNo(Integer.parseInt(request.getParameter("no")));

@@ -7,17 +7,17 @@ import java63.web03.domain.Product;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Component("/product/view.do")
+@Controller
 public class ProductViewControl {
   
   @Autowired MakerDao makerDao;
   
   @Autowired ProductDao productDao;
   
-  @RequestMapping
+  @RequestMapping("/product/view.do")
   public String execute(HttpServletRequest request) throws Exception {
     int no = Integer.parseInt(request.getParameter("no"));
     

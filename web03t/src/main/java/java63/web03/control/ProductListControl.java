@@ -1,16 +1,15 @@
 package java63.web03.control;
 
 import java.util.HashMap;
-
 import java63.web03.dao.ProductDao;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Component("/product/list.do")
+@Controller
 public class ProductListControl {
   static final int PAGE_DEFAULT_SIZE = 3;
 
@@ -21,7 +20,7 @@ public class ProductListControl {
    * => 요청을 처리할 메서드를 지정하는 애노테이션
    * => 즉 이 메서드를 호출해라!
    */
-  @RequestMapping
+  @RequestMapping("/product/list.do")
   public String execute(HttpServletRequest request) throws Exception {
     
     int pageNo = 0;

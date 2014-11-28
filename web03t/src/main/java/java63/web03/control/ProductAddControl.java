@@ -8,12 +8,19 @@ import java63.web03.domain.Product;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+/*@RequestMapping
+ * => 메서드에 URL을 연결한다.
+ * => 이 애노테이션의 기능을 완전히 활용하려면.,
+ *    이 애노테이션 처리기를 등록해야 한다.
+ */
+
 
 
 //방법 1) @Component("/product/add.do")
@@ -22,7 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 //방법 3) @RequestMapping("/product/add.do")
 //방법 4) @Component
 //방법 4) @RequestMapping("/product")
-@Component
+//@Component // Spring IoC 컨테이너의 기본 객체를 지정할 때 주로 사용
+@Controller // Spring MVC의 컴포넌트(페이지 컨트롤러)임을 지정할 때 사용
 @RequestMapping("/product/add.do")
 public class ProductAddControl {
   @Autowired MakerDao makerDao;
@@ -53,12 +61,17 @@ public class ProductAddControl {
     return "/product/ProductForm.jsp";
   }*/
   
+  /* @RequestParam("파라미터명")
+   * => 파라미터 값을 담을 변수임을 선언.
+   * => 선언하지 않아도 요청 파라미터와 이름이 같다면 값을 넣어 준다.
+   * => 단 MultipartFile인 경우는 선언해야 한다.
+   */
   
   @RequestMapping(method=RequestMethod.POST)
   public String add(
-      String name,
-      int qty,
-      int mkno,
+      @RequestParam("name") String name,
+      @RequestParam int qty, /* 요청 파라미터 이름과 변수의 이름이 같다면 생략 가능*/
+      int mkno, /* @RequestParam 애노테이션 생략 가능*/
       @RequestParam MultipartFile photo) throws Exception {  
 
     String fileuploadRealPath = 
