@@ -41,11 +41,14 @@ public class DispatcherServlet extends HttpServlet {
       //4. execute 메서드 호출
       String viewUrl = (String)execute.invoke(controller, request);
       
-      //5. viewURL을 인클루딩한다.
-      response.setContentType("text/html;charset=UTF-8");
-      RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
-      rd.include(request, response);
-      
+      if (viewUrl.startsWith("redirect:")) {
+        response.sendRedirect(viewUrl.substring(9));
+      } else {
+        //5. viewURL을 인클루딩한다.
+        response.setContentType("text/html;charset=UTF-8");
+        RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
+        rd.include(request, response);
+      }
     } catch (Exception e) {
       RequestDispatcher rd = 
           request.getRequestDispatcher("/common/Error.jsp");
