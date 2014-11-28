@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Component("/auth/logout.do")
-public class LogoutServlet {
+public class LogoutControl {
   
   @RequestMapping
   public String execute(HttpServletRequest request) throws Exception {
