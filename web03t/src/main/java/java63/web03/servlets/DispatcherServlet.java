@@ -2,10 +2,12 @@ package java63.web03.servlets;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,10 +43,21 @@ public class DispatcherServlet extends HttpServlet {
       //4. execute 메서드 호출
       String viewUrl = (String)execute.invoke(controller, request);
       
+      //5. cookie 추가하기
+      @SuppressWarnings({ "rawtypes", "unchecked" })
+      ArrayList<Cookie> cookieList = 
+          (ArrayList)request.getAttribute("cookieList");
+      if (cookieList != null) {
+        for (Cookie cookie : cookieList) {
+          response.addCookie(cookie);
+        }
+      }
+      
+      //6. 뷰 컴포넌트로 보내기
       if (viewUrl.startsWith("redirect:")) {
         response.sendRedirect(viewUrl.substring(9));
-      } else {
-        //5. viewURL을 인클루딩한다.
+
+      } else {// viewURL을 인클루딩한다.
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
         rd.include(request, response);
