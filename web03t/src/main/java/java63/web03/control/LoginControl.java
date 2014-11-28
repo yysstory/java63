@@ -2,6 +2,7 @@ package java63.web03.control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import java63.web03.dao.MemberDao;
 import java63.web03.domain.Member;
 
@@ -11,12 +12,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Component("/auth/login.do")
 public class LoginControl {
   @Autowired MemberDao memberDao;
   
+  @RequestMapping
   public String execute(HttpServletRequest request) throws Exception {
     if (request.getMethod().equals("GET")) {
       Cookie[] cookies = request.getCookies();
