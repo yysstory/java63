@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-@WebServlet("/product/list.do")
+//@WebServlet("/product/list.do")
 public class ProductListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

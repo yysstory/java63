@@ -35,8 +35,7 @@
 </div>
 <div class='form-group'>
   <div class='col-sm-offset-2 col-sm-10'>
-    <button id='btnAdd' type='submit' class='btn btn-primary'>등록</button>
-    <button id='btnCancel' type='button' class='btn btn-primary'>취소</button>
+    <button id='btnAdd' type='submit' class='btn btn-primary'>로그인</button>
   </div>
 </div>
 </form>
@@ -45,6 +44,5 @@
 <jsp:include page="/common/Footer.jsp"/> 
 </body>
 </html>
-
 
 

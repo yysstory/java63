@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
-@WebServlet("/auth/login.do")
+//@WebServlet("/auth/login.do")
 public class LoginServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

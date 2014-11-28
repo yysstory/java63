@@ -13,7 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
-@WebServlet("/product/delete.do")
+//@WebServlet("/product/delete.do")
 public class ProductDeleteServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

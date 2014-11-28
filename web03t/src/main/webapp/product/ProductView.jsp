@@ -75,7 +75,7 @@
   });
 
   $('#btnCancel').click(function(){
-    history.back();
+    location.href = 'list.do';
   });
   $('#btnDelete').click(function(){
     if (window.confirm('삭제하시겠습니까?')) {
