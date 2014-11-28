@@ -1,6 +1,7 @@
 package java63.web03.control;
 
 import java.util.HashMap;
+
 import java63.web03.dao.MemberDao;
 import java63.web03.domain.Member;
 
@@ -17,21 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/auth/login.do")
-public class LoginControl {
+@RequestMapping("/auth")
+public class AuthControl {
   @Autowired MemberDao memberDao;
   
-  /* @CookieValue 
-   * => 요청 헤더에서 쿠키 값을 꺼낸다.
-   * => 기본은 필수 항목이다.
-   * => 쿠키가 없으면 다음 오류가 뜬다.
-   * The request sent by the client was syntactically incorrect.
-   * 
-   * required => 필수 여부 지정(기본은 true)
-   * defaultValue => 기본 값 지정(값이 없을 때 지정될 값)
-   */
-  
-  @RequestMapping(method=RequestMethod.GET)
+  @RequestMapping(value="/login", method=RequestMethod.GET)
   public String form(
       @CookieValue(/*required=false*/defaultValue="") String uid, 
       Model model) throws Exception {
@@ -39,7 +30,7 @@ public class LoginControl {
     return "/auth/LoginForm.jsp";
   } 
   
-  @RequestMapping(method=RequestMethod.POST)
+  @RequestMapping(value="/login", method=RequestMethod.POST)
   public String login(
       String uid, 
       String pwd, 
@@ -75,6 +66,12 @@ public class LoginControl {
       session.invalidate(); // 세션을 제거하고 새로 만든다.
       return "redirect:login.do"; //로그인 폼으로 보낸다.
     }
+  }
+  
+  @RequestMapping("/logout")
+  public String execute(HttpSession session) throws Exception {
+    session.invalidate();
+    return "redirect:login.do";
   }
 
 }
