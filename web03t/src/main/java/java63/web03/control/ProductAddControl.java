@@ -12,32 +12,44 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
-@Component("/product/add.do")
+//방법 1) @Component("/product/add.do")
+//방법 2) @Component
+//방법 3) @Component
+//방법 3) @RequestMapping("/product/add.do")
+//방법 4) @Component
+//방법 4) @RequestMapping("/product")
+@Component
+@RequestMapping("/product/add.do")
 public class ProductAddControl {
   @Autowired MakerDao makerDao;
   @Autowired ProductDao productDao;
 
-  @RequestMapping
-  public String execute(HttpServletRequest request) throws Exception {
-    if (request.getMethod().equals("GET")) {
-      request.setAttribute("makers", makerDao.selectNameList());
-      return "/product/ProductForm.jsp";
-      
-    } else {
-      Map<String,String> paramMap = FileUploadHelper.parse(request);
+  //방법 1) @RequestMapping
+  //방법 2) @RequestMapping("/product/add.do")
+  //방법 3) @RequestMapping
+  //방법 4) @RequestMapping("/add.do")
+  @RequestMapping(method=RequestMethod.GET)
+  public String form(HttpServletRequest request) throws Exception {
+    request.setAttribute("makers", makerDao.selectNameList());
+    return "/product/ProductForm.jsp";
+  } 
+  
+  @RequestMapping(method=RequestMethod.POST)
+  public String add(HttpServletRequest request) throws Exception {  
+    Map<String,String> paramMap = FileUploadHelper.parse(request);
 
-      Product product = new Product();
-      product.setName(paramMap.get("name"));
-      product.setQuantity(Integer.parseInt(paramMap.get("qty")));
-      product.setMakerNo(Integer.parseInt(paramMap.get("mkno")));
-      product.setPhoto(paramMap.get("photo"));
+    Product product = new Product();
+    product.setName(paramMap.get("name"));
+    product.setQuantity(Integer.parseInt(paramMap.get("qty")));
+    product.setMakerNo(Integer.parseInt(paramMap.get("mkno")));
+    product.setPhoto(paramMap.get("photo"));
 
-      productDao.insert(product);
-      productDao.insertPhoto(product);
-      return "redirect:list.do";
-    }
+    productDao.insert(product);
+    productDao.insertPhoto(product);
+    return "redirect:list.do";
   }
 
 }
