@@ -25,6 +25,7 @@ public class ProductListServlet extends HttpServlet {
       HttpServletRequest request, 
       HttpServletResponse response)
       throws ServletException, IOException {
+    
     int pageNo = 0;
     int pageSize = 0;
     

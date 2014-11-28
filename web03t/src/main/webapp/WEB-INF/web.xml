@@ -28,6 +28,10 @@
       <param-value>UTF-8</param-value>
     </init-param>
   </filter>
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>java63.web03.filters.AuthFilter</filter-class>
+  </filter>
   
 
   <!-- 필터를 실행해야 할 때를 지정 -->
@@ -35,7 +39,23 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
 </web-app>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
