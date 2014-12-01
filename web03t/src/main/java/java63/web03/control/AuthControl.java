@@ -36,7 +36,7 @@ public class AuthControl {
       @CookieValue(/*required=false*/defaultValue="") String uid, 
       Model model) throws Exception {
     model.addAttribute("uid", uid);
-    return "/auth/LoginForm.jsp";
+    return "auth/LoginForm";
   } 
   
   @RequestMapping(value="/login", method=RequestMethod.POST)

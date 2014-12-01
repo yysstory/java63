@@ -1,10 +1,7 @@
 package java63.web03.control;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-
 import java63.web03.dao.MakerDao;
 import java63.web03.dao.ProductDao;
 import java63.web03.domain.Product;
@@ -13,11 +10,8 @@ import javax.servlet.ServletContext;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +31,7 @@ public class ProductControl {
   public ModelAndView form() throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("makers", makerDao.selectNameList());
-    mv.setViewName("/product/ProductForm.jsp");
+    mv.setViewName("product/ProductForm");
     return mv;
   }
  
@@ -78,7 +72,7 @@ public class ProductControl {
     
     model.addAttribute("products", productDao.selectList(paramMap));
     
-    return "/product/ProductList.jsp";
+    return "product/ProductList";
   }
   
   @RequestMapping("/update")
@@ -95,7 +89,7 @@ public class ProductControl {
         productDao.selectPhoto(product.getNo()));
     
     model.addAttribute("makers", makerDao.selectNameList());
-    return "/product/ProductView.jsp";
+    return "product/ProductView";
   }
 }
 
