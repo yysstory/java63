@@ -22,7 +22,7 @@ import org.springframework.web.bind.support.SessionStatus;
  *    @SessionAttributes({"key", "key", ...})
  */
 
-@Controller
+@Controller 
 @RequestMapping("/auth") 
 // 만약 Model에 loginUser라는 이름으로 값을 저장한다면
 // 그 값은 request에 보관하지 말고 session에 보관하라!
