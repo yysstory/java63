@@ -6,6 +6,7 @@ import java63.web03.domain.Member;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,17 @@ public class AuthControl {
   @Autowired MemberDao memberDao;
   
   @RequestMapping(value="/loginUser", method=RequestMethod.GET)
-  public String loginUser() throws Exception {
-    return "json/auth/LoginUser";
+  public Object loginUser(HttpSession session) throws Exception {
+    HashMap<String,Object> resultMap = new HashMap<>();
+    
+    if (session.getAttribute("loginUser") != null) {
+      resultMap.put("status", "success");
+      resultMap.put("loginUser", session.getAttribute("loginUser"));
+    } else {
+      resultMap.put("status", "fail");
+    }
+    
+    return resultMap;
   }
   
   @RequestMapping(value="/login", method=RequestMethod.GET)

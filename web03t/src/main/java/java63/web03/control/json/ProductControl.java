@@ -57,10 +57,9 @@ public class ProductControl {
   }
   
   @RequestMapping("/list")
-  public String list(
+  public Object list(
       @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="5") int pageSize,
-      Model model) throws Exception {
+      @RequestParam(defaultValue="5") int pageSize) throws Exception {
     
     if (pageSize <= 0)
       pageSize = PAGE_DEFAULT_SIZE;
@@ -76,13 +75,13 @@ public class ProductControl {
     paramMap.put("startIndex", ((pageNo - 1) * pageSize));
     paramMap.put("pageSize", pageSize);
     
-    model.addAttribute("products", productDao.selectList(paramMap));
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("currPageNo", pageNo);
+    resultMap.put("maxPageNo", maxPageNo);
+    resultMap.put("products", productDao.selectList(paramMap));
     
-    model.addAttribute("currPageNo", pageNo);
-    model.addAttribute("maxPageNo", maxPageNo);
-    
-    
-    return "json/product/ProductList";
+    return resultMap;
   }
   
   @RequestMapping("/update")
