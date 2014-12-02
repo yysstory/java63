@@ -79,14 +79,8 @@ public class ProductControl {
     model.addAttribute("products", productDao.selectList(paramMap));
     
     model.addAttribute("currPageNo", pageNo);
+    model.addAttribute("maxPageNo", maxPageNo);
     
-    if (pageNo > 1) {
-      model.addAttribute("prevPageNo", (pageNo - 1));
-    }
-    
-    if (pageNo < maxPageNo) {
-      model.addAttribute("nextPageNo", (pageNo + 1));
-    }
     
     return "json/product/ProductList";
   }

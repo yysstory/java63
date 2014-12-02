@@ -6,8 +6,7 @@
 <c:set var="count" value="1"/>  
 {
   "currPageNo": ${currPageNo},
-  <c:if test="${!empty prevPageNo}">"prevPageNo": ${prevPageNo},</c:if>
-  <c:if test="${!empty nextPageNo}">"nextPageNo": ${nextPageNo},</c:if>
+  "maxPageNo": ${maxPageNo},
   "products": [
   <c:forEach items="${products}" var="product">
     <c:if test="${count > 1}">,</c:if>

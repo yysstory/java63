@@ -22,12 +22,6 @@
 <tr>
   <th>#</th><th>제품</th><th>수량</th><th>제조사</th>
 </tr>
-<tr>
-  <td>1</td>
-  <td><a href='view.do?no=1'>아이폰6x</a></td>
-  <td>110</td>
-  <td>애플</td>
-</tr>
 </table>
 
 <div id='pagingBar'>
@@ -79,7 +73,13 @@ function loadProductList(pageNo) {
       for (var i = 0; i < products.length; i++) {
         $('<tr>')
             .append($('<td>').html(products[i].no))
-            .append($('<td>').html(products[i].name))
+            .append(
+            		$('<td>').append(
+            				$('<a>').attr('href', '#')
+            				        .attr('data-no', products[i].no)
+            				        .html(products[i].name)
+            		)
+            )
             .append($('<td>').html(products[i].quantity))
             .append($('<td>').html(products[i].maker))
             .appendTo('#productTable')
