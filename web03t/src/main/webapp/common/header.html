@@ -1,0 +1,30 @@
+<p class='userinfo'><a id='userName' href='#'></a></p>
+<p class='logout'>
+  <button id='logoutBtn' type='button' style='display:none'>로그아웃</button>
+  <button id='loginBtn' type='button' style='display:none'>로그인</button>
+</p>
+<script>
+$.getJSON('/web03t/json/auth/loginUser.do', function(data){
+	console.log(data);
+	if (data.userId == '') {
+		$('#loginBtn').css('display', '');
+		
+	} else {
+		$('#logoutBtn').css('display', '');
+		
+	  $('#userName').html(data.userName);
+		$('#userName').click(function(){
+			alert('사용자 정보 조회 창으로 보낼 예정');
+		});
+	}
+});
+</script>
+
+
+
+
+
+
+
+
+

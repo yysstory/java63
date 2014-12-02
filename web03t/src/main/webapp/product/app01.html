@@ -11,8 +11,11 @@
 <body>
 <div class='container'>
 
-<div class='header'></div>
-
+<div class='header'>
+<p class='userinfo'>
+  <a href='mailto:'></a></p>
+<p class='logout'><a href='/web03t/auth/logout.do'>로그아웃</a></p>
+</div>  
 <h1>제품 목록</h1>
 <p><a href='add.do' class='btn btn-primary'>새제품</a></p>
 <table id='productTable' class='table table-hover'>
@@ -26,17 +29,13 @@
   <span id='pageNo'>1</span>
   <button id='nextBtn' type='button' class='btn btn-default'>다음</button>
 </div>
-
-<div class='footer'></div>
-
 </div>
+<address class='copyright'>Copyright&copy;Java63</address> 
+
 <script src='../js/jquery-1.11.1.js'></script>
 <script>
 var currPageNo;
 var maxPageNo;
-
-$('.header').load('../common/header.html');
-$('.footer').load('../common/footer.html');
 
 loadProductList(1);
 
