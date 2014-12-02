@@ -1,4 +1,4 @@
-package java63.web03.control;
+package java63.web03.control.json;
 
 import java.io.File;
 import java.util.HashMap;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-//@Controller
-@RequestMapping("/product")
-public class ProductControl02 {
-  static Logger log = Logger.getLogger(ProductControl02.class);
-  static final int PAGE_DEFAULT_SIZE = 3;
+@Controller("json.productControl")
+@RequestMapping("/json/product")
+public class ProductControl {
+  static Logger log = Logger.getLogger(ProductControl.class);
+  static final int PAGE_DEFAULT_SIZE = 5;
   
   @Autowired MakerDao makerDao;
   @Autowired ProductDao productDao;
@@ -58,13 +58,19 @@ public class ProductControl02 {
   
   @RequestMapping("/list")
   public String list(
-      @RequestParam(defaultValue="0") int pageNo,
-      @RequestParam(defaultValue="0") int pageSize,
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="5") int pageSize,
       Model model) throws Exception {
     
-    if (pageNo > 0) {
+    if (pageSize <= 0)
       pageSize = PAGE_DEFAULT_SIZE;
-    }
+    
+    int totalSize = productDao.totalSize();
+    int maxPageNo = totalSize / pageSize;
+    if ((totalSize % pageSize) > 0) maxPageNo++;
+    
+    if (pageNo <= 0) pageNo = 1;
+    if (pageNo > maxPageNo) pageNo = maxPageNo;
     
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", ((pageNo - 1) * pageSize));
@@ -72,7 +78,17 @@ public class ProductControl02 {
     
     model.addAttribute("products", productDao.selectList(paramMap));
     
-    return "product/ProductList";
+    model.addAttribute("currPageNo", pageNo);
+    
+    if (pageNo > 1) {
+      model.addAttribute("prevPageNo", (pageNo - 1));
+    }
+    
+    if (pageNo < maxPageNo) {
+      model.addAttribute("nextPageNo", (pageNo + 1));
+    }
+    
+    return "json/product/ProductList";
   }
   
   @RequestMapping("/update")

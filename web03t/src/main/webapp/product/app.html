@@ -1,10 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel='stylesheet' 
+  href='/web03t/css/bootstrap.min.css'>
+<link rel='stylesheet' 
+  href='/web03t/css/bootstrap-theme.min.css'>
+<link rel='stylesheet' 
+  href='/web03t/css/common.css'>
 </head>
 <body>
+<div class='container'>
 
+<div class='header'>
+<p class='userinfo'>
+  <a href='mailto:'></a></p>
+<p class='logout'><a href='/web03t/auth/logout.do'>로그아웃</a></p>
+</div>  
+<h1>제품 목록</h1>
+<p><a href='add.do' class='btn btn-primary'>새제품</a></p>
+<table class='table table-hover'>
+<tr>
+  <th>#</th><th>제품</th><th>수량</th><th>제조사</th>
+</tr>
+
+<tr>
+  <td>1</td>
+  <td><a href='view.do?no=1'>아이폰6x</a></td>
+  <td>110</td>
+  <td>애플</td>
+</tr>
+
+<tr>
+  <td>2</td>
+  <td><a href='view.do?no=2'>아이폰5</a></td>
+  <td>100</td>
+  <td>애플</td>
+</tr>
+
+<tr>
+  <td>3</td>
+  <td><a href='view.do?no=3'>아이패드</a></td>
+  <td>50</td>
+  <td>애플</td>
+</tr>
+
+<tr>
+  <td>4</td>
+  <td><a href='view.do?no=4'>갤럭시S5</a></td>
+  <td>2000</td>
+  <td>삼성</td>
+</tr>
+
+<tr>
+  <td>5</td>
+  <td><a href='view.do?no=5'>갤럭시S4</a></td>
+  <td>1000</td>
+  <td>삼성</td>
+</tr>
+
+
+</table>
+
+<div id='pagingBar'>
+
+
+
+<span>1</span>
+
+
+  <a href='list.do?pageNo=2' class='btn btn-default'>다음</a>
+
+
+</div>
+</div>
+<script src='../js/jquery-1.11.1.js'></script>
+
+<address class='copyright'>Copyright&copy;Java63</address> 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
