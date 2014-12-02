@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>JSON 사용</h1>
+	<h1>jQuery 사용하여 AJAX 처리</h1>
 	<table id='boardTable' border='1'>
 	<tr>
 	  <th>번호</th><th>제목</th><th>작성자</th>
@@ -17,8 +17,7 @@
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				//var list = eval('(' + xhr.responseText + ')');
-				var list = JSON.parse(xhr.responseText);
+				var list = eval('(' + xhr.responseText + ')');
 				
 				var table = document.getElementById('boardTable');
 				
