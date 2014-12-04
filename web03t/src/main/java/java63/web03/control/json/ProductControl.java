@@ -91,9 +91,12 @@ public class ProductControl {
   }
   
   @RequestMapping("/update")
-  public String update(Product product) throws Exception {
+  public Object update(Product product) throws Exception {
     productDao.update(product);
-    return "redirect:list.do";
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    return resultMap;
   }
   
   @RequestMapping("/view")
