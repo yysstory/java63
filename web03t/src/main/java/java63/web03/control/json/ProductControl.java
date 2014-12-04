@@ -52,10 +52,14 @@ public class ProductControl {
   }
 
   @RequestMapping("/delete")
-  public String delete(int no) throws Exception {
+  public Object delete(int no) throws Exception {
     productDao.deletePhoto(no);
     productDao.delete(no);
-    return "redirect:list.do";
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    
+    return resultMap;
   }
   
   @RequestMapping("/list")
