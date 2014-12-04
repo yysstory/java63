@@ -51,13 +51,13 @@
 <div class='form-group'>
   <div class='col-sm-offset-2 col-sm-10'>
     <button id='btnAdd' type='button' class='btn btn-primary'>등록</button>
-    <button id='btnCancel' type='button' class='btn btn-primary'>취소</button>
+    <button id='btnCancel' type='reset' class='btn btn-primary'>취소</button>
   </div>
 </div>
 </form>
 <script>
   $('#btnCancel').click(function(){
-    history.back();
+    
   });
   
   $('#btnAdd').click(function(){
@@ -90,7 +90,8 @@
 	      } 
 	      , function(result){ /* 서버로부터 응답을 받았을 때 호출될 메서드*/
 	        if (result.status == "success") {
-	          alert("등록 성공!");
+	          loadProductList(1);
+	          $('#btnCancel').click(); // click 이벤트 발생시킴.
 	        } else {
 	          alert("등록 실패!");
 	        }

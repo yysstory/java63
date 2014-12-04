@@ -7,7 +7,11 @@ $(function(){
   $('.footer').load('../common/footer.html');
   $('.form').load('form.html');
   
-  loadProductList(1);	
+  loadProductList(1);
+  
+  $(document).on('click', '.data-row a', function(){
+    alert($(this).attr('data-no'));
+  });
 });
 
 
@@ -61,3 +65,9 @@ function loadProductList(pageNo) {
       }
     });
 }
+
+
+
+
+
+
