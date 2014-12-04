@@ -87,6 +87,7 @@
       alert('변경한 것이 없습니다!');
       return;
     }
+    
     if (!validateForm()) return;
     
     updateProduct($('#no').val());
@@ -177,10 +178,44 @@
   
   function yyyyMMdd(date) {
     if (date) {
-      return new Date(date).toISOString().slice(0,10);
+      var date = new Date(date);
+      var str = date.getFullYear() + '-';
+      
+      if (date.getMonth() < 9) str += '0';
+      str += (date.getMonth() + 1) + '-';
+      
+      if (date.getDate() < 10) str += '0';
+      str += date.getDate();
+      
+      return str;
+      
     } else {
       return '';
     }
+  }
+  
+  function updateProduct() {
+    $.post('../json/product/update.do'
+        , {
+          no : $('#no').val(),
+          name : $('#name').val(),
+          quantity : $('#quantity').val(),
+          makerNo : $('#makerNo').val(),
+          madeDate : $('#madeDate').val(),
+          photofile2 : $('#photofile').val()
+        } 
+        , function(result){
+          if (result.status == "success") {
+            loadProductList(0);
+            $('#btnCancel').click(); 
+          } else {
+            alert("변경 실패!");
+          }
+        } 
+        , 'json')
+     .fail(function(jqXHR, textStatus, errorThrown){ 
+       alert(textStatus + ":" + errorThrown);
+     });
   }
 </script>
 
