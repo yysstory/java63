@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller("json.productControl")
 @RequestMapping("/json/product")
@@ -26,27 +25,30 @@ public class ProductControl {
   @Autowired MakerDao makerDao;
   @Autowired ProductDao productDao;
   @Autowired ServletContext servletContext;
-
-  @RequestMapping(value="/add", method=RequestMethod.GET)
-  public ModelAndView form() throws Exception {
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("makers", makerDao.selectNameList());
-    mv.setViewName("product/ProductForm");
-    return mv;
-  }
  
   @RequestMapping(value="/add", method=RequestMethod.POST)
-  public String add(Product product) throws Exception {  
-    String fileuploadRealPath = 
-        servletContext.getRealPath("/fileupload");
-    String filename = System.currentTimeMillis() + "_"; 
-    File file = new File(fileuploadRealPath + "/" + filename);
-    product.getPhotofile().transferTo(file);
-    product.setPhoto(filename);
-
+  public Object add(Product product) throws Exception {  
+    
     productDao.insert(product);
-    productDao.insertPhoto(product);
-    return "redirect:list.do";
+    
+    if (product.getPhotofile() != null
+        && !product.getPhotofile().isEmpty()) {
+
+      String fileuploadRealPath = 
+        servletContext.getRealPath("/fileupload");
+      String filename = System.currentTimeMillis() + "_"; 
+      File file = new File(fileuploadRealPath + "/" + filename);
+    
+      product.getPhotofile().transferTo(file);
+      product.setPhoto(filename);
+        
+      productDao.insertPhoto(product);
+    }
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    
+    return resultMap;
   }
 
   @RequestMapping("/delete")
