@@ -10,7 +10,7 @@ $(function(){
   loadProductList(1);
   
   $(document).on('click', '.data-row a', function(){
-    alert($(this).attr('data-no'));
+    loadProduct($(this).attr('data-no'));
   });
 });
 
@@ -65,6 +65,42 @@ function loadProductList(pageNo) {
       }
     });
 }
+
+function loadProduct(productNo) {
+  $.getJSON('../json/product/view.do?no=' + productNo, 
+    function(data){
+      $('#btnCancel').click();
+      
+      $('#name').val(data.product.name);
+      $('#quantity').val(data.product.quantity);
+      $('#makerNo').val(data.product.makerNo);
+      
+      if (data.product.madeDate) {
+        $('#madeDate').val(new Date(data.product.madeDate)
+                              .toISOString()
+                              .slice(0,10));
+      }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
