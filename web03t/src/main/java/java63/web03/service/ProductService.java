@@ -2,13 +2,11 @@ package java63.web03.service;
 
 import java.util.HashMap;
 import java.util.List;
-
 import java63.web03.dao.ProductDao;
 import java63.web03.domain.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,7 +45,29 @@ public class ProductService {
       propagation=Propagation.REQUIRED)
   public void add(Product product) {
     productDao.insert(product);
+    product.setNo(1000);
     productDao.insertPhoto(product);
+  }
+  
+  @Transactional(
+      rollbackFor=Exception.class, 
+      propagation=Propagation.REQUIRED)
+  public void update(Product product) {
+    productDao.update(product);
+  }
+  
+  @Transactional(
+      rollbackFor=Exception.class, 
+      propagation=Propagation.REQUIRED)
+  public void delete(int productNo) {
+    productDao.deletePhoto(productNo);
+    productDao.delete(productNo);
+  }
+  
+  public Product get(int productNo) {
+    Product product = productDao.selectOne(productNo);
+    product.setPhotoList( productDao.selectPhoto(productNo));
+    return product;
   }
 }
 
