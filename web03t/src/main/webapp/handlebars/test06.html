@@ -5,7 +5,7 @@
 <title></title>
 </head>
 <body>
-<h1>$(셀렉터).load() - 템플릿 로딩</h1>
+<h1>require() - 템플릿 로딩</h1>
 <div id='d1'></div>
 
 <script id="template" type="text/temp"></script>
@@ -19,12 +19,8 @@
 //  자바 코드...  
 //})
 
-//외부 파일의 데이터 읽기
-//방법1. jQuery 사용
-//1) load() 함수를 사용하여 템플릿 파일을 읽어서 <script> 태그에 넣는다.
-$('#template').load('templates/address-row.html', function(){
-  var source = $('#template').html();
-  var template = Handlebars.compile(source);
+require(['text!templates/address-row.html'], function(p1) {
+  var template = Handlebars.compile(p1);
   var html = template(
       {
         cards: [
@@ -39,12 +35,6 @@ $('#template').load('templates/address-row.html', function(){
   $('#d1').html(html);
 });
 
-
-/*
-require(['text!templates/address-row.html'], function(p1) {
-  console.log(p1);
-});
-*/
 
 </script>
 

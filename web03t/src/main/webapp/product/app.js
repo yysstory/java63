@@ -12,6 +12,11 @@ $(function(){
   $(document).on('click', '.data-row a', function(){
     loadProduct($(this).attr('data-no'));
   });
+  
+  $(document).on('click', '.my-delete-btn', function(){
+    deleteProduct($(this).attr('data-no'))
+    loadProduct(0);
+  });
 });
 
 
@@ -49,22 +54,10 @@ function loadProductList(pageNo) {
       setPageNo(data.currPageNo, data.maxPageNo);
       var products = data.products;
       
-      $('.data-row').remove();
-      
-      for (var i = 0; i < products.length; i++) {
-        $('<tr>').addClass('data-row')
-            .append($('<td>').html(products[i].no))
-            .append(
-            		$('<td>').append(
-            				$('<a>').attr('href', '#')
-            				        .attr('data-no', products[i].no)
-            				        .html(products[i].name)
-            		)
-            )
-            .append($('<td>').html(products[i].quantity))
-            .append($('<td>').html(products[i].maker))
-            .appendTo('#productTable')
-      }
+      require(['text!templates/product-table.html'], function(html){
+        var template = Handlebars.compile(html);
+        $('#listDiv').html( template(data) );
+      });
     });
 }
 
