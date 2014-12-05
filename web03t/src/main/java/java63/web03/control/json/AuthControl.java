@@ -1,8 +1,8 @@
 package java63.web03.control.json;
 
 import java.util.HashMap;
-import java63.web03.dao.MemberDao;
 import java63.web03.domain.Member;
+import java63.web03.service.MemberService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 @RequestMapping("/json/auth") 
 @SessionAttributes({"loginUser", "requestUrl"})
 public class AuthControl {
-  @Autowired MemberDao memberDao;
+  @Autowired MemberService memberService;
   
   @RequestMapping(value="/loginUser", method=RequestMethod.GET)
   public Object loginUser(HttpSession session) throws Exception {
@@ -65,10 +65,7 @@ public class AuthControl {
       response.addCookie(cookie);
     }
     
-    HashMap<String,String> params = new HashMap<>();
-    params.put("userId", uid);
-    params.put("password", pwd);
-    Member member = memberDao.existUser(params);
+    Member member = memberService.validate(uid, pwd);
     
     if (member != null) {
       model.addAttribute("loginUser", member);

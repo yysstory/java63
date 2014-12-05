@@ -45,8 +45,10 @@ public class ProductService {
       propagation=Propagation.REQUIRED)
   public void add(Product product) {
     productDao.insert(product);
-    product.setNo(1000);
-    productDao.insertPhoto(product);
+    
+    if (product.getPhoto() != null) {
+      productDao.insertPhoto(product);
+    }
   }
   
   @Transactional(

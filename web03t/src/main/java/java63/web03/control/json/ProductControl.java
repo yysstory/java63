@@ -2,9 +2,9 @@ package java63.web03.control.json;
 
 import java.io.File;
 import java.util.HashMap;
-import java63.web03.dao.MakerDao;
-import java63.web03.dao.ProductDao;
 import java63.web03.domain.Product;
+import java63.web03.service.MakerService;
+import java63.web03.service.ProductService;
 
 import javax.servlet.ServletContext;
 
@@ -22,14 +22,12 @@ public class ProductControl {
   static Logger log = Logger.getLogger(ProductControl.class);
   static final int PAGE_DEFAULT_SIZE = 5;
   
-  @Autowired MakerDao makerDao;
-  @Autowired ProductDao productDao;
+  @Autowired MakerService       makerService;
+  @Autowired ProductService     productService;
   @Autowired ServletContext servletContext;
  
   @RequestMapping(value="/add", method=RequestMethod.POST)
   public Object add(Product product) throws Exception {  
-    
-    productDao.insert(product);
     
     if (product.getPhotofile() != null
         && !product.getPhotofile().isEmpty()) {
@@ -41,9 +39,9 @@ public class ProductControl {
     
       product.getPhotofile().transferTo(file);
       product.setPhoto(filename);
-        
-      productDao.insertPhoto(product);
     }
+    
+    productService.add(product);
     
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
@@ -53,8 +51,7 @@ public class ProductControl {
 
   @RequestMapping("/delete")
   public Object delete(int no) throws Exception {
-    productDao.deletePhoto(no);
-    productDao.delete(no);
+    productService.delete(no);
     
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
@@ -70,29 +67,24 @@ public class ProductControl {
     if (pageSize <= 0)
       pageSize = PAGE_DEFAULT_SIZE;
     
-    int totalSize = productDao.totalSize();
-    int maxPageNo = totalSize / pageSize;
-    if ((totalSize % pageSize) > 0) maxPageNo++;
+    int maxPageNo = productService.getMaxPageNo(pageSize);
     
     if (pageNo <= 0) pageNo = 1;
     if (pageNo > maxPageNo) pageNo = maxPageNo;
-    
-    HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("startIndex", ((pageNo - 1) * pageSize));
-    paramMap.put("pageSize", pageSize);
     
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("currPageNo", pageNo);
     resultMap.put("maxPageNo", maxPageNo);
-    resultMap.put("products", productDao.selectList(paramMap));
+    resultMap.put("products", 
+        productService.getList(pageNo, pageSize));
     
     return resultMap;
   }
   
   @RequestMapping("/update")
   public Object update(Product product) throws Exception {
-    productDao.update(product);
+    productService.update(product);
     
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
@@ -101,12 +93,12 @@ public class ProductControl {
   
   @RequestMapping("/view")
   public Object view(int no, Model model) throws Exception {
-    Product product = productDao.selectOne(no);
+    Product product = productService.get(no);
     
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("product", product);
-    resultMap.put("photos", productDao.selectPhoto(product.getNo()));
+    resultMap.put("photos", product.getPhotoList());
     return resultMap;
   }
 }
