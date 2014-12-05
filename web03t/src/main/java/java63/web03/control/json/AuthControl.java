@@ -10,16 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 @Controller("json.authControl") 
 @RequestMapping("/json/auth") 
-@SessionAttributes({"loginUser", "requestUrl"})
 public class AuthControl {
   @Autowired MemberService memberService;
   
@@ -37,25 +32,16 @@ public class AuthControl {
     return resultMap;
   }
   
-  @RequestMapping(value="/login", method=RequestMethod.GET)
-  public String form(
-      @CookieValue(/*required=false*/defaultValue="") String uid, 
-      Model model) throws Exception {
-    model.addAttribute("uid", uid);
-    return "auth/LoginForm";
-  } 
-  
   @RequestMapping(value="/login", method=RequestMethod.POST)
-  public String login(
+  public Object login(
       String uid, 
       String pwd, 
-      String save,
+      boolean save,
       String requestUrl, /* 세션에 저장된 값을 달라고 하려면?*/
       HttpServletResponse response,
-      Model model,
-      SessionStatus status) throws Exception {
+      HttpSession session) throws Exception {
 
-    if (save != null) { // 쿠키로 아이디 저장
+    if (save) { // 쿠키로 아이디 저장
       Cookie cookie = new Cookie("uid", uid);
       cookie.setMaxAge(60 * 60 * 24 * 15);
       response.addCookie(cookie);
@@ -67,26 +53,25 @@ public class AuthControl {
     
     Member member = memberService.validate(uid, pwd);
     
+    HashMap<String,Object> resultMap = new HashMap<>();
+    
     if (member != null) {
-      model.addAttribute("loginUser", member);
-      if (requestUrl != null) {
-        return "redirect:" + requestUrl;
-      } else {
-        return "redirect:../product/list.do";
-      }
-      
+      resultMap.put("status", "success");
+      session.setAttribute("loginUser", member);
     } else {
-      //@SessionAttributes로 지정된 값을 무효화시킨다.
-      // => 주의!!!! 세션 전체를 무효화시키지 않는다.
-      status.setComplete();
-      return "redirect:login.do"; //로그인 폼으로 보낸다.
+      session.invalidate();
+      resultMap.put("status", "fail");
     }
+    
+    return resultMap;
   }
   
   @RequestMapping("/logout")
-  public String execute(SessionStatus status) throws Exception {
-    status.setComplete();
-    return "redirect:login.do";
+  public Object execute(HttpSession session) throws Exception {
+    session.invalidate();
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    return resultMap;
   }
 
 }
