@@ -1,0 +1,15 @@
+{
+  "name": "node02",
+  "version": "1.0.0",
+  "description": "node02",
+  "main": "checkEmail.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.10.6",
+    "mysql": "^2.5.3"
+  }
+}
